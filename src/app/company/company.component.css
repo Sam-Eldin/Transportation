@@ -1,0 +1,14 @@
+.navbar-icon {
+  user-select: none;
+  cursor: pointer;
+}
+
+.navbar-tab {
+  font-size: medium;
+  border: none;
+}
+#mat-badge-content-0 {
+  top: -5px;
+  right: -8px;
+
+}

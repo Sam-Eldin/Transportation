@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyComponent } from './company/company.component';
 import { CustomerComponent } from './customer/customer.component';
-
 import {MaterialModule} from '../material.module';
-import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
+import {ToastContainerModule, ToastrModule} from "ngx-toastr";
+import {OverlayModule} from "@angular/cdk/overlay";
 
 @NgModule({
   declarations: [
@@ -18,9 +18,17 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ToastrModule.forRoot(
+      {
+        preventDuplicates: true,
+        autoDismiss: true,
+        positionClass: 'toast-top-center',
+      }
+    ),
+    ToastContainerModule, OverlayModule,
   ],
-  providers: [{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500, verticalPosition: 'top', horizontalPosition: 'center'}}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

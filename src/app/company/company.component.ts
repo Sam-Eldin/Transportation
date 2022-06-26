@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {Component, OnInit} from '@angular/core';
+import {NotificationService, notificationTypes} from "../services/notification.service";
 
 @Component({
   selector: 'app-company',
@@ -9,14 +9,14 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class CompanyComponent implements OnInit {
   ordersCount = 8;
 
-  constructor(private _snackBar: MatSnackBar) { }
+  constructor(private _notification: NotificationService) { }
 
   ngOnInit(): void {
   }
 
   openSnackBar() {
     this.ordersCount++;
-    this._snackBar.open('hello');
+    this._notification.createNotification(notificationTypes.success, 'new Order been received');
   }
 
 }

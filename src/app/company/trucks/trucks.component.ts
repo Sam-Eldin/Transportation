@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ColDef, GridReadyEvent} from "ag-grid-community";
+import {ColDef, ColumnApi, GridApi, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {ITrucksData, trucksMockData} from "./trucks.mock-data";
 
@@ -19,11 +19,13 @@ export class TrucksComponent implements OnInit {
     sortable: true, filter: true, flex: 1
   };
 
-  @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
-  rowData: ITrucksData[];
+  @ViewChild('agGridTrucks') agGrid!: AgGridAngular;
+  rowData: ITrucksData[] = [];
+  private gridApi!: GridApi;
+  private columnApi!: ColumnApi;
 
   constructor() {
-    this.rowData = trucksMockData;
+
   }
 
   ngOnInit(): void {
@@ -31,8 +33,9 @@ export class TrucksComponent implements OnInit {
 
 
   onGridReady(_: GridReadyEvent) {
-    this.agGrid.rowData = trucksMockData;
+    this.gridApi = _.api;
+    this.columnApi = _.columnApi;
+    this.gridApi.setRowData(trucksMockData)
+    this.gridApi.setDomLayout('autoHeight');
   }
-
-
 }

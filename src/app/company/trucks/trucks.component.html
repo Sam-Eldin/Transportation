@@ -1,16 +1,20 @@
 <mat-toolbar>
-  <button mat-icon-button>
+  <button mat-button>
     <mat-icon>add_circle_outline</mat-icon>
+    <span>&nbsp;Add Truck</span>
+
     <!-- todo on click open modal -->
   </button>
-  <button mat-icon-button>
+  <button mat-button>
     <mat-icon>remove_circle_outline</mat-icon>
+    <span>&nbsp;Remove Truck</span>
     <!-- todo on click get selected row and remove it -->
   </button>
 </mat-toolbar>
 
 <ag-grid-angular
-  style="width: 100%; height: 100%"
+  #agGridTrucks
+  style="width: 100%;"
   class="ag-theme-alpine"
   [columnDefs]="columnDefs"
   [defaultColDef]="defaultColDef"

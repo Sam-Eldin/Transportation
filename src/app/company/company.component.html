@@ -2,7 +2,7 @@
   <span class="navbar-icon" style="font-size: x-large">🚚</span>
   <button mat-button class="navbar-tab">Calendar</button>
   <button mat-button class="navbar-tab">Drivers</button>
-  <button mat-button class="navbar-tab">Cars</button>
+  <button mat-button class="navbar-tab">Trucks</button>
   <button mat-button class="navbar-tab">Banks</button>
   <button mat-button class="navbar-tab" [matBadge]="this.ordersCount" matBadgePosition="after" (click)="openSnackBar()">Orders
   </button>
@@ -14,3 +14,5 @@
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
+
+<company-trucks></company-trucks>

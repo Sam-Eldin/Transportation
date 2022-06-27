@@ -16,7 +16,7 @@ export class CompanyComponent implements OnInit {
 
   openSnackBar() {
     this.ordersCount++;
-    this._notification.createNotification(notificationTypes.success, 'new Order been received');
+    this._notification.createNotification(notificationTypes.info, 'new Order been received');
   }
 
 }

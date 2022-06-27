@@ -1,3 +1,14 @@
+<mat-toolbar>
+  <button mat-icon-button>
+    <mat-icon>add_circle_outline</mat-icon>
+    <!-- todo on click open modal -->
+  </button>
+  <button mat-icon-button>
+    <mat-icon>remove_circle_outline</mat-icon>
+    <!-- todo on click get selected row and remove it -->
+  </button>
+</mat-toolbar>
+
 <ag-grid-angular
   style="width: 100%; height: 100%"
   class="ag-theme-alpine"
@@ -8,3 +19,5 @@
   [animateRows]="true"
   (gridReady)="onGridReady($event)"
 ></ag-grid-angular>
+
+<!-- todo add insert modal -->

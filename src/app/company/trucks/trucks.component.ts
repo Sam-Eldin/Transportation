@@ -10,13 +10,13 @@ import {ITrucksData, trucksMockData} from "./trucks.mock-data";
 })
 export class TrucksComponent implements OnInit {
   columnDefs: ColDef[] = [
-    {field: 'PlateNumber', flex: 1},
-    {field: 'Type', flex: 1},
-    {field: 'Year', flex: 1},
-    {field: 'Distance', flex: 1},
+    {field: 'PlateNumber'},
+    {field: 'Type'},
+    {field: 'Year'},
+    {field: 'Distance'},
   ];
   defaultColDef: ColDef = {
-    sortable: true, filter: true
+    sortable: true, filter: true, flex: 1
   };
 
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;

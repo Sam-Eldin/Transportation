@@ -15,11 +15,7 @@
   #agGridTrucks
   style="width: 100%;"
   class="ag-theme-alpine"
-  [columnDefs]="columnDefs"
-  [defaultColDef]="defaultColDef"
-  [rowData]="rowData"
-  [rowSelection]="'multiple'"
-  [animateRows]="true"
+  [gridOptions]="this.gridOptions"
   (gridReady)="onGridReady($event)"
 ></ag-grid-angular>
 

@@ -16,7 +16,6 @@ export class TrucksComponent implements OnInit {
     {field: 'Type'},
     {field: 'Year'},
     {field: 'Distance'},
-    {field: 'Distance2'},
   ];
   defaultColDef: ColDef = {
     sortable: true, filter: true, flex: 1

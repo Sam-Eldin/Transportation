@@ -15,6 +15,7 @@ import { OrdersComponent } from './company/orders/orders.component';
 import { CalendarComponent } from './company/calendar/calendar.component';
 import {AgGridModule} from "ag-grid-angular";
 import { RemoveDialogComponent } from './company/remove-dialog/remove-dialog.component';
+import { AddDialogComponent } from './company/add-dialog/add-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RemoveDialogComponent } from './company/remove-dialog/remove-dialog.com
     BanksComponent,
     OrdersComponent,
     CalendarComponent,
-    RemoveDialogComponent
+    RemoveDialogComponent,
+    AddDialogComponent
   ],
   imports: [
     BrowserModule,

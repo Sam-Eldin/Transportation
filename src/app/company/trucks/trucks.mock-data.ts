@@ -1,11 +1,11 @@
-export interface ITrucksData {
+export interface ITruckData {
   PlateNumber: string,
   Type: string,
   Year: string,
   Distance: number
 }
 
-export const trucksMockData: ITrucksData[] = [
+export const trucksMockData: ITruckData[] = [
   {
     PlateNumber: '11111111',
     Type: 'Dodo',

@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Adding Data</h1>
+<div mat-dialog-content>
+</div>
+
+<!--Banks Add Dialog-->
+<div *ngIf="this.data.domain === 'Banks'" mat-dialog-actions>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Favorite food</mat-label>
+    <input [(ngModel)]="this.bankData.Name" matInput placeholder="Ex. Pizza">
+
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Favorite food</mat-label>
+    <input [(ngModel)]="this.bankData.Number" matInput placeholder="0">
+  </mat-form-field>
+  <button color="primary" mat-button mat-dialog-close="">No</button>
+  <button color="warn" mat-button mat-dialog-close="" (click)="this.add()">Ok</button>
+</div>
+
+
+<!--Trucks Add Dialog-->
+<div *ngIf="this.data.domain === 'Trucks'" mat-dialog-actions>
+  <button color="primary" mat-button mat-dialog-close="">No</button>
+  <button color="warn" mat-button mat-dialog-close="">Ok</button>
+</div>
+
+
+
+<!--Drivers Add Dialog-->
+<div *ngIf="this.data.domain === 'Drivers'" mat-dialog-actions>
+  <button color="primary" mat-button mat-dialog-close="">No</button>
+  <button color="warn" mat-button mat-dialog-close="">Ok</button>
+</div>

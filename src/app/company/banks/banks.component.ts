@@ -4,6 +4,8 @@ import {AgGridAngular} from "ag-grid-angular";
 import {IBanksData, banksMockData} from "./banks.mock-data";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
+import {AddDialogComponent} from "../add-dialog/add-dialog.component";
+import {Domains} from "../Domains";
 
 @Component({
   selector: 'company-banks',
@@ -38,7 +40,18 @@ export class BanksComponent implements OnInit {
     this.dialog.open(RemoveDialogComponent,
       {
         data: {
-          gridApi: this.gridApi
+          gridApi: this.gridApi,
+          title: "bank"
+        }
+      });
+  }
+
+  openDialogAdd(): void {
+    this.dialog.open(AddDialogComponent,
+      {
+        data: {
+          gridApi: this.gridApi,
+          domain: Domains.Banks
         }
       });
   }

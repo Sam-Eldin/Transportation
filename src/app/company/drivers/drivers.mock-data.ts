@@ -1,4 +1,4 @@
-export interface IDriversData {
+export interface IDriverData {
   Id: string,
   FirstName: string,
   LastName: string,
@@ -9,7 +9,7 @@ export interface IDriversData {
   Truck: number
 }
 
-export const driversMockData: IDriversData[] = [
+export const driversMockData: IDriverData[] = [
   {
     Id: '123456789',
     FirstName: 'koko',

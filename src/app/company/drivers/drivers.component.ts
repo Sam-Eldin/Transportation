@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
-import {IDriversData, driversMockData} from "./drivers.mock-data";
+import {IDriverData, driversMockData} from "./drivers.mock-data";
 import {AgGridAngular} from "ag-grid-angular";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
@@ -26,7 +26,7 @@ export class DriversComponent implements OnInit {
   };
 
   @ViewChild('agGridDrivers') agGrid!: AgGridAngular;
-  rowData: IDriversData[] = [];
+  rowData: IDriverData[] = [];
   private gridApi!: GridApi;
   private columnApi!: ColumnApi;
   gridOptions: GridOptions = {
@@ -44,7 +44,8 @@ export class DriversComponent implements OnInit {
     this.dialog.open(RemoveDialogComponent,
       {
         data: {
-          gridApi: this.gridApi
+          gridApi: this.gridApi,
+          title: "driver/s"
         }
       });
   }

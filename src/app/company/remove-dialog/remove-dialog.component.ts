@@ -8,8 +8,7 @@ import {GridApi} from "ag-grid-community";
   styleUrls: ['./remove-dialog.component.css']
 })
 export class RemoveDialogComponent implements OnInit {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {gridApi: GridApi}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {gridApi: GridApi, title: string}
   ) { }
 
   ngOnInit(): void {

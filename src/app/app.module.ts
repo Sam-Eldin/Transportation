@@ -16,6 +16,7 @@ import { CalendarComponent } from './company/calendar/calendar.component';
 import {AgGridModule} from "ag-grid-angular";
 import { RemoveDialogComponent } from './company/remove-dialog/remove-dialog.component';
 import { AddDialogComponent } from './company/add-dialog/add-dialog.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -30,19 +31,19 @@ import { AddDialogComponent } from './company/add-dialog/add-dialog.component';
     RemoveDialogComponent,
     AddDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    ToastrModule.forRoot(
-      {
-        preventDuplicates: true,
-        autoDismiss: true,
-        positionClass: 'toast-top-center',
-      }
-    ),
-    ToastContainerModule, OverlayModule, AgGridModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        ToastrModule.forRoot(
+            {
+                preventDuplicates: true,
+                autoDismiss: true,
+                positionClass: 'toast-top-center',
+            }
+        ),
+        ToastContainerModule, OverlayModule, AgGridModule, FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

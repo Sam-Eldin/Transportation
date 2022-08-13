@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
-import {CustomerOrdersData, customerOrdersData} from "./orders.mock-data";
-import {trucksMockData} from "../../company/trucks/trucks.mock-data";
-import {RemoveDialogComponent} from "../../company/remove-dialog/remove-dialog.component";
+import {CustomerOrdersData, customerOrdersData, Status} from "./orders.mock-data";
 import {MatDialog} from "@angular/material/dialog";
 
 
@@ -16,45 +14,48 @@ export class CustomerOrdersComponent implements OnInit {
   columnDefs: ColDef[] = [
     {field: 'Id'},
     {field: 'Name'},
-    {field: 'Status'},
     {field: 'Date'},
     {field: 'Location'},
     {field: 'Price'},
     {field: 'Company'},
+    {field: 'Status', cellRenderer: function (params:any) {
+        switch (params.value){
+          case Status.pending:
+            return '<span><i class="material-icons" style="color: #1c52dc">hourglass_full</i></span>'
+          case Status.accepted:
+            return '<span><i class="material-icons" style="color: #0b8903">check_circle</i></span>'
+          case Status.rejected:
+            return '<span><i class="material-icons" style="color: #ff1111">cancel</i></span>'
+          default:
+            return '<span><i <mat-icon>hourglass_empty</mat-icon> </i></span>'
+      } }
+    }
   ];
 
   defaultColDef: ColDef = {
     sortable: true, filter: true, flex: 1
   };
 
-  @ViewChild('agGridTrucks') agGrid!: AgGridAngular;
-  rowData: CustomerOrdersData[] = [];
+
+  @ViewChild('agGridCustomerOrders') agGrid!: AgGridAngular;
+  rowData: CustomerOrdersData[] = customerOrdersData;
   private gridApi!: GridApi;
   private columnApi!: ColumnApi;
   gridOptions: GridOptions = {
     columnDefs: this.columnDefs,
     defaultColDef: this.defaultColDef,
-    getRowId: params => params.data,
+    getRowId: params => params.data.Id,
     rowData: this.rowData,
     rowSelection: 'multiple',
     animateRows: true,
   };
   constructor(public dialog: MatDialog) {}
-  openDialog(): void {
-    this.dialog.open(RemoveDialogComponent,
-      {
-        data: {
-          gridApi: this.gridApi,
-          title : "truck/s"
-        }
-      });
-  }
+
   ngOnInit(): void {
   }
-  onGridReady(_: GridReadyEvent) {
-    this.gridApi = _.api;
-    this.columnApi = _.columnApi;
-    this.gridApi.setRowData(customerOrdersData)
+  onGridReady(grid: GridReadyEvent) {
+    this.gridApi = grid.api;
+    this.columnApi = grid.columnApi;
     this.gridApi.setDomLayout('autoHeight');
   }
 }

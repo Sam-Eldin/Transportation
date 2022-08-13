@@ -49,7 +49,6 @@ export class TrucksComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   onGridReady(_: GridReadyEvent) {
     this.gridApi = _.api;
     this.columnApi = _.columnApi;

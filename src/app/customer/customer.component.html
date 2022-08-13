@@ -1,1 +1,16 @@
-<p>customer works!</p>
+<mat-toolbar>
+  <span class="navbar-icon" style="font-size: x-large">🚚</span>
+  <button mat-button class="navbar-tab">Products</button>
+  <button mat-button class="navbar-tab" [matBadge]="this.ordersCount" matBadgePosition="after" (click)="openSnackBar()">Orders
+  </button>
+  <span style="flex: 1 1 auto;"></span>
+  <button mat-icon-button>
+    <mat-icon>person</mat-icon>
+  </button>
+  <button mat-icon-button>
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+<customer-orders></customer-orders>

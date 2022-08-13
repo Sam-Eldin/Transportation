@@ -1,1 +1,20 @@
-<p>orders works!</p>
+<mat-toolbar>
+  <button mat-button>
+    <mat-icon>add_circle_outline</mat-icon>
+    <span>&nbsp;New Order</span>
+
+    <!-- todo on click open modal -->
+  </button>
+  <button mat-button (click)="this.openDialog()" >
+    <mat-icon>remove_circle_outline</mat-icon>
+    <span>&nbsp;Remove Truck</span>
+  </button>
+</mat-toolbar>
+
+<ag-grid-angular
+  #agGridTrucks
+  style="width: 100%;"
+  class="ag-theme-alpine"
+  [gridOptions]="this.gridOptions"
+  (gridReady)="onGridReady($event)"
+></ag-grid-angular>

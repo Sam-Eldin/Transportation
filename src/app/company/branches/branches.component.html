@@ -1,0 +1,22 @@
+<mat-toolbar>
+  <button mat-button>
+    <mat-icon>add_circle_outline</mat-icon>
+    <span>&nbsp;Add Branch</span>
+
+    <!-- todo on click open modal -->
+  </button>
+  <button mat-button (click)="this.openDialog()" >
+    <mat-icon>remove_circle_outline</mat-icon>
+    <span>&nbsp;Remove Branch</span>
+  </button>
+</mat-toolbar>
+
+<ag-grid-angular
+  #agGridbranches
+  style="width: 100%;"
+  class="ag-theme-alpine"
+  [gridOptions]="this.gridOptions"
+  (gridReady)="onGridReady($event)"
+></ag-grid-angular>
+
+<!-- todo add insert modal -->

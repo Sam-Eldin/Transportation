@@ -18,6 +18,7 @@ import { RemoveDialogComponent } from './company/remove-dialog/remove-dialog.com
 import { AddDialogComponent } from './company/add-dialog/add-dialog.component';
 import {FormsModule} from "@angular/forms";
 import {CustomerOrdersComponent} from "./customer/orders/orders.component";
+import { ProductsComponent } from './customer/products/products.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {CustomerOrdersComponent} from "./customer/orders/orders.component";
     CustomerOrdersComponent,
     CalendarComponent,
     RemoveDialogComponent,
-    AddDialogComponent
+    AddDialogComponent,
+    ProductsComponent
   ],
     imports: [
         BrowserModule,

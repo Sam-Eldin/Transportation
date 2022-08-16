@@ -8,6 +8,16 @@ mat-slider {
 mat-form-field {
   width: 70px;
 }
+mat-form-field.category {
+  width: 120px;
+}
 mat-form-field.example-full-description{
   width: 400px;
+}
+.example-card {
+  max-width: 400px;
+}
+.example-header-image {
+  background-size: cover;
+
 }

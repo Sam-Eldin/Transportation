@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 
 @Component({
@@ -18,9 +18,12 @@ export class ProductsComponent implements OnInit {
 
     return value;
   }
+
+
   constructor() { }
 
   ngOnInit(): void {
   }
+  cardsList: string[] = [];
 
 }

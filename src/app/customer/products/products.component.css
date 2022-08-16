@@ -1,0 +1,13 @@
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+mat-slider {
+  width: 300px;
+}
+mat-form-field {
+  width: 70px;
+}
+mat-form-field.example-full-description{
+  width: 400px;
+}

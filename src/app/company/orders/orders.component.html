@@ -1,5 +1,18 @@
+<mat-toolbar>
+  <button mat-button (click)="this.openDialogAdd()">
+    <mat-icon>add_circle_outline</mat-icon>
+    <span>&nbsp;Add Order</span>
+
+    <!-- todo on click open modal -->
+  </button>
+  <button mat-button (click)="this.openDialog()" >
+    <mat-icon>remove_circle_outline</mat-icon>
+    <span>&nbsp;Remove Order</span>
+  </button>
+</mat-toolbar>
+
 <ag-grid-angular
-  #agGridCustomerOrders
+  #agGridOrders
   style="width: 100%;"
   class="ag-theme-alpine"
   [gridOptions]="this.gridOptions"

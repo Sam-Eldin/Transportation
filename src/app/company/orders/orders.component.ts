@@ -62,4 +62,12 @@ export class OrdersComponent implements OnInit {
     this.gridApi.setRowData(ordersMockData)
     this.gridApi.setDomLayout('autoHeight');
   }
+
+  openDialog() {
+
+  }
+
+  openDialogAdd() {
+
+  }
 }

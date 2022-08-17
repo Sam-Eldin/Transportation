@@ -19,6 +19,7 @@ import { AddDialogComponent } from './company/add-dialog/add-dialog.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CustomerOrdersComponent} from "./customer/orders/orders.component";
 import { ProductsComponent } from './customer/products/products.component';
+import { CardComponent } from './customer/products/card/card.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProductsComponent } from './customer/products/products.component';
     CalendarComponent,
     RemoveDialogComponent,
     AddDialogComponent,
-    ProductsComponent
+    ProductsComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

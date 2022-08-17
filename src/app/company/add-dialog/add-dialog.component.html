@@ -4,14 +4,16 @@
 
 <!--Banks Add Dialog-->
 <div *ngIf="this.data.domain === 'Banks'" mat-dialog-actions>
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Favorite food</mat-label>
-    <input [(ngModel)]="this.bankData.Name" matInput placeholder="Ex. Pizza">
 
-  </mat-form-field>
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Favorite food</mat-label>
     <input [(ngModel)]="this.bankData.Number" matInput placeholder="0">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Add bank name</mat-label>
+    <input [(ngModel)]="this.bankData.Name" matInput placeholder="Ex. Pizza">
+
   </mat-form-field>
   <button color="primary" mat-button mat-dialog-close="">No</button>
   <button color="warn" mat-button mat-dialog-close="" (click)="this.add()">Ok</button>

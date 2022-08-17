@@ -10,14 +10,14 @@ export class CompanyComponent implements OnInit {
   ordersCount = 8;
   currentDomain: number = 2;
   public domains = {calendar: 0, drivers: 1, trucks: 2, banks: 3, orders: 4}
-  constructor(private _notification: NotificationService) { }
+  constructor(private notificationService: NotificationService) { }
 
   ngOnInit(): void {
   }
 
   openSnackBar() {
     this.ordersCount++;
-    this._notification.createNotification(notificationTypes.info, 'new Order been received');
+    this.notificationService.createNotification(notificationTypes.info, 'new Order been received');
   }
 
   changeDomain(newDomain: number) {

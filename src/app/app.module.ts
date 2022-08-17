@@ -18,7 +18,6 @@ import { RemoveDialogComponent } from './company/remove-dialog/remove-dialog.com
 import { AddDialogComponent } from './company/add-dialog/add-dialog.component';
 import {FormsModule} from "@angular/forms";
 import {CustomerOrdersComponent} from "./customer/orders/orders.component";
-import { AuthenticationComponent } from './authentication/authentication.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { ResetPasswordComponent } from './authentication/reset-password/reset-password.component';
@@ -37,7 +36,6 @@ import { LoadingComponent } from './loading/loading.component';
     CalendarComponent,
     RemoveDialogComponent,
     AddDialogComponent,
-    AuthenticationComponent,
     SignUpComponent,
     SignInComponent,
     ResetPasswordComponent,

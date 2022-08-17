@@ -22,6 +22,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { ResetPasswordComponent } from './authentication/reset-password/reset-password.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ResetPasswordComponent } from './authentication/reset-password/reset-pa
     AuthenticationComponent,
     SignUpComponent,
     SignInComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    LoadingComponent
   ],
     imports: [
         BrowserModule,

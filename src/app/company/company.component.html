@@ -1,10 +1,11 @@
 <mat-toolbar>
   <span class="navbar-icon" style="font-size: x-large">🚚</span>
-  <button mat-button class="navbar-tab">Calendar</button>
-  <button mat-button class="navbar-tab">Drivers</button>
-  <button mat-button class="navbar-tab">Trucks</button>
-  <button mat-button class="navbar-tab">Banks</button>
-  <button mat-button class="navbar-tab" [matBadge]="this.ordersCount" matBadgePosition="after" (click)="openSnackBar()">Orders
+  <button mat-button class="navbar-tab" (click)="this.changeDomain(this.domains.calendar)">Calendar</button>
+  <button mat-button class="navbar-tab" (click)="this.changeDomain(this.domains.drivers)">Drivers</button>
+  <button mat-button class="navbar-tab" (click)="this.changeDomain(this.domains.trucks)">Trucks</button>
+  <button mat-button class="navbar-tab" (click)="this.changeDomain(this.domains.banks)">Banks</button>
+  <button mat-button class="navbar-tab" [matBadge]="this.ordersCount" matBadgePosition="after" (click)="openSnackBar()">
+    Orders
   </button>
   <span style="flex: 1 1 auto;"></span>
   <button mat-icon-button>
@@ -16,6 +17,7 @@
 </mat-toolbar>
 <mat-divider></mat-divider>
 
-<!--<company-trucks></company-trucks>-->
-<!--<company-drivers></company-drivers>-->
-<company-banks></company-banks>
+<company-calendar *ngIf="this.currentDomain === this.domains.calendar"></company-calendar>
+<company-trucks *ngIf="this.currentDomain === this.domains.trucks"></company-trucks>
+<company-drivers *ngIf="this.currentDomain === this.domains.drivers"></company-drivers>
+<company-banks *ngIf="this.currentDomain === this.domains.banks"></company-banks>

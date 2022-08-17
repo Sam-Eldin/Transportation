@@ -8,7 +8,8 @@ import {NotificationService, notificationTypes} from "../services/notification.s
 })
 export class CompanyComponent implements OnInit {
   ordersCount = 8;
-
+  currentDomain: number = 2;
+  public domains = {calendar: 0, drivers: 1, trucks: 2, banks: 3, orders: 4}
   constructor(private _notification: NotificationService) { }
 
   ngOnInit(): void {
@@ -19,4 +20,7 @@ export class CompanyComponent implements OnInit {
     this._notification.createNotification(notificationTypes.info, 'new Order been received');
   }
 
+  changeDomain(newDomain: number) {
+    this.currentDomain = newDomain;
+  }
 }

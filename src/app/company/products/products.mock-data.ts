@@ -3,11 +3,13 @@ export interface IProductData {
   Name: string,
   Size: string[],
   Description: string,
-  Price: number
+  Price: number,
+  Id: number
 }
 
 export const productsMockData: IProductData[] = [
   {
+    Id: 1,
     Category: 'clothes',
     Name: 'bans',
     Size: ['10kg','1m','50cm'],
@@ -15,21 +17,21 @@ export const productsMockData: IProductData[] = [
     Price: 100
   },
   {
-    Category: 'food',
+    Id: 2,Category: 'food',
     Name: 'shaorma',
     Size: ['15kg','',''],
     Description: 'yammy',
     Price: 44
   },
   {
-    Category: 'cars',
+    Id: 3,Category: 'cars',
     Name: 'mercedes',
     Size: ['3000kg','5m','7m'],
     Description: 'fast',
     Price: 100000
   },
   {
-    Category: 'material',
+    Id: 4,Category: 'material',
     Name: 'sand',
     Size: ['3000kg','',''],
     Description: 'fast',

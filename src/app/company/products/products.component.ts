@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit {
   gridOptions: GridOptions = {
     columnDefs: this.columnDefs,
     defaultColDef: this.defaultColDef,
-    getRowId: params => params.data.id,
+    getRowId: params => params.data.Id,
     rowData: this.rowData,
     rowSelection: 'multiple',
     animateRows: true,

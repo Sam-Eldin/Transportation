@@ -22,6 +22,7 @@ import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { ResetPasswordComponent } from './authentication/reset-password/reset-password.component';
 import { LoadingComponent } from './loading/loading.component';
+import {ScheduleAllModule} from "@syncfusion/ej2-angular-schedule";
 
 @NgModule({
   declarations: [
@@ -41,19 +42,19 @@ import { LoadingComponent } from './loading/loading.component';
     ResetPasswordComponent,
     LoadingComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MaterialModule,
-        ToastrModule.forRoot(
-            {
-                preventDuplicates: true,
-                autoDismiss: true,
-                positionClass: 'toast-top-center',
-            }
-        ),
-        ToastContainerModule, OverlayModule, AgGridModule, FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ToastrModule.forRoot(
+      {
+        preventDuplicates: true,
+        autoDismiss: true,
+        positionClass: 'toast-top-center',
+      }
+    ),
+    ToastContainerModule, OverlayModule, AgGridModule, FormsModule, ScheduleAllModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

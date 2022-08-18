@@ -18,8 +18,6 @@ import { RemoveDialogComponent } from './company/remove-dialog/remove-dialog.com
 import { AddDialogComponent } from './company/add-dialog/add-dialog.component';
 import {FormsModule} from "@angular/forms";
 import {CustomerOrdersComponent} from "./customer/orders/orders.component";
-import { ProductsComponent } from './company/products/products.component';
-import { BranchesComponent } from './company/branches/branches.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +28,16 @@ import { BranchesComponent } from './company/branches/branches.component';
     TrucksComponent,
     BanksComponent,
     OrdersComponent,
+    ProductsComponent,
+    BranchesComponent,
     CustomerOrdersComponent,
     CalendarComponent,
     RemoveDialogComponent,
     AddDialogComponent,
-    ProductsComponent,
-    BranchesComponent,
+    SignUpComponent,
+    SignInComponent,
+    ResetPasswordComponent,
+    LoadingComponent
   ],
     imports: [
         BrowserModule,

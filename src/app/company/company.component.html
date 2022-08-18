@@ -18,9 +18,7 @@
 </mat-toolbar>
 <mat-divider></mat-divider>
 
-<!--<company-trucks></company-trucks>-->
-<!--<company-drivers></company-drivers>-->
-<company-banks></company-banks>
-<!--<company-products></company-products>-->
-<!--<company-branches></company-branches>-->
-<!--<company-orders></company-orders>-->
+<company-calendar *ngIf="this.currentDomain === this.domains.calendar"></company-calendar>
+<company-trucks *ngIf="this.currentDomain === this.domains.trucks"></company-trucks>
+<company-drivers *ngIf="this.currentDomain === this.domains.drivers"></company-drivers>
+<company-banks *ngIf="this.currentDomain === this.domains.banks"></company-banks>

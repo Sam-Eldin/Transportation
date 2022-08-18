@@ -20,7 +20,7 @@ export class AddDialogComponent implements OnInit {
   // private driverData: IDriverData = {Id: '', Age: 0, Date: '', Home: '', Phone};
   // private truckData: ITruckData = {};
   constructor(@Inject(MAT_DIALOG_DATA) public data: IAddDialogData
-  , private notificationHelper: NotificationService) { }
+  , private notificationService: NotificationService) { }
 
   ngOnInit(): void {
   }
@@ -39,12 +39,12 @@ export class AddDialogComponent implements OnInit {
       // const data = this.data.domain === "Banks" ? this.bankData :
       //   this.data.domain === "Drivers" ? this.driverData : this.truckData;
       this.data.gridApi.applyTransaction({add: [this.bankData]});
-      this.notificationHelper.createNotification(
+      this.notificationService.createNotification(
         notificationTypes.success,
         'Successfully added new Bank'
       );
     } catch (e: any) {
-      this.notificationHelper.createNotification(
+      this.notificationService.createNotification(
         notificationTypes.error,
         e.message
       );

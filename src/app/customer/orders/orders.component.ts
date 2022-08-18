@@ -27,7 +27,7 @@ export class CustomerOrdersComponent implements OnInit {
           case Status.rejected:
             return '<span><i class="material-icons" style="color: #ff1111">cancel</i></span>'
           default:
-            return '<span><i <mat-icon>hourglass_empty</mat-icon> </i></span>'
+            return '<span><i class="material-icons" style="color: #1c52dc">hourglass_full</i></span>'
       } }
     }
   ];

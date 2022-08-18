@@ -18,6 +18,11 @@ import { RemoveDialogComponent } from './company/remove-dialog/remove-dialog.com
 import { AddDialogComponent } from './company/add-dialog/add-dialog.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CustomerOrdersComponent} from "./customer/orders/orders.component";
+import { SignUpComponent } from './authentication/sign-up/sign-up.component';
+import { SignInComponent } from './authentication/sign-in/sign-in.component';
+import { ResetPasswordComponent } from './authentication/reset-password/reset-password.component';
+import { LoadingComponent } from './loading/loading.component';
+import {ScheduleAllModule} from "@syncfusion/ej2-angular-schedule";
 import { ProductsComponent } from './customer/products/products.component';
 import { CardComponent } from './customer/products/card/card.component';
 
@@ -35,21 +40,26 @@ import { CardComponent } from './customer/products/card/card.component';
     RemoveDialogComponent,
     AddDialogComponent,
     ProductsComponent,
-    CardComponent
+    CardComponent,
+    AddDialogComponent,
+    SignUpComponent,
+    SignInComponent,
+    ResetPasswordComponent,
+    LoadingComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    ToastrModule.forRoot(
-      {
-        preventDuplicates: true,
-        autoDismiss: true,
-        positionClass: 'toast-top-center',
-      }
-    ),
-    ToastContainerModule, OverlayModule, AgGridModule, FormsModule, ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        ToastrModule.forRoot(
+            {
+                preventDuplicates: true,
+                autoDismiss: true,
+                positionClass: 'toast-top-center',
+            }
+        ),
+        ToastContainerModule, OverlayModule, AgGridModule, FormsModule,ToastrModule, ReactiveFormsModule, ScheduleAllModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

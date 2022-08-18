@@ -8,14 +8,14 @@ import {NotificationService, notificationTypes} from "../services/notification.s
 })
 export class CustomerComponent implements OnInit {
   ordersCount = 8;
-  constructor(private _notification: NotificationService) { }
+  constructor(private notificationService: NotificationService) { }
 
   ngOnInit(): void {
   }
 
   openSnackBar() {
     this.ordersCount++;
-    this._notification.createNotification(notificationTypes.info, 'new Order been received');
+    this.notificationService.createNotification(notificationTypes.info, 'new Order been received');
   }
 
 }

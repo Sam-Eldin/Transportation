@@ -8,8 +8,8 @@ import {NotificationService, notificationTypes} from "../services/notification.s
 })
 export class CompanyComponent implements OnInit {
   ordersCount = 8;
-  currentDomain: number = 0;
-  public domains = {calendar: 0, drivers: 1, trucks: 2, banks: 3, orders: 4}
+  public domains = {calendar: 0, drivers: 1, trucks: 2, banks: 3, orders: 4, branches: 5, products: 6}
+  currentDomain: number = this.domains.banks;
   constructor(private notificationService: NotificationService) { }
 
   ngOnInit(): void {

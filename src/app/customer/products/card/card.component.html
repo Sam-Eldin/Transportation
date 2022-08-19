@@ -1,29 +1,22 @@
-
-
-
-
 <mat-grid-list cols="3" rowHeight="1:1">
   <mat-grid-tile *ngFor="let card of this.cardsList">
     <mat-card class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Category</mat-card-title>
-      </mat-card-header>
-      <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" style="width: 100%">
+      <h1 class="title"> {{card.Name}} </h1>
       <mat-card-content>
-        <p>
-          name: {{card.Name}}
-          max size:
-          Description:
-          company:
-          price: {{card.Dimension.weight}}
+        <h4><span class="fa fa-usd"></span> {{card.Price}}</h4>
+        <h4 class="dis"><i class="fa fa-usd" aria-hidden="true"> </i> {{card.Price}}</h4>
+        <p class="description">
+          size:{{card.Dimension.length}} x {{card.Dimension.width}} x {{card.Dimension.height}}
+          weight:{{card.Dimension.weight}}
+          company:{{card.Company}}
+        </p>
+        <p class="description">
+          Description:{{card.Description}}
         </p>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>add to cart</button>
-      </mat-card-actions>
+      <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>
+      <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>
     </mat-card>
   </mat-grid-tile>
-  <!--<app-card *ngFor="let cardData of this.name" [data]="cardData"></app-card>-->
-
 </mat-grid-list>

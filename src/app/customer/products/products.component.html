@@ -1,47 +1,48 @@
-<mat-form-field class="category" appearance="fill">
-  <mat-label>Categories</mat-label>
-  <mat-select [formControl]="Categories" multiple>
-    <mat-select-trigger>
-      {{Categories.value?.[0] || ''}}
-      <span *ngIf="(Categories.value?.length || 0) > 1" class="example-additional-selection">
-        (+{{(Categories.value?.length || 0) - 1}} {{Categories.value?.length === 2 ? 'other' : 'others'}})
-      </span>
-    </mat-select-trigger>
-    <mat-option *ngFor="let category of categoriesList" [value]="category">{{category}}</mat-option>
-  </mat-select>
-</mat-form-field>
-Max price
-<mat-slider
-  thumbLabel
-  [displayWith]="formatLabel"
-  tickInterval="1000"
-  step="1000"
-  min="0"
-  max="100000"
-  aria-label="units">
-</mat-slider>
+<!--<mat-form-field class="category" appearance="fill">-->
+<!--  <mat-label>Categories</mat-label>-->
+<!--  <mat-select [formControl]="Categories" multiple>-->
+<!--    <mat-select-trigger>-->
+<!--      {{Categories.value?.[0] || ''}}-->
+<!--      <span *ngIf="(Categories.value?.length || 0) > 1" class="example-additional-selection">-->
+<!--        (+{{(Categories.value?.length || 0) - 1}} {{Categories.value?.length === 2 ? 'other' : 'others'}})-->
+<!--      </span>-->
+<!--    </mat-select-trigger>-->
+<!--    <mat-option *ngFor="let category of categoriesList" [value]="category">{{category}}</mat-option>-->
+<!--  </mat-select>-->
+<!--</mat-form-field>-->
+<!--Max price-->
+<!--<mat-slider-->
+<!--  thumbLabel-->
+<!--  [displayWith]="formatLabel"-->
+<!--  tickInterval="1000"-->
+<!--  step="1000"-->
+<!--  min="0"-->
+<!--  max="100000"-->
+<!--  aria-label="units">-->
+<!--</mat-slider>-->
 
-<mat-form-field class="example-full-length" appearance="fill">
-  <mat-label>length</mat-label>
-  <input matInput placeholder="Ex. 1m">
-</mat-form-field>
-<mat-form-field class="example-full-width" appearance="fill">
-  <mat-label> width</mat-label>
-  <input matInput placeholder="Ex. 1m">
-</mat-form-field>
-<mat-form-field class="example-full-height" appearance="fill">
-  <mat-label>height</mat-label>
-  <input matInput placeholder="Ex. 1m">
-</mat-form-field>
-<mat-form-field class="example-full-weight" appearance="fill">
-  <mat-label> weight</mat-label>
-  <input matInput placeholder="Ex. 50kg">
-</mat-form-field>
-<mat-form-field class="example-full-description" appearance="fill">
-  <mat-label> description</mat-label>
-  <input matInput placeholder="Ex. Table with 5 chairs">
-</mat-form-field>
-<button> search</button>
-<mat-grid-list cols="3" rowHeight="1:1">
-  <app-card *ngFor="let cardData of this.name" [data]="cardData"></app-card>
-</mat-grid-list>
+<!--<mat-form-field class="example-full-length" appearance="fill">-->
+<!--  <mat-label>length</mat-label>-->
+<!--  <input matInput placeholder="Ex. 1m">-->
+<!--</mat-form-field>-->
+<!--<mat-form-field class="example-full-width" appearance="fill">-->
+<!--  <mat-label> width</mat-label>-->
+<!--  <input matInput placeholder="Ex. 1m">-->
+<!--</mat-form-field>-->
+<!--<mat-form-field class="example-full-height" appearance="fill">-->
+<!--  <mat-label>height</mat-label>-->
+<!--  <input matInput placeholder="Ex. 1m">-->
+<!--</mat-form-field>-->
+<!--<mat-form-field class="example-full-weight" appearance="fill">-->
+<!--  <mat-label> weight</mat-label>-->
+<!--  <input matInput placeholder="Ex. 50kg">-->
+<!--</mat-form-field>-->
+<!--<mat-form-field class="example-full-description" appearance="fill">-->
+<!--  <mat-label> description</mat-label>-->
+<!--  <input matInput placeholder="Ex. Table with 5 chairs">-->
+<!--</mat-form-field>-->
+<!--<button> search</button>-->
+<!--<customer-toolbar></customer-toolbar>-->
+<customer-card></customer-card>
+
+

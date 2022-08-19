@@ -25,6 +25,7 @@ import { LoadingComponent } from './loading/loading.component';
 import {ScheduleAllModule} from "@syncfusion/ej2-angular-schedule";
 import { ProductsComponent } from './customer/products/products.component';
 import { CardComponent } from './customer/products/card/card.component';
+import { ToolbarComponent } from './customer/products/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CardComponent } from './customer/products/card/card.component';
     SignUpComponent,
     SignInComponent,
     ResetPasswordComponent,
-    LoadingComponent
+    LoadingComponent,
+    ToolbarComponent
   ],
     imports: [
         BrowserModule,

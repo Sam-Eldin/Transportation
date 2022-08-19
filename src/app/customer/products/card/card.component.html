@@ -1,22 +1,29 @@
 
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Category</mat-card-title>
-    </mat-card-header>
-    <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        name: {{this.data.name}}
-        max size:
-        Description:
-        company:
-        price:
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>add to cart</button>
-    </mat-card-actions>
-  </mat-card>
 
 
+
+<mat-grid-list cols="3" rowHeight="1:1">
+  <mat-grid-tile *ngFor="let card of this.cardsList">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Category</mat-card-title>
+      </mat-card-header>
+      <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          name: {{card.Name}}
+          max size:
+          Description:
+          company:
+          price: {{card.Dimension.weight}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>add to cart</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+  <!--<app-card *ngFor="let cardData of this.name" [data]="cardData"></app-card>-->
+
+</mat-grid-list>

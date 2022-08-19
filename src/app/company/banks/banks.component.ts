@@ -41,7 +41,7 @@ export class BanksComponent implements OnInit {
       {
         data: {
           gridApi: this.gridApi,
-          title: "bank"
+          title: "bank/s"
         }
       });
   }

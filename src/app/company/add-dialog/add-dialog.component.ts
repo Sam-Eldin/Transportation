@@ -5,7 +5,7 @@ import {NotificationService, notificationTypes} from "../../services/notificatio
 
 export interface IAddDialogData {
   gridApi: GridApi;
-  domain: 'Banks' | 'Trucks' | 'Drivers';
+  domain: 'Banks' | 'Trucks' | 'Drivers' | 'Branches' | 'Products'
 }
 
 interface Banks{
@@ -18,9 +18,11 @@ interface Banks{
   styleUrls: ['./add-dialog.component.css']
 })
 export class AddDialogComponent implements OnInit {
-  public bankData = {Name: '', Number: ''}
-  public bankName: string = '';
-  public bankNumber: string = '';
+  public bankData = {Name: '', Number: ''};
+  public truckData = {PlateNumber: '', Type: '', Year: '', Distance: ''};
+  public driverData = {Id: '', FirstName: '', LastName: '', Date: '', Phone: '', Age: '', Home: '', Truck: ''};
+  public branchData = {Id: '', Location: '', Name: '', ManagerName: '', Phone: ''};
+  public productData = {Category: '', Name: '', Size: '', Description: '', Price: ''};
   public title: string='';
 
   banks: Banks[] = [
@@ -61,6 +63,12 @@ export class AddDialogComponent implements OnInit {
       case "Drivers":
         this.title = "Driver";
         break;
+      case "Branches":
+        this.title = "Branches";
+        break;
+      case "Products":
+        this.title = "Products";
+        break;
     }
   }
 
@@ -78,6 +86,12 @@ export class AddDialogComponent implements OnInit {
       case "Drivers": this.validateDriversInput();
         this.title = "Driver";
       break;
+      case "Branches": this.validateBranchesInput();
+        this.title = "Branches";
+        break;
+      case "Products": this.validateProductsInput();
+        this.title = "Products";
+        break;
     }
   }
 
@@ -86,11 +100,43 @@ export class AddDialogComponent implements OnInit {
       this.validate();
       // const data = this.data.domain === "Banks" ? this.bankData :
       //   this.data.domain === "Drivers" ? this.driverData : this.truckData;
-      this.data.gridApi.applyTransaction({add: [this.bankData]});
-      this.notificationService.createNotification(
-        notificationTypes.success,
-        'Successfully added new Bank'
-      );
+      switch (this.data.domain) {
+        case "Banks":
+          this.data.gridApi.applyTransaction({add: [this.bankData]});
+          this.notificationService.createNotification(
+            notificationTypes.success,
+            'Successfully added new Bank'
+          );
+          break;
+        case "Trucks":
+          this.data.gridApi.applyTransaction({add: [this.truckData]});
+          this.notificationService.createNotification(
+            notificationTypes.success,
+            'Successfully added new Truck'
+          );
+          break;
+        case "Drivers":
+          this.data.gridApi.applyTransaction({add: [this.driverData]});
+          this.notificationService.createNotification(
+            notificationTypes.success,
+            'Successfully added new Driver'
+          );
+          break;
+        case "Branches":
+          this.data.gridApi.applyTransaction({add: [this.branchData]});
+          this.notificationService.createNotification(
+            notificationTypes.success,
+            'Successfully added new branch'
+          );
+          break;
+        case "Products":
+          this.data.gridApi.applyTransaction({add: [this.productData]});
+          this.notificationService.createNotification(
+            notificationTypes.success,
+            'Successfully added new product'
+          );
+          break;
+      }
     } catch (e: any) {
       this.notificationService.createNotification(
         notificationTypes.error,
@@ -108,6 +154,14 @@ export class AddDialogComponent implements OnInit {
   }
 
   private validateDriversInput() {
+
+  }
+
+  private validateBranchesInput() {
+
+  }
+
+  private validateProductsInput() {
 
   }
 }

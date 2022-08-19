@@ -5,6 +5,8 @@ import {AgGridAngular} from "ag-grid-angular";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {NotificationService, notificationTypes} from "../../services/notification.service";
+import {AddDialogComponent} from "../add-dialog/add-dialog.component";
+import {Domains} from "../Domains";
 
 enum Fields {Id, Location, Name, ManagerName, Phone}
 const phoneRegex = /^(0([2-468-9]\d{7}|[5|7]\d{8}))$/;
@@ -67,6 +69,16 @@ export class BranchesComponent implements OnInit {
         data: {
           gridApi: this.gridApi,
           title: "product/s"
+        }
+      });
+  }
+
+  openDialogAdd(): void {
+    this.dialog.open(AddDialogComponent,
+      {
+        data: {
+          gridApi: this.gridApi,
+          domain: Domains.Branches
         }
       });
   }

@@ -4,6 +4,8 @@ import {IDriverData, driversMockData} from "./drivers.mock-data";
 import {AgGridAngular} from "ag-grid-angular";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
+import {AddDialogComponent} from "../add-dialog/add-dialog.component";
+import {Domains} from "../Domains";
 
 @Component({
   selector: 'company-drivers',
@@ -46,6 +48,16 @@ export class DriversComponent implements OnInit {
         data: {
           gridApi: this.gridApi,
           title: "driver/s"
+        }
+      });
+  }
+
+  openDialogAdd(): void {
+    this.dialog.open(AddDialogComponent,
+      {
+        data: {
+          gridApi: this.gridApi,
+          domain: Domains.Drivers
         }
       });
   }

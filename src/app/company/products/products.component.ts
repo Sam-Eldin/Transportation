@@ -4,6 +4,8 @@ import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-c
 import {AgGridAngular} from "ag-grid-angular";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {AddDialogComponent} from "../add-dialog/add-dialog.component";
+import {Domains} from "../Domains";
 
 @Component({
   selector: 'company-products',
@@ -53,6 +55,16 @@ export class ProductsComponent implements OnInit {
         data: {
           gridApi: this.gridApi,
           title: "product/s"
+        }
+      });
+  }
+
+  openDialogAdd(): void {
+    this.dialog.open(AddDialogComponent,
+      {
+        data: {
+          gridApi: this.gridApi,
+          domain: Domains.Products
         }
       });
   }

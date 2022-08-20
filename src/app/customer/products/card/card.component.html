@@ -1,15 +1,18 @@
-<mat-grid-list cols="3" rowHeight="1:1">
+<mat-grid-list cols="2" rowHeight="2:1">
   <mat-grid-tile *ngFor="let card of this.cardsList">
     <mat-card class="example-card">
+      <div class="left">
       <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" style="width: 100%">
+      </div>
+      <div class="right">
       <h1 class="title"> {{card.Name}} </h1>
+        <h1 class="company"> by:{{card.Company}} </h1>
       <mat-card-content>
-        <h4><span class="fa fa-usd"></span> {{card.Price}}</h4>
-        <h4 class="dis"><i class="fa fa-usd" aria-hidden="true"> </i> {{card.Price}}</h4>
-        <p class="description">
+        <h4><span class="foot"><i class="fa fa-dollar-sign"></i> {{card.Price}}</span></h4>
+        <p class="dimension">
           size:{{card.Dimension.length}} x {{card.Dimension.width}} x {{card.Dimension.height}}
           weight:{{card.Dimension.weight}}
-          company:{{card.Company}}
+
         </p>
         <p class="description">
           Description:{{card.Description}}
@@ -17,6 +20,7 @@
       </mat-card-content>
       <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>
       <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>
+      </div>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>

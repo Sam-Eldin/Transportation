@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from "@angular/forms";
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'customer-toolbar',
@@ -7,7 +8,7 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-
+  search : String ="";
   Categories = new FormControl('');
   categoriesList: string[] = ['Furniture', 'Materials', 'Clothes', 'Cars', 'Apartment', 'utensilic'];
   formatLabel(value: number) {

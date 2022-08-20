@@ -39,4 +39,12 @@ export const cardData: ICardData[] = [
     Dimension: {height: 10, weight: 20, length: 30, width: 40},
     Description: 'color material ..'
   },
+  {
+    Id: 1234567,
+    Name: 'table',
+    Price: 15.5,
+    Company: 'RabeaTech',
+    Dimension: {height: 10, weight: 20, length: 30, width: 40},
+    Description: 'color material ..'
+  },
 ]

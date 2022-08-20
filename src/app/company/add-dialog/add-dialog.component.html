@@ -12,12 +12,13 @@
 
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Bank name</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let bank of banks" [value]="bank.value">
-        {{bank.viewValue}}
-      </mat-option>
+<!--    <mat-select>-->
+      <input [(ngModel)]="this.bankData.Name" matInput placeholder="bank">
+<!--      <mat-option *ngFor="let bank of banks" [value]="bank.value">-->
+<!--        {{bank.viewValue}}-->
+<!--      </mat-option>-->
     <!--<input [(ngModel)]="this.bankData.Name" matInput placeholder="Ex. Pizza"> -->
-    </mat-select>
+<!--    </mat-select>-->
   </mat-form-field>
   <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
   <button color="primary" mat-raised-button mat-dialog-close="" (click)="this.add()">Submit</button>
@@ -71,7 +72,7 @@
 
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Driver Date</mat-label>
-    <input [(ngModel)]="this.driverData.Date" matInput placeholder="1/1/2022">
+    <input [(ngModel)]="this.driverData.Date" matInput placeholder="01/01/2022">
   </mat-form-field>
 
   <mat-form-field class="example-full-width" appearance="fill">

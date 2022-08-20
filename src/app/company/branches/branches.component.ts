@@ -96,7 +96,7 @@ export class BranchesComponent implements OnInit {
         case Fields.ManagerName:
           break;
         case Fields.Phone:
-          this.validatePhoneNumber(event.newValue);
+          BranchesComponent.validatePhoneNumber(event.newValue);
           break;
       }
     } catch (e: any) {
@@ -110,7 +110,7 @@ export class BranchesComponent implements OnInit {
     }
   }
 
-  private validatePhoneNumber(newPhoneNumber: string) {
+  private static validatePhoneNumber(newPhoneNumber: string) {
     if (newPhoneNumber === '') throw new Error('Number cannot be Empty');
     if (!phoneRegex.test(newPhoneNumber)) throw new Error('Phone format is not correct');
   }

@@ -4,9 +4,9 @@ import {GridApi} from "ag-grid-community";
 import {NotificationService, notificationTypes} from "../../services/notification.service";
 
 const NameRegex = /[a-zA-Z][a-zA-Z ]+/;
-const NumberRegex = /^[0-9]\d*$/;
+const NumberRegex = /^\d*$/;
 const phoneRegex = /^(0([2-468-9]\d{7}|[5|7]\d{8}))$/;
-const dateRegex = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
+const dateRegex = /^(0[1-9]|[12]\d|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
 
 export interface IAddDialogData {
   gridApi: GridApi;
@@ -23,7 +23,7 @@ interface Banks{
   styleUrls: ['./add-dialog.component.css']
 })
 export class AddDialogComponent implements OnInit {
-  public bankData = {Name: '', Number: ''};
+  public bankData = {Name: '', Number: '', Account: '', Balance: ''};
   public truckData = {PlateNumber: '', Type: '', Year: '', Distance: ''};
   public driverData = {Id: '', FirstName: '', LastName: '', Date: '', Phone: '', Age: '', Home: '', Truck: ''};
   public branchData = {Id: '', Location: '', Name: '', ManagerName: '', Phone: ''};
@@ -131,14 +131,14 @@ export class AddDialogComponent implements OnInit {
           this.data.gridApi.applyTransaction({add: [this.branchData]});
           this.notificationService.createNotification(
             notificationTypes.success,
-            'Successfully added new branch'
+            'Successfully added new Branch'
           );
           break;
         case "Products":
           this.data.gridApi.applyTransaction({add: [this.productData]});
           this.notificationService.createNotification(
             notificationTypes.success,
-            'Successfully added new product'
+            'Successfully added new Product'
           );
           break;
       }
@@ -151,15 +151,25 @@ export class AddDialogComponent implements OnInit {
   }
 
   private validateTruckInput() {
-
+    if(this.truckData.PlateNumber === '' || this.truckData.Type === ''
+     || this.truckData.Year === '' || this.truckData.Distance === '')
+      throw new Error('Input is Empty...');
+    AddDialogComponent.validateNumber(this.truckData.PlateNumber);
+    AddDialogComponent.validateName(this.truckData.Type);
+    AddDialogComponent.validateNumber(this.truckData.Year);
+    AddDialogComponent.validateNumber(this.truckData.Distance);
   }
 
   private validateBankInput() {
-    if(this.bankData.Name === '' || this.bankData.Number === '')
+    if(this.bankData.Name === '' || this.bankData.Number === '' || this.bankData.Account === ''
+     || this.bankData.Balance === '')
       throw new Error('Input is Empty...');
-    this.validateName(this.bankData.Name);
-    this.validateNumber(this.bankData.Number);
-    if(this.bankData.Number.length > 2) throw new Error('Number should be 1-99');
+    AddDialogComponent.validateName(this.bankData.Name);
+    AddDialogComponent.validateNumber(this.bankData.Number);
+    AddDialogComponent.validateNumber(this.bankData.Account);
+    AddDialogComponent.validateNumber(this.bankData.Balance);
+    if(this.bankData.Number.length > 2) throw new Error('Bank Number should be 1-99');
+    if(this.bankData.Account.length > 6) throw new Error('Number should be 6 digits');
   }
 
   private validateDriversInput() {
@@ -167,32 +177,44 @@ export class AddDialogComponent implements OnInit {
      || this.driverData.Age === '' || this.driverData.Phone === '' || this.driverData.Date === ''
     || this.driverData.Truck === '' || this.driverData.Home === '')
       throw new Error('Input is Empty...');
-    this.validateNumber(this.driverData.Id);
-    this.validateName(this.driverData.FirstName);
-    this.validateName(this.driverData.LastName);
-    this.validatePhoneNumber(this.driverData.Phone);
-    this.validateNumber(this.driverData.Age);
-    this.validateDate(this.driverData.Date);
+    AddDialogComponent.validateNumber(this.driverData.Id);
+    if(this.driverData.Id.length != 9) throw new Error('id length should be 9 digits');
+    AddDialogComponent.validateName(this.driverData.FirstName);
+    AddDialogComponent.validateName(this.driverData.LastName);
+    AddDialogComponent.validatePhoneNumber(this.driverData.Phone);
+    AddDialogComponent.validateNumber(this.driverData.Age);
+    AddDialogComponent.validateDate(this.driverData.Date);
   }
 
   private validateBranchesInput() {
-
+    if(this.branchData.Id === '' || this.branchData.Location === '' || this.branchData.Name === ''
+    || this.branchData.ManagerName === '' || this.branchData.Phone === '')
+      throw new Error('Input is Empty...');
+    AddDialogComponent.validateNumber(this.branchData.Id);
+    AddDialogComponent.validateName(this.branchData.Name);
+    AddDialogComponent.validateName(this.branchData.ManagerName);
+    AddDialogComponent.validatePhoneNumber(this.branchData.Phone);
   }
 
   private validateProductsInput() {
-
+    if(this.productData.Category === '' || this.productData.Name === '' || this.productData.Size === ''
+      || this.productData.Description === '' || this.productData.Price === '')
+      throw new Error('Input is Empty...');
+    AddDialogComponent.validateName(this.productData.Category);
+    AddDialogComponent.validateName(this.productData.Name);
+    AddDialogComponent.validateNumber(this.productData.Price);
   }
 
-  private validateName(Name : string){
+  private static validateName(Name : string){
     if (!NameRegex.test(Name)) throw new Error('Name format is not correct');
   }
-  private validateNumber(Number : string){
+  private static validateNumber(Number : string){
     if (!NumberRegex.test(Number)) throw new Error('Number format is not correct');
   }
-  private validatePhoneNumber(PhoneNumber: string) {
+  private static validatePhoneNumber(PhoneNumber: string) {
     if (!phoneRegex.test(PhoneNumber)) throw new Error('Phone format is not correct');
   }
-  private validateDate(Date : string){
+  private static validateDate(Date : string){
     if(!dateRegex.test(Date)) throw new Error('date format is not correct');
   }
 }

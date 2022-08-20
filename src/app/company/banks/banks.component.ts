@@ -16,6 +16,8 @@ export class BanksComponent implements OnInit {
   columnDefs: ColDef[] = [
     {field: 'Number'},
     {field: 'Name'},
+    {field: 'Account'},
+    {field: 'Balance'},
   ];
   defaultColDef: ColDef = {
     sortable: true, filter: true, flex: 1

@@ -20,6 +20,17 @@
     <!--<input [(ngModel)]="this.bankData.Name" matInput placeholder="Ex. Pizza"> -->
 <!--    </mat-select>-->
   </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Account number</mat-label>
+    <input [(ngModel)]="this.bankData.Account" matInput placeholder="100101">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Balance</mat-label>
+    <input [(ngModel)]="this.bankData.Balance" matInput placeholder="1000">
+  </mat-form-field>
+
   <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
   <button color="primary" mat-raised-button mat-dialog-close="" (click)="this.add()">Submit</button>
 </div>

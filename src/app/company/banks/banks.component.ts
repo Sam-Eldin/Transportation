@@ -20,7 +20,7 @@ export class BanksComponent implements OnInit, OnChanges {
   defaultColDef: ColDef = {
     sortable: true, filter: true, flex: 1
   };
-  @Input() rowData: IBanksData[] | null = null;
+  @Input() rowData!: IBanksData[] | null;
   @ViewChild('agGridBanks') agGrid!: AgGridAngular;
   private gridApi!: GridApi;
   private columnApi!: ColumnApi;
@@ -60,6 +60,7 @@ export class BanksComponent implements OnInit, OnChanges {
   onGridReady(_: GridReadyEvent) {
     this.gridApi = _.api;
     this.columnApi = _.columnApi;
+    this.gridApi.setRowData(this.rowData!);
     this.gridApi.setDomLayout('autoHeight');
   }
 

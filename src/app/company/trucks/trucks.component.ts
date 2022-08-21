@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
-import {ITruckData, trucksMockData} from "./trucks.mock-data";
+import {ITruckData} from "./trucks.mock-data";
 import {MatDialog} from '@angular/material/dialog'
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
 
@@ -52,7 +52,7 @@ export class TrucksComponent implements OnInit {
   onGridReady(_: GridReadyEvent) {
     this.gridApi = _.api;
     this.columnApi = _.columnApi;
-    this.gridApi.setRowData(trucksMockData)
+    this.gridApi.setRowData(this.rowData!)
     this.gridApi.setDomLayout('autoHeight');
   }
 }

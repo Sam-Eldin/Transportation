@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {IOrdersData, ordersMockData, Status} from "./orders.mock-data";
@@ -40,7 +40,7 @@ export class OrdersComponent implements OnInit {
 
 
   @ViewChild('agGridOrders') agGrid!: AgGridAngular;
-  rowData: IOrdersData[] = [];
+  @Input() rowData!: IOrdersData[] | null;
   private gridApi!: GridApi;
   private columnApi!: ColumnApi;
   gridOptions: GridOptions = {

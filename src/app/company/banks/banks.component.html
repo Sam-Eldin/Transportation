@@ -19,4 +19,6 @@
   (gridReady)="onGridReady($event)"
 ></ag-grid-angular>
 
+<app-loading *ngIf="this.rowData?.length === 0" [message]="'Getting Bank Data'"></app-loading>
+
 <!-- todo add insert modal -->

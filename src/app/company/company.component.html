@@ -20,4 +20,4 @@
 <company-calendar *ngIf="this.currentDomain === this.domains.calendar"></company-calendar>
 <company-trucks *ngIf="this.currentDomain === this.domains.trucks"></company-trucks>
 <company-drivers *ngIf="this.currentDomain === this.domains.drivers"></company-drivers>
-<company-banks *ngIf="this.currentDomain === this.domains.banks"></company-banks>
+<company-banks *ngIf="this.currentDomain === this.domains.banks" [rowData]="this.rowData"></company-banks>

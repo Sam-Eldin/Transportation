@@ -32,10 +32,4 @@ export class NotificationService {
         break;
     }
   }
-
-  closeNotification() {
-    if (this.currentNotification) {
-      this.toastrService.remove(this.currentNotification.toastId);
-    }
-  }
 }

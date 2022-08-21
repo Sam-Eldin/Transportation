@@ -13,16 +13,25 @@ export class CompanyComponent implements OnInit {
   ordersCount = 8;
   currentDomain: number = 3;
   public domains = {calendar: 0, drivers: 1, trucks: 2, banks: 3, orders: 4}
-  rowData: any[] | null = null;
+  bankData: any[] | null = null;
+  driversData: any[] | null = null;
+  trucksData: any[] | null = null;
+  branchesData: any[] | null = null;
+  productsData: any[] | null = null;
   constructor(private notificationService: NotificationService,
               private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
     onSnapshot(
-      doc(this.firebaseService.firestore, 'companies/mega'),
+      doc(this.firebaseService.firestore, 'companies/Finditparts'),
       (data) => {
         if (!data.exists()) return;
-        this.rowData = <IBanksData[]>(data.data()['banks']);
+        const result = data.data();
+        if(result['banks']) this.bankData = <IBanksData[]>(data.data()['banks']);
+        if(result['branches']) this.branchesData = <IBanksData[]>(data.data()['branches']);
+        if(result['drivers']) this.driversData = <IBanksData[]>(data.data()['drivers']);
+        if(result['products']) this.productsData = <IBanksData[]>(data.data()['products']);
+        if(result['trucks']) this.trucksData = <IBanksData[]>(data.data()['trucks']);
       });
   }
 

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {IDriverData, driversMockData} from "./drivers.mock-data";
 import {AgGridAngular} from "ag-grid-angular";
@@ -26,7 +26,8 @@ export class DriversComponent implements OnInit {
   };
 
   @ViewChild('agGridDrivers') agGrid!: AgGridAngular;
-  rowData: IDriverData[] = [];
+  @Input() rowData: IDriverData[] | null = null;
+
   private gridApi!: GridApi;
   private columnApi!: ColumnApi;
   gridOptions: GridOptions = {

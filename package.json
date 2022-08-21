@@ -26,6 +26,7 @@
     "@syncfusion/ej2-angular-schedule": "^20.1.50",
     "ag-grid-angular": "^27.3.0",
     "ag-grid-community": "^27.3.0",
+    "firebase": "^9.9.3",
     "ngx-toastr": "^14.3.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

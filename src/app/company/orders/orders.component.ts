@@ -1,7 +1,7 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
-import {IOrdersData, ordersMockData, Status} from "./orders.mock-data";
+import {IOrdersData, Status} from "./orders.mock-data";
 import {MatDialog} from "@angular/material/dialog";
 
 @Component({
@@ -9,7 +9,7 @@ import {MatDialog} from "@angular/material/dialog";
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnChanges {
   columnDefs: ColDef[] = [
     {field: 'Id'},
     {field: 'Name'},
@@ -47,7 +47,6 @@ export class OrdersComponent implements OnInit {
     columnDefs: this.columnDefs,
     defaultColDef: this.defaultColDef,
     getRowId: params => params.data.Id,
-    rowData: this.rowData,
     rowSelection: 'multiple',
     animateRows: true,
   };
@@ -59,7 +58,12 @@ export class OrdersComponent implements OnInit {
   onGridReady(grid: GridReadyEvent) {
     this.gridApi = grid.api;
     this.columnApi = grid.columnApi;
-    this.gridApi.setRowData(ordersMockData)
+    this.gridApi.setRowData(this.rowData!)
     this.gridApi.setDomLayout('autoHeight');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this.gridApi) return;
+    this.gridApi.setRowData(changes['rowData'].currentValue)
   }
 }

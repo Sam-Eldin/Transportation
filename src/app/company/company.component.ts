@@ -6,6 +6,7 @@ import {IBranchData} from "./branches/branches.mock-data";
 import {IDriverData} from "./drivers/drivers.mock-data";
 import {IProductData} from "./products/products.mock-data";
 import {ITruckData} from "./trucks/trucks.mock-data";
+import {IOrdersData} from "./orders/orders.mock-data";
 
 @Component({
   selector: 'app-company',
@@ -21,6 +22,7 @@ export class CompanyComponent implements OnInit {
   trucksData!: any[] | null;
   branchesData!: any[] | null;
   productsData!: any[] | null;
+  ordersData!: any[] | null;
   constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
@@ -34,7 +36,8 @@ export class CompanyComponent implements OnInit {
         if(result['drivers']) this.driversData = <IDriverData[]>(data.data()['drivers']);
         if(result['products']) this.productsData = <IProductData[]>(data.data()['products']);
         if(result['trucks']) this.trucksData = <ITruckData[]>(data.data()['trucks']);
-        console.log(this.branchesData);
+        if(result['orders']) this.ordersData = <IOrdersData[]>(data.data()['orders']);
+        console.log(this.ordersData);
       });
   }
 

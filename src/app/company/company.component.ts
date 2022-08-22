@@ -37,7 +37,7 @@ export class CompanyComponent implements OnInit {
         if(result['products']) this.productsData = <IProductData[]>(result['products']);
         if(result['trucks']) this.trucksData = <ITruckData[]>(result['trucks']);
         if(result['orders']) this.ordersData = <IOrdersData[]>(result['orders']);
-        console.log(this.ordersData);
+        // console.log(this.ordersData);
       });
   }
 

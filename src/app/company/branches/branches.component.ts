@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {branchesMockData, IBranchData} from "./branches.mock-data";
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {IBranchData} from "./branches.mock-data";
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent, NewValueParams} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
@@ -17,7 +17,7 @@ const phoneRegex = /^(0([2-468-9]\d{7}|[5|7]\d{8}))$/;
   templateUrl: './branches.component.html',
   styleUrls: ['./branches.component.css']
 })
-export class BranchesComponent implements OnInit {
+export class BranchesComponent implements OnInit, OnChanges {
   columnDefs: ColDef[] = [
     {field: 'Id'},
     {field: 'Location'},
@@ -38,7 +38,7 @@ export class BranchesComponent implements OnInit {
   };
 
   @ViewChild('agGridBranches') agGrid!: AgGridAngular;
-  rowData: IBranchData[] = [];
+  @Input() rowData: IBranchData[] | null = null;
   private gridApi!: GridApi;
   private columnApi!: ColumnApi;
   gridOptions: GridOptions = {
@@ -59,7 +59,7 @@ export class BranchesComponent implements OnInit {
   onGridReady(_: GridReadyEvent) {
     this.gridApi = _.api;
     this.columnApi = _.columnApi;
-    this.gridApi.setRowData(branchesMockData)
+    this.gridApi.setRowData(this.rowData!);
     this.gridApi.setDomLayout('autoHeight');
   }
 
@@ -113,5 +113,10 @@ export class BranchesComponent implements OnInit {
   private static validatePhoneNumber(newPhoneNumber: string) {
     if (newPhoneNumber === '') throw new Error('Number cannot be Empty');
     if (!phoneRegex.test(newPhoneNumber)) throw new Error('Phone format is not correct');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this.gridApi) return;
+    this.gridApi.setRowData(changes['rowData'].currentValue)
   }
 }

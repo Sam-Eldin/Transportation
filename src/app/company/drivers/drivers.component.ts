@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
-import {IDriverData, driversMockData} from "./drivers.mock-data";
+import {IDriverData} from "./drivers.mock-data";
 import {AgGridAngular} from "ag-grid-angular";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
@@ -28,7 +28,8 @@ export class DriversComponent implements OnInit {
   };
 
   @ViewChild('agGridDrivers') agGrid!: AgGridAngular;
-  rowData: IDriverData[] = [];
+  @Input() rowData: IDriverData[] | null = null;
+
   private gridApi!: GridApi;
   private columnApi!: ColumnApi;
   gridOptions: GridOptions = {
@@ -68,7 +69,7 @@ export class DriversComponent implements OnInit {
   onGridReady(_: GridReadyEvent) {
     this.gridApi = _.api;
     this.columnApi = _.columnApi;
-    this.gridApi.setRowData(driversMockData)
+    this.gridApi.setRowData(this.rowData!)
     this.gridApi.setDomLayout('autoHeight');
   }
 }

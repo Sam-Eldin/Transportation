@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {productsMockData, IProductData} from "./products.mock-data";
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {IProductData} from "./products.mock-data";
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
@@ -25,7 +25,7 @@ export class ProductsComponent implements OnInit {
   };
 
   @ViewChild('agGridProducts') agGrid!: AgGridAngular;
-  rowData: IProductData[] = [];
+  @Input() rowData: IProductData[] | null = null;
   private gridApi!: GridApi;
   private columnApi!: ColumnApi;
   gridOptions: GridOptions = {
@@ -45,7 +45,7 @@ export class ProductsComponent implements OnInit {
   onGridReady(_: GridReadyEvent) {
     this.gridApi = _.api;
     this.columnApi = _.columnApi;
-    this.gridApi.setRowData(productsMockData)
+    this.gridApi.setRowData(this.rowData!)
     this.gridApi.setDomLayout('autoHeight');
   }
 

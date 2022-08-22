@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {GridApi} from "ag-grid-community";
 import {NotificationService, notificationTypes} from "../../services/notification.service";
 
@@ -13,10 +13,11 @@ export interface IAddDialogData {
   domain: 'Banks' | 'Trucks' | 'Drivers' | 'Branches' | 'Products'
 }
 
-interface Banks{
+interface Banks {
   value: string;
   viewValue: string;
 }
+
 @Component({
   selector: 'app-add-dialog',
   templateUrl: './add-dialog.component.html',
@@ -28,7 +29,7 @@ export class AddDialogComponent implements OnInit {
   public driverData = {Id: '', FirstName: '', LastName: '', Date: '', Phone: '', Age: '', Home: '', Truck: ''};
   public branchData = {Id: '', Location: '', Name: '', ManagerName: '', Phone: ''};
   public productData = {Category: '', Name: '', Size: '', Description: '', Price: ''};
-  public title: string='';
+  public title: string = '';
 
   // banks: Banks[] = [
   //   { value: 'bank-yahav', viewValue: 'bank yahuv'},
@@ -57,7 +58,7 @@ export class AddDialogComponent implements OnInit {
   // private driverData: IDriverData = {Id: '', Age: 0, Date: '', Home: '', Phone};
   // private truckData: ITruckData = {};
   constructor(@Inject(MAT_DIALOG_DATA) public data: IAddDialogData
-  , private notificationService: NotificationService) {
+    , private notificationService: NotificationService, private matDialog: MatDialog) {
     switch (this.data.domain) {
       case "Trucks":
         this.title = "Truck";
@@ -82,19 +83,24 @@ export class AddDialogComponent implements OnInit {
 
   validate() {
     switch (this.data.domain) {
-      case "Trucks": this.validateTruckInput();
-      this.title = "Truck";
+      case "Trucks":
+        this.validateTruckInput();
+        this.title = "Truck";
         break;
-      case "Banks": this.validateBankInput();
+      case "Banks":
+        this.validateBankInput();
         this.title = "Bank account";
-      break;
-      case "Drivers": this.validateDriversInput();
+        break;
+      case "Drivers":
+        this.validateDriversInput();
         this.title = "Driver";
-      break;
-      case "Branches": this.validateBranchesInput();
+        break;
+      case "Branches":
+        this.validateBranchesInput();
         this.title = "Branches";
         break;
-      case "Products": this.validateProductsInput();
+      case "Products":
+        this.validateProductsInput();
         this.title = "Products";
         break;
     }
@@ -108,10 +114,7 @@ export class AddDialogComponent implements OnInit {
       switch (this.data.domain) {
         case "Banks":
           this.data.gridApi.applyTransaction({add: [this.bankData]});
-          this.notificationService.createNotification(
-            notificationTypes.success,
-            'Successfully added new Bank'
-          );
+
           break;
         case "Trucks":
           this.data.gridApi.applyTransaction({add: [this.truckData]});
@@ -142,6 +145,11 @@ export class AddDialogComponent implements OnInit {
           );
           break;
       }
+      this.notificationService.createNotification(
+        notificationTypes.success,
+        `Successfully added new ${this.data.domain}`
+      );
+      this.matDialog.closeAll();
     } catch (e: any) {
       this.notificationService.createNotification(
         notificationTypes.error,
@@ -151,8 +159,8 @@ export class AddDialogComponent implements OnInit {
   }
 
   private validateTruckInput() {
-    if(this.truckData.PlateNumber === '' || this.truckData.Type === ''
-     || this.truckData.Year === '' || this.truckData.Distance === '')
+    if (this.truckData.PlateNumber === '' || this.truckData.Type === ''
+      || this.truckData.Year === '' || this.truckData.Distance === '')
       throw new Error('Input is Empty...');
     AddDialogComponent.validateNumber(this.truckData.PlateNumber);
     AddDialogComponent.validateName(this.truckData.Type);
@@ -161,24 +169,24 @@ export class AddDialogComponent implements OnInit {
   }
 
   private validateBankInput() {
-    if(this.bankData.Name === '' || this.bankData.Number === '' || this.bankData.Account === ''
-     || this.bankData.Balance === '')
+    if (this.bankData.Name === '' || this.bankData.Number === '' || this.bankData.Account === ''
+      || this.bankData.Balance === '')
       throw new Error('Input is Empty...');
     AddDialogComponent.validateName(this.bankData.Name);
     AddDialogComponent.validateNumber(this.bankData.Number);
     AddDialogComponent.validateNumber(this.bankData.Account);
     AddDialogComponent.validateNumber(this.bankData.Balance);
-    if(this.bankData.Number.length > 2) throw new Error('Bank Number should be 1-99');
-    if(this.bankData.Account.length > 6) throw new Error('Number should be 6 digits');
+    if (this.bankData.Number.length > 2) throw new Error('Bank Number should be 1-99');
+    if (this.bankData.Account.length > 6) throw new Error('Number should be 6 digits');
   }
 
   private validateDriversInput() {
-    if(this.driverData.Id === '' || this.driverData.FirstName === '' || this.driverData.LastName === ''
-     || this.driverData.Age === '' || this.driverData.Phone === '' || this.driverData.Date === ''
-    || this.driverData.Truck === '' || this.driverData.Home === '')
+    if (this.driverData.Id === '' || this.driverData.FirstName === '' || this.driverData.LastName === ''
+      || this.driverData.Age === '' || this.driverData.Phone === '' || this.driverData.Date === ''
+      || this.driverData.Truck === '' || this.driverData.Home === '')
       throw new Error('Input is Empty...');
     AddDialogComponent.validateNumber(this.driverData.Id);
-    if(this.driverData.Id.length != 9) throw new Error('id length should be 9 digits');
+    if (this.driverData.Id.length != 9) throw new Error('id length should be 9 digits');
     AddDialogComponent.validateName(this.driverData.FirstName);
     AddDialogComponent.validateName(this.driverData.LastName);
     AddDialogComponent.validatePhoneNumber(this.driverData.Phone);
@@ -187,8 +195,8 @@ export class AddDialogComponent implements OnInit {
   }
 
   private validateBranchesInput() {
-    if(this.branchData.Id === '' || this.branchData.Location === '' || this.branchData.Name === ''
-    || this.branchData.ManagerName === '' || this.branchData.Phone === '')
+    if (this.branchData.Id === '' || this.branchData.Location === '' || this.branchData.Name === ''
+      || this.branchData.ManagerName === '' || this.branchData.Phone === '')
       throw new Error('Input is Empty...');
     AddDialogComponent.validateNumber(this.branchData.Id);
     AddDialogComponent.validateName(this.branchData.Name);
@@ -197,7 +205,7 @@ export class AddDialogComponent implements OnInit {
   }
 
   private validateProductsInput() {
-    if(this.productData.Category === '' || this.productData.Name === '' || this.productData.Size === ''
+    if (this.productData.Category === '' || this.productData.Name === '' || this.productData.Size === ''
       || this.productData.Description === '' || this.productData.Price === '')
       throw new Error('Input is Empty...');
     AddDialogComponent.validateName(this.productData.Category);
@@ -205,16 +213,19 @@ export class AddDialogComponent implements OnInit {
     AddDialogComponent.validateNumber(this.productData.Price);
   }
 
-  private static validateName(Name : string){
+  private static validateName(Name: string) {
     if (!NameRegex.test(Name)) throw new Error('Name format is not correct');
   }
-  private static validateNumber(Number : string){
+
+  private static validateNumber(Number: string) {
     if (!NumberRegex.test(Number)) throw new Error('Number format is not correct');
   }
+
   private static validatePhoneNumber(PhoneNumber: string) {
     if (!phoneRegex.test(PhoneNumber)) throw new Error('Phone format is not correct');
   }
-  private static validateDate(Date : string){
-    if(!dateRegex.test(Date)) throw new Error('date format is not correct');
+
+  private static validateDate(Date: string) {
+    if (!dateRegex.test(Date)) throw new Error('date format is not correct');
   }
 }

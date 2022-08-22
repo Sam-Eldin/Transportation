@@ -114,35 +114,18 @@ export class AddDialogComponent implements OnInit {
       switch (this.data.domain) {
         case "Banks":
           this.data.gridApi.applyTransaction({add: [this.bankData]});
-
           break;
         case "Trucks":
           this.data.gridApi.applyTransaction({add: [this.truckData]});
-          this.notificationService.createNotification(
-            notificationTypes.success,
-            'Successfully added new Truck'
-          );
           break;
         case "Drivers":
           this.data.gridApi.applyTransaction({add: [this.driverData]});
-          this.notificationService.createNotification(
-            notificationTypes.success,
-            'Successfully added new Driver'
-          );
           break;
         case "Branches":
           this.data.gridApi.applyTransaction({add: [this.branchData]});
-          this.notificationService.createNotification(
-            notificationTypes.success,
-            'Successfully added new Branch'
-          );
           break;
         case "Products":
           this.data.gridApi.applyTransaction({add: [this.productData]});
-          this.notificationService.createNotification(
-            notificationTypes.success,
-            'Successfully added new Product'
-          );
           break;
       }
       this.notificationService.createNotification(

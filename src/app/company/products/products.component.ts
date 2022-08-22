@@ -1,6 +1,13 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {IProductData, productsMockData} from "./products.mock-data";
-import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
+import {IProductData} from "./products.mock-data";
+import {
+  ColDef,
+  ColumnApi,
+  GridApi,
+  GridOptions,
+  GridReadyEvent,
+  ValueFormatterParams
+} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
@@ -16,7 +23,9 @@ export class ProductsComponent implements OnInit {
   columnDefs: ColDef[] = [
     {field: 'Category'},
     {field: 'Name'},
-    {field: 'Size'},
+    {field: 'Size',  headerName: 'Size WxHxL cm | Weight kg',
+      valueFormatter: this.formatCell
+    },
     {field: 'Description'},
     {field: 'Price'},
   ];
@@ -39,13 +48,22 @@ export class ProductsComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
 
+  private formatCell(params: ValueFormatterParams): string {
+    return `
+      ${params.value.width} x
+      ${params.value.height} x
+      ${params.value.length} |
+      ${params.value.weight}
+    `
+  }
+
   ngOnInit(): void {
   }
 
   onGridReady(_: GridReadyEvent) {
     this.gridApi = _.api;
     this.columnApi = _.columnApi;
-    this.gridApi.setRowData(productsMockData)
+    this.gridApi.setRowData(this.rowData!)
     this.gridApi.setDomLayout('autoHeight');
   }
 

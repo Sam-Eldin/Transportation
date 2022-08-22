@@ -31,12 +31,12 @@ export class CompanyComponent implements OnInit {
       (data) => {
         if (!data.exists()) return;
         const result = data.data();
-        if(result['banks']) this.bankData = <IBanksData[]>(data.data()['banks']);
-        if(result['branches']) this.branchesData = <IBranchData[]>(data.data()['branches']);
-        if(result['drivers']) this.driversData = <IDriverData[]>(data.data()['drivers']);
-        if(result['products']) this.productsData = <IProductData[]>(data.data()['products']);
-        if(result['trucks']) this.trucksData = <ITruckData[]>(data.data()['trucks']);
-        if(result['orders']) this.ordersData = <IOrdersData[]>(data.data()['orders']);
+        if(result['banks']) this.bankData = <IBanksData[]>(result['banks']);
+        if(result['branches']) this.branchesData = <IBranchData[]>(result['branches']);
+        if(result['drivers']) this.driversData = <IDriverData[]>(result['drivers']);
+        if(result['products']) this.productsData = <IProductData[]>(result['products']);
+        if(result['trucks']) this.trucksData = <ITruckData[]>(result['trucks']);
+        if(result['orders']) this.ordersData = <IOrdersData[]>(result['orders']);
         console.log(this.ordersData);
       });
   }

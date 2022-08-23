@@ -11,7 +11,7 @@ import {MatSelectChange} from "@angular/material/select";
 export class ToolbarComponent implements OnInit {
   search: string = "";
   Categories = new FormControl('');
-  categoriesList: string[] = ['Furniture', 'Materials', 'Clothes', 'Cars', 'Apartment', 'utensilic'];
+  categoriesList: string[] = ['Furniture', 'Materials', 'Clothes', 'Cars', 'Apartment', 'Utensils'];
 
   @Output() optionsEventEmitter: EventEmitter<IOptions> = new EventEmitter();
 

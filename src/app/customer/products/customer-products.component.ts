@@ -21,6 +21,6 @@ export class CustomerProductsComponent implements OnInit {
   }
 
   handleOptionsChange(options: IOptions) {
-    this.options = Object.assign({}, options);
+    this.options = {...options};
   }
 }

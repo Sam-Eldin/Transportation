@@ -10,7 +10,7 @@ import {IOptions} from "../common/options.interface";
 export class CardComponent implements OnInit, OnChanges {
   @Input() data!: ICardData;
   @Input() options!: IOptions;
-  cardsList: ICardData[] = Object.assign([], cardData);
+  cardsList: ICardData[] = [...cardData]
 
   greet(op: any) {
     this.sortPrice(op);
@@ -50,9 +50,8 @@ export class CardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // console.table(changes);
     if (changes['options']) {
-      this.cardsList = Object.assign([], cardData);
+      this.cardsList = [...cardData]
       this.sortByPrice();
       this.filterByCategory();
       this.filterBySearch();

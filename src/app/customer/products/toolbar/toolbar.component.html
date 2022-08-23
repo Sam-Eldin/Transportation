@@ -18,6 +18,11 @@
     <input type="tel" matInput placeholder="Search" name= "search" [(ngModel)]= "search" >
     <button matSuffix mat-button style="background: #ff6d39 "><mat-icon >search</mat-icon></button>
   </mat-form-field>
+    <select class="Price" (change)="callParentGreet($event.target)" >
+      <option selected value="undefined" disabled>Pick price sort</option>
+      <option value="l2h">Price: Low to High</option>
+      <option value="h2l">Price: High to Low</option>
+    </select>
   </table>
 </form>
 

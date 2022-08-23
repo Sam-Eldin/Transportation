@@ -4,3 +4,7 @@
   align-items: center;
   flex-direction: column;
 }
+.Price{
+  height: 40px;
+  color: #ff6d39;
+}

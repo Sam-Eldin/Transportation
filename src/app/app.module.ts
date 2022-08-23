@@ -14,20 +14,20 @@ import {BanksComponent} from './company/banks/banks.component';
 import {OrdersComponent} from './company/orders/orders.component';
 import {CalendarComponent} from './company/calendar/calendar.component';
 import {AgGridModule} from "ag-grid-angular";
-import { RemoveDialogComponent } from './company/remove-dialog/remove-dialog.component';
-import { AddDialogComponent } from './company/add-dialog/add-dialog.component';
+import {RemoveDialogComponent} from './company/remove-dialog/remove-dialog.component';
+import {AddDialogComponent} from './company/add-dialog/add-dialog.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CustomerOrdersComponent} from "./customer/orders/orders.component";
 import {BranchesComponent} from "./company/branches/branches.component";
+import {ProductsComponent} from "./company/products/products.component";
 import {SignUpComponent} from "./authentication/sign-up/sign-up.component";
 import {SignInComponent} from "./authentication/sign-in/sign-in.component";
 import {ResetPasswordComponent} from "./authentication/reset-password/reset-password.component";
 import {LoadingComponent} from "./loading/loading.component";
-import {ProductsComponent} from "./company/products/products.component";
 import {ScheduleAllModule} from "@syncfusion/ej2-angular-schedule";
-import { ProductsComponent } from './customer/products/products.component';
-import { CardComponent } from './customer/products/card/card.component';
-import { ToolbarComponent } from './customer/products/toolbar/toolbar.component';
+import {CustomerProductsComponent} from './customer/products/customer-products.component';
+import {CardComponent} from './customer/products/card/card.component';
+import {ToolbarComponent} from './customer/products/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -37,14 +37,15 @@ import { ToolbarComponent } from './customer/products/toolbar/toolbar.component'
     DriversComponent,
     TrucksComponent,
     BanksComponent,
-    OrdersComponent,
     ProductsComponent,
+    OrdersComponent,
+    CustomerProductsComponent,
     BranchesComponent,
     CustomerOrdersComponent,
     CalendarComponent,
     RemoveDialogComponent,
     AddDialogComponent,
-    ProductsComponent,
+    CustomerProductsComponent,
     CardComponent,
     AddDialogComponent,
     SignUpComponent,
@@ -53,20 +54,21 @@ import { ToolbarComponent } from './customer/products/toolbar/toolbar.component'
     LoadingComponent,
     ToolbarComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MaterialModule,
-        ToastrModule.forRoot(
-            {
-                preventDuplicates: true,
-                autoDismiss: true,
-                positionClass: 'toast-top-center',
-            }
-        ),
-        ToastContainerModule, OverlayModule, AgGridModule, FormsModule,ToastrModule, ReactiveFormsModule, ScheduleAllModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ToastrModule.forRoot(
+      {
+        preventDuplicates: true,
+        autoDismiss: true,
+        positionClass: 'toast-top-center',
+      }
+    ),
+    ToastContainerModule, OverlayModule, AgGridModule, FormsModule, ToastrModule, ReactiveFormsModule, ScheduleAllModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {cardData, ICardData} from "../card/cards.mock-data";
+import {IOptions} from "../common/options.interface";
+import {MatSelectChange} from "@angular/material/select";
 
 @Component({
   selector: 'customer-toolbar',
@@ -8,10 +9,22 @@ import {cardData, ICardData} from "../card/cards.mock-data";
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  search : String ="";
+  search: string = "";
   Categories = new FormControl('');
   categoriesList: string[] = ['Furniture', 'Materials', 'Clothes', 'Cars', 'Apartment', 'utensilic'];
-  option : string ="l2h";
+
+  @Output() optionsEventEmitter: EventEmitter<IOptions> = new EventEmitter();
+
+  options: IOptions;
+
+  constructor() {
+    this.options = {
+      options: [],
+      sortAsc: true,
+      search: ''
+    };
+    this.optionsEventEmitter.emit(this.options);
+  }
 
   /* budget*/
   formatLabel(value: number) {
@@ -20,18 +33,23 @@ export class ToolbarComponent implements OnInit {
     }
     return value;
   }
-  constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
-  // savePrice(a: any){
-  //   let option = a;
-  // }
+  setSortBy(event: any) {
+    let optionText = event.target.value;
+    this.options.sortAsc = optionText === 'l2h';
+    this.optionsEventEmitter.emit(this.options);
+  }
 
+  changeCategory(event: MatSelectChange) {
+    this.options.options = event.value;
+    this.optionsEventEmitter.emit(this.options);
+  }
 
-  @Output() greetEvent = new EventEmitter();
-  callParentGreet(a: any){
-    this.greetEvent.emit(a);
-    this.greetEvent.emit(this.Categories.value);
+  setSearch(_: Event) {
+    this.options.search = this.search;
+    this.optionsEventEmitter.emit(this.options);
   }
 }

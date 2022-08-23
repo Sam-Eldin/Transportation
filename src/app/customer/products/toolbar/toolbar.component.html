@@ -1,25 +1,26 @@
 <form class="main-form">
   <table>
-<mat-form-field class="category" appearance="fill">
-  <mat-label  style="color: #ff6d39">Categories</mat-label>
-  <mat-select [formControl]="Categories" multiple>
-    <mat-select-trigger >
-      {{Categories.value?.[0] || ''}}
-      <span *ngIf="(Categories.value?.length || 0) > 1" class="example-additional-selection">
+    <mat-form-field class="category" appearance="fill">
+      <mat-label style="color: #ff6d39">Categories</mat-label>
+      <mat-select (selectionChange)="this.changeCategory($event)" [formControl]="Categories" multiple>
+        <mat-select-trigger>
+          {{Categories.value?.[0] || ''}}
+          <span *ngIf="(Categories.value?.length || 0) > 1" class="example-additional-selection">
         (+{{(Categories.value?.length || 0) - 1}} {{Categories.value?.length === 2 ? 'other' : 'others'}})
       </span>
-    </mat-select-trigger>
-    <mat-option *ngFor="let category of categoriesList" [value]="category">{{category}}</mat-option>
-  </mat-select>
-</mat-form-field>
+        </mat-select-trigger>
+        <mat-option *ngFor="let category of categoriesList" [value]="category">{{category}}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field class="search-label">
-    <span matPrefix> </span>
-    <input type="tel" matInput placeholder="Search" name= "search" [(ngModel)]= "search" >
-    <button matSuffix mat-button style="background: #ff6d39 "><mat-icon >search</mat-icon></button>
-  </mat-form-field>
-    <select class="Price" (change)="callParentGreet($event.target)" >
-      <option selected value="undefined" disabled>Pick price sort</option>
+    <mat-form-field class="search-label">
+      <span matPrefix> </span>
+      <input type="tel" matInput placeholder="Search" name="search" [(ngModel)]="search" (keyup)="this.setSearch($event)">
+      <button matSuffix mat-button style="background: #ff6d39 ">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+    <select class="Price" (change)="this.setSortBy($event)">
       <option value="l2h">Price: Low to High</option>
       <option value="h2l">Price: High to Low</option>
     </select>

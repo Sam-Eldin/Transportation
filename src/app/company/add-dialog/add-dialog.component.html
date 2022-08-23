@@ -1,20 +1,26 @@
-<h1 mat-dialog-title>Adding Data</h1>
+<h1 mat-dialog-title> Adding new {{this.title}}</h1>
 <div mat-dialog-content>
 </div>
 
 <!--Banks Add Dialog-->
 <div *ngIf="this.data.domain === 'Banks'" mat-dialog-actions>
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Favorite food</mat-label>
-    <input [(ngModel)]="this.bankData.Name" matInput placeholder="Ex. Pizza">
 
-  </mat-form-field>
   <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Favorite food</mat-label>
-    <input [(ngModel)]="this.bankData.Number" matInput placeholder="0">
+    <mat-label>Bank number</mat-label>
+    <input [(ngModel)]="this.bankData.Number" matInput placeholder="12">
   </mat-form-field>
-  <button color="primary" mat-button mat-dialog-close="">No</button>
-  <button color="warn" mat-button mat-dialog-close="" (click)="this.add()">Ok</button>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Bank name</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let bank of banks" [value]="bank.value">
+        {{bank.viewValue}}
+      </mat-option>
+    <!--<input [(ngModel)]="this.bankData.Name" matInput placeholder="Ex. Pizza"> -->
+    </mat-select>
+  </mat-form-field>
+  <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
+  <button color="primary" mat-raised-button mat-dialog-close="" (click)="this.add()">Submit</button>
 </div>
 
 

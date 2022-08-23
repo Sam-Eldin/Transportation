@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
-import {IBanksData, banksMockData} from "./banks.mock-data";
+import {IBanksData} from "./banks.mock-data";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
 import {AddDialogComponent} from "../add-dialog/add-dialog.component";
@@ -12,7 +12,7 @@ import {Domains} from "../Domains";
   templateUrl: './banks.component.html',
   styleUrls: ['./banks.component.css']
 })
-export class BanksComponent implements OnInit {
+export class BanksComponent implements OnInit, OnChanges {
   columnDefs: ColDef[] = [
     {field: 'Number'},
     {field: 'Name'},
@@ -20,16 +20,14 @@ export class BanksComponent implements OnInit {
   defaultColDef: ColDef = {
     sortable: true, filter: true, flex: 1
   };
-
+  @Input() rowData!: IBanksData[] | null;
   @ViewChild('agGridBanks') agGrid!: AgGridAngular;
-  rowData: IBanksData[] = [];
   private gridApi!: GridApi;
   private columnApi!: ColumnApi;
   gridOptions: GridOptions = {
     columnDefs: this.columnDefs,
     defaultColDef: this.defaultColDef,
     getRowId: params => params.data.Number,
-    rowData: this.rowData,
     rowSelection: 'multiple',
     animateRows: true,
   };
@@ -62,7 +60,12 @@ export class BanksComponent implements OnInit {
   onGridReady(_: GridReadyEvent) {
     this.gridApi = _.api;
     this.columnApi = _.columnApi;
-    this.gridApi.setRowData(banksMockData)
+    this.gridApi.setRowData(this.rowData!);
     this.gridApi.setDomLayout('autoHeight');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this.gridApi) return;
+    this.gridApi.setRowData(changes['rowData'].currentValue)
   }
 }

@@ -23,8 +23,8 @@ export class ProductsComponent implements OnInit {
   columnDefs: ColDef[] = [
     {field: 'Category'},
     {field: 'Name'},
-    {field: 'Size',  headerName: 'Size WxHxL cm | Weight kg',
-      valueFormatter: this.formatCell
+    {field: 'Size',  headerName: 'Size WxHxL m | Weight kg',
+      valueFormatter: ProductsComponent.formatCell
     },
     {field: 'Description'},
     {field: 'Price'},
@@ -48,7 +48,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
 
-  private formatCell(params: ValueFormatterParams): string {
+  private static formatCell(params: ValueFormatterParams): string {
     return `
       ${params.value.width} x
       ${params.value.height} x

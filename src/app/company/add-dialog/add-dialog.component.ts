@@ -55,8 +55,7 @@ export class AddDialogComponent implements OnInit {
   //   { value: 'bank-boi', viewValue: 'bank boi'},
   //
   // ];
-  // private driverData: IDriverData = {Id: '', Age: 0, Date: '', Home: '', Phone};
-  // private truckData: ITruckData = {};
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: IAddDialogData
     , private notificationService: NotificationService, private matDialog: MatDialog) {
     switch (this.data.domain) {
@@ -109,8 +108,6 @@ export class AddDialogComponent implements OnInit {
   add() {
     try {
       this.validate();
-      // const data = this.data.domain === "Banks" ? this.bankData :
-      //   this.data.domain === "Drivers" ? this.driverData : this.truckData;
       switch (this.data.domain) {
         case "Banks":
           this.data.gridApi.applyTransaction({add: [this.bankData]});

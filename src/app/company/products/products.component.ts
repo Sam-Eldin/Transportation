@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {IProductData} from "./products.mock-data";
+import {IProductData} from "../common/product.interface";
 import {
   ColDef,
   ColumnApi,

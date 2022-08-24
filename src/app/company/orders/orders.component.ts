@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
-import {IOrdersData, Status} from "./orders.mock-data";
+import {IOrdersData, Status} from "../common/order.interface";
 import {MatDialog} from "@angular/material/dialog";
 
 @Component({

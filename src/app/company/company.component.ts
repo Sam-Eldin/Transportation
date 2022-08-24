@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FirebaseService} from "../services/firebase.service";
 import {doc, onSnapshot} from "firebase/firestore";
-import {IBanksData} from "./banks/banks.mock-data";
-import {IBranchData} from "./branches/branches.mock-data";
-import {IDriverData} from "./drivers/drivers.mock-data";
-import {IProductData} from "./products/products.mock-data";
-import {ITruckData} from "./trucks/trucks.mock-data";
-import {IOrdersData} from "./orders/orders.mock-data";
+import {IBanksData} from "./common/bank.interface";
+import {IBranchData} from "./common/branch.interface";
+import {IDriverData} from "./common/driver.interface";
+import {IProductData} from "./common/product.interface";
+import {ITruckData} from "./common/truck.interface";
+import {IOrdersData} from "./common/order.interface";
 
 @Component({
   selector: 'app-company',

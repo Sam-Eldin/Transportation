@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
-import {IDriverData} from "./drivers.mock-data";
+import {IDriverData} from "../common/driver.interface";
 import {AgGridAngular} from "ag-grid-angular";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";

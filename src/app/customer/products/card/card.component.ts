@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {cardData, ICardData} from "./cards.mock-data";
+import {cardData, ICardData} from "./cardsNew.mock-data";
 import {IOptions} from "../common/options.interface";
 
 @Component({

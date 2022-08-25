@@ -1,15 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
 .mat-card {
-  min-width: 400px;
-  /*text-align: center;*/
-  background: #ffffff
-
+  min-width: 200px;
+  text-align: center;
+  background: #ffffff;
+  align-content: center;
 }
 .title{
   color:  #ff6d39;
   font-family: "muli";
   font-size: 22px;
-  margin-top: 21px;
   display: inline-block;
 }
 .company{
@@ -24,29 +23,28 @@ h4 {
   font-weight: bold;
   font-size: 20px;
 }
-h4.dis {
-  display: inline-block;
-  color: #ffffff;
-  font-family: "muli";
-  font-weight: 400;
-  font-size: 17px;
-  text-decoration: line-through #ea3201;
-}
+/*h4.dis {*/
+/*  display: inline-block;*/
+/*  color: #ffffff;*/
+/*  font-family: "muli";*/
+/*  font-weight: 400;*/
+/*  font-size: 17px;*/
+/*  text-decoration: line-through #ea3201;*/
+/*}*/
 
-h4.dis span {
-  text-decoration: line-through #ea3201;
-}
+/*h4.dis span {*/
+/*  text-decoration: line-through #ea3201;*/
+/*}*/
 
-.discount {
-  display: inline-block;
-}
+/*.discount {*/
+/*  display: inline-block;*/
+/*}*/
 
 
 .dimension {
   color: #000000;
   font-family: "muli";
-  margin-top:10px;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .description{
@@ -57,16 +55,11 @@ h4.dis span {
 .foot {
   color: #000000;
   font-family: "muli";
-  margin-right: 50px;
   font-size: 20px;
   float: left;
   transition: 0.3s all ease;
-}
-.foot i:nth-child(1) {
-  margin-left: 0;
-  margin-right: 15px;
-}
 
+}
 .foot:hover {
   color: #f76b39;
   cursor: pointer;
@@ -75,16 +68,4 @@ h4.dis span {
 .card button:hover {
   opacity: 0.7;
 
-}
-.left {
-  position: absolute;
-
-}
-
-.right {
-  text-align: center;
-  height: 300px;
-  width:450px;
-  background-color: #ffffff;
-  margin-left: 300px;
 }

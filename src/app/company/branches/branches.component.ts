@@ -7,9 +7,9 @@ import {MatDialog} from "@angular/material/dialog";
 import {NotificationService, notificationTypes} from "../../services/notification.service";
 import {AddDialogComponent} from "../add-dialog/add-dialog.component";
 import {Domains} from "../Domains";
+import {ValidatorService} from "../../services/validator.service";
 
 enum Fields {Id, Location, Name, ManagerName, Phone}
-const phoneRegex = /^(0([2-468-9]\d{7}|[5|7]\d{8}))$/;
 
 
 @Component({
@@ -50,7 +50,9 @@ export class BranchesComponent implements OnInit, OnChanges {
     animateRows: true,
   };
 
-  constructor(public dialog: MatDialog, private notificationHelper: NotificationService) {
+  constructor(public dialog: MatDialog,
+              private notificationHelper: NotificationService,
+              private validatorService: ValidatorService) {
   }
 
   ngOnInit(): void {
@@ -96,7 +98,7 @@ export class BranchesComponent implements OnInit, OnChanges {
         case Fields.ManagerName:
           break;
         case Fields.Phone:
-          BranchesComponent.validatePhoneNumber(event.newValue);
+          this.validatorService.validatePhoneNumber(event.newValue);
           break;
       }
     } catch (e: any) {
@@ -108,11 +110,6 @@ export class BranchesComponent implements OnInit, OnChanges {
         event.data[event.colDef.field] = event.oldValue;
       this.gridApi.refreshCells();
     }
-  }
-
-  private static validatePhoneNumber(newPhoneNumber: string) {
-    if (newPhoneNumber === '') throw new Error('Number cannot be Empty');
-    if (!phoneRegex.test(newPhoneNumber)) throw new Error('Phone format is not correct');
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -3,6 +3,7 @@ import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-c
 import {AgGridAngular} from "ag-grid-angular";
 import {IOrdersData, Status} from "../common/order.interface";
 import {MatDialog} from "@angular/material/dialog";
+import {StatusEditor} from "./status.editor";
 
 @Component({
   selector: 'company-orders',
@@ -27,8 +28,10 @@ export class OrdersComponent implements OnInit, OnChanges {
           case Status.rejected:
             return '<span><i class="material-icons" style="color: #ff1111">cancel</i></span>'
           default:
-            return '<span><i <mat-icon>hourglass_empty</mat-icon> </i></span>'
-        } }
+            return '<span><i class="material-icons" style="color: #1c52dc">hourglass_full</i></span>'
+        } },
+      cellEditor: StatusEditor,
+      editable: (params) => {return params.data['Status'] === Status.pending;}
     },
     {field: 'Driver'},
     {field: 'TruckNumber'}

@@ -2,11 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {GridApi} from "ag-grid-community";
 import {NotificationService, notificationTypes} from "../../services/notification.service";
-
-const NameRegex = /[a-zA-Z][a-zA-Z ]+/;
-const NumberRegex = /^\d*$/;
-const phoneRegex = /^(0([2-468-9]\d{7}|[5|7]\d{8}))$/;
-const dateRegex = /^(0[1-9]|[12]\d|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
+import {ValidatorService} from "../../services/validator.service";
 
 export interface IAddDialogData {
   gridApi: GridApi;
@@ -57,7 +53,7 @@ export class AddDialogComponent implements OnInit {
   // ];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: IAddDialogData
-    , private notificationService: NotificationService, private matDialog: MatDialog) {
+    , private notificationService: NotificationService, private matDialog: MatDialog, private validatorService: ValidatorService) {
     switch (this.data.domain) {
       case "Trucks":
         this.title = "Truck";
@@ -80,26 +76,38 @@ export class AddDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  private checkIfItemAlreadyExist(id: string, field: string, errorMessage: string) {
+    let flag = false;
+    this.data.gridApi.forEachNode((node) => {
+      if (!flag) {
+        flag = node.data[field] === id;
+      }
+    });
+    if (flag)
+      throw new Error(errorMessage);
+  }
+
   validate() {
     switch (this.data.domain) {
       case "Trucks":
-        this.validateTruckInput();
+        this.validatorService.validateTruckInput(this.truckData);
+        this.checkIfItemAlreadyExist(this.truckData.PlateNumber, 'PlateNumber', 'Truck already exists');
         this.title = "Truck";
         break;
       case "Banks":
-        this.validateBankInput();
+        this.validatorService.validateBankInput(this.bankData);
         this.title = "Bank account";
         break;
       case "Drivers":
-        this.validateDriversInput();
+        this.validatorService.validateDriversInput(this.driverData);
         this.title = "Driver";
         break;
       case "Branches":
-        this.validateBranchesInput();
+        this.validatorService.validateBranchesInput(this.branchData);
         this.title = "Branches";
         break;
       case "Products":
-        this.validateProductsInput();
+        this.validatorService.validateProductsInput(this.productData);
         this.title = "Products";
         break;
     }
@@ -136,76 +144,5 @@ export class AddDialogComponent implements OnInit {
         e.message
       );
     }
-  }
-
-  private validateTruckInput() {
-    if (this.truckData.PlateNumber === '' || this.truckData.Type === ''
-      || this.truckData.Year === '' || this.truckData.Distance === '')
-      throw new Error('Input is Empty...');
-    AddDialogComponent.validateNumber(this.truckData.PlateNumber);
-    AddDialogComponent.validateName(this.truckData.Type);
-    AddDialogComponent.validateNumber(this.truckData.Year);
-    AddDialogComponent.validateNumber(this.truckData.Distance);
-  }
-
-  private validateBankInput() {
-    if (this.bankData.Name === '' || this.bankData.Number === '' || this.bankData.Account === ''
-      || this.bankData.Balance === '')
-      throw new Error('Input is Empty...');
-    AddDialogComponent.validateName(this.bankData.Name);
-    AddDialogComponent.validateNumber(this.bankData.Number);
-    AddDialogComponent.validateNumber(this.bankData.Account);
-    AddDialogComponent.validateNumber(this.bankData.Balance);
-    if (this.bankData.Number.length > 2) throw new Error('Bank Number should be 1-99');
-    if (this.bankData.Account.length > 6) throw new Error('Number should be 6 digits');
-  }
-
-  private validateDriversInput() {
-    if (this.driverData.Id === '' || this.driverData.FirstName === '' || this.driverData.LastName === ''
-      || this.driverData.Age === '' || this.driverData.Phone === '' || this.driverData.Date === ''
-      || this.driverData.Truck === '' || this.driverData.Home === '')
-      throw new Error('Input is Empty...');
-    AddDialogComponent.validateNumber(this.driverData.Id);
-    if (this.driverData.Id.length != 9) throw new Error('id length should be 9 digits');
-    AddDialogComponent.validateName(this.driverData.FirstName);
-    AddDialogComponent.validateName(this.driverData.LastName);
-    AddDialogComponent.validatePhoneNumber(this.driverData.Phone);
-    AddDialogComponent.validateNumber(this.driverData.Age);
-    AddDialogComponent.validateDate(this.driverData.Date);
-  }
-
-  private validateBranchesInput() {
-    if (this.branchData.Id === '' || this.branchData.Location === '' || this.branchData.Name === ''
-      || this.branchData.ManagerName === '' || this.branchData.Phone === '')
-      throw new Error('Input is Empty...');
-    AddDialogComponent.validateNumber(this.branchData.Id);
-    AddDialogComponent.validateName(this.branchData.Name);
-    AddDialogComponent.validateName(this.branchData.ManagerName);
-    AddDialogComponent.validatePhoneNumber(this.branchData.Phone);
-  }
-
-  private validateProductsInput() {
-    if (this.productData.Category === '' || this.productData.Name === '' || this.productData.Size === ''
-      || this.productData.Description === '' || this.productData.Price === '')
-      throw new Error('Input is Empty...');
-    AddDialogComponent.validateName(this.productData.Category);
-    AddDialogComponent.validateName(this.productData.Name);
-    AddDialogComponent.validateNumber(this.productData.Price);
-  }
-
-  private static validateName(Name: string) {
-    if (!NameRegex.test(Name)) throw new Error('Name format is not correct');
-  }
-
-  private static validateNumber(Number: string) {
-    if (!NumberRegex.test(Number)) throw new Error('Number format is not correct');
-  }
-
-  private static validatePhoneNumber(PhoneNumber: string) {
-    if (!phoneRegex.test(PhoneNumber)) throw new Error('Phone format is not correct');
-  }
-
-  private static validateDate(Date: string) {
-    if (!dateRegex.test(Date)) throw new Error('date format is not correct');
   }
 }

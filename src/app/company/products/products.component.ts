@@ -1,9 +1,18 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {IProductData} from "./products.mock-data";
-import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
+import {IProductData} from "../common/product.interface";
+import {
+  ColDef,
+  ColumnApi,
+  GridApi,
+  GridOptions,
+  GridReadyEvent,
+  ValueFormatterParams
+} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {AddDialogComponent} from "../add-dialog/add-dialog.component";
+import {Domains} from "../Domains";
 
 @Component({
   selector: 'company-products',
@@ -14,7 +23,9 @@ export class ProductsComponent implements OnInit {
   columnDefs: ColDef[] = [
     {field: 'Category'},
     {field: 'Name'},
-    {field: 'Size'},
+    {field: 'Size',  headerName: 'Size WxHxL m | Weight kg',
+      valueFormatter: ProductsComponent.formatCell
+    },
     {field: 'Description'},
     {field: 'Price'},
   ];
@@ -37,6 +48,15 @@ export class ProductsComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
 
+  private static formatCell(params: ValueFormatterParams): string {
+    return `
+      ${params.value.width} x
+      ${params.value.height} x
+      ${params.value.length} |
+      ${params.value.weight}
+    `
+  }
+
   ngOnInit(): void {
   }
 
@@ -53,6 +73,16 @@ export class ProductsComponent implements OnInit {
         data: {
           gridApi: this.gridApi,
           title: "product/s"
+        }
+      });
+  }
+
+  openDialogAdd(): void {
+    this.dialog.open(AddDialogComponent,
+      {
+        data: {
+          gridApi: this.gridApi,
+          domain: Domains.Products
         }
       });
   }

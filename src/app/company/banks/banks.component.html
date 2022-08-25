@@ -2,9 +2,8 @@
   <button mat-button (click)="this.openDialogAdd()">
     <mat-icon>add_circle_outline</mat-icon>
     <span>&nbsp;Add Bank</span>
-
-    <!-- todo on click open modal -->
   </button>
+
   <button mat-button (click)="this.openDialog()" >
     <mat-icon>remove_circle_outline</mat-icon>
     <span>&nbsp;Remove Bank</span>
@@ -20,5 +19,3 @@
 ></ag-grid-angular>
 
 <app-loading *ngIf="this.rowData?.length === 0" [message]="'Getting Bank Data'"></app-loading>
-
-<!-- todo add insert modal -->

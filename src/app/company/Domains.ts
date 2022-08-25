@@ -4,5 +4,6 @@ export const Domains = {
   Orders: 'Orders',
   Banks: 'Banks',
   Calendar: 'Calendar',
-  Products: 'Products'
+  Products: 'Products',
+  Branches: 'Branches'
 }

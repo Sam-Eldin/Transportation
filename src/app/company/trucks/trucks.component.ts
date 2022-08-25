@@ -1,9 +1,11 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
-import {ITruckData} from "./trucks.mock-data";
+import {ITruckData} from "../common/truck.interface";
 import {MatDialog} from '@angular/material/dialog'
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
+import {AddDialogComponent} from "../add-dialog/add-dialog.component";
+import {Domains} from "../Domains";
 
 @Component({
   selector: 'company-trucks',
@@ -42,6 +44,16 @@ export class TrucksComponent implements OnInit {
         data: {
           gridApi: this.gridApi,
           title : "truck/s"
+        }
+      });
+  }
+
+  openDialogAdd(): void {
+    this.dialog.open(AddDialogComponent,
+      {
+        data: {
+          gridApi: this.gridApi,
+          domain: Domains.Trucks
         }
       });
   }

@@ -28,6 +28,7 @@ import {ScheduleAllModule} from "@syncfusion/ej2-angular-schedule";
 import {CustomerProductsComponent} from './customer/products/customer-products.component';
 import {CardComponent} from './customer/products/card/card.component';
 import {ToolbarComponent} from './customer/products/toolbar/toolbar.component';
+import { CardDialogComponent } from './customer/products/card-dialog/card-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {ToolbarComponent} from './customer/products/toolbar/toolbar.component';
     SignInComponent,
     ResetPasswordComponent,
     LoadingComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    CardDialogComponent
   ],
   imports: [
     BrowserModule,

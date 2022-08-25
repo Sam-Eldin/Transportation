@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {cardData, ICardData} from "./cardsNew.mock-data";
 import {IOptions} from "../common/options.interface";
 
@@ -11,6 +11,7 @@ export class CardComponent implements OnInit, OnChanges {
   @Input() data!: ICardData;
   @Input() options!: IOptions;
   cardsList: ICardData[] = [...cardData]
+  @Output() optionsEventEmitter: EventEmitter<IOptions> = new EventEmitter();
 
   greet(op: any) {
     this.sortPrice(op);

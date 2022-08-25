@@ -24,7 +24,11 @@ export class AddDialogComponent implements OnInit {
   public truckData = {PlateNumber: '', Type: '', Year: '', Distance: ''};
   public driverData = {Id: '', FirstName: '', LastName: '', Date: '', Phone: '', Age: '', Home: '', Truck: ''};
   public branchData = {Id: '', Location: '', Name: '', ManagerName: '', Phone: ''};
-  public productData = {Category: '', Name: '', Size: '', Description: '', Price: ''};
+  public productData = {Category: '', Name: '', Size: {height: '',
+      width: '',
+      length: '',
+      weight: ''},
+    Description: '', Price: ''};
   public title: string = '';
 
   // banks: Banks[] = [
@@ -96,14 +100,18 @@ export class AddDialogComponent implements OnInit {
         break;
       case "Banks":
         this.validatorService.validateBankInput(this.bankData);
+        this.checkIfItemAlreadyExist(this.bankData.Number, 'Number', 'Bank already exists');
+        this.checkIfItemAlreadyExist(this.bankData.Name, 'Name', 'Bank already exists');
         this.title = "Bank account";
         break;
       case "Drivers":
         this.validatorService.validateDriversInput(this.driverData);
+        this.checkIfItemAlreadyExist(this.driverData.Id, 'Id', 'Driver already exists');
         this.title = "Driver";
         break;
       case "Branches":
         this.validatorService.validateBranchesInput(this.branchData);
+        this.checkIfItemAlreadyExist(this.branchData.Id, 'Id', 'Branch already exists');
         this.title = "Branches";
         break;
       case "Products":

@@ -63,7 +63,7 @@
   <br>
   <div mat-dialog-actions>
     <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
-    <button color="primary" mat-raised-button mat-dialog-close="" (click)="this.add()">Submit</button>
+    <button color="primary" mat-raised-button (click)="this.add()">Submit</button>
   </div>
 </div>
 
@@ -112,7 +112,7 @@
   <br>
   <div mat-dialog-actions>
     <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
-    <button color="primary" mat-raised-button mat-dialog-close="" (click)="this.add()">Submit</button>
+    <button color="primary" mat-raised-button (click)="this.add()">Submit</button>
   </div>
 </div>
 
@@ -146,7 +146,7 @@
   <br>
   <div mat-dialog-actions>
     <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
-    <button color="primary" mat-raised-button mat-dialog-close="" (click)="this.add()">Submit</button>
+    <button color="primary" mat-raised-button (click)="this.add()">Submit</button>
   </div>
 </div>
 
@@ -164,8 +164,23 @@
   </mat-form-field>
   <br>
   <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Product Size</mat-label>
-    <input [(ngModel)]="this.productData.Size" matInput placeholder="widget,length,height">
+    <mat-label>Product Size - width</mat-label>
+    <input [(ngModel)]="this.productData.Size.width" matInput placeholder="width">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>height</mat-label>
+    <input [(ngModel)]="this.productData.Size.height" matInput placeholder="height">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>length</mat-label>
+    <input [(ngModel)]="this.productData.Size.length" matInput placeholder="length">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>weight</mat-label>
+    <input [(ngModel)]="this.productData.Size.weight" matInput placeholder="weight">
   </mat-form-field>
   <br>
   <mat-form-field class="example-full-width" appearance="fill">
@@ -180,7 +195,7 @@
   <br>
   <div mat-dialog-actions>
     <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
-    <button color="primary" mat-raised-button mat-dialog-close="" (click)="this.add()">Submit</button>
+    <button color="primary" mat-raised-button (click)="this.add()">Submit</button>
   </div>
 </div>
 

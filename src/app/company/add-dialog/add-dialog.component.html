@@ -3,37 +3,199 @@
 </div>
 
 <!--Banks Add Dialog-->
-<div *ngIf="this.data.domain === 'Banks'" mat-dialog-actions>
+<div *ngIf="this.data.domain === 'Banks'" mat-dialog-content>
 
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Bank number</mat-label>
     <input [(ngModel)]="this.bankData.Number" matInput placeholder="12">
   </mat-form-field>
-
+ <br>
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Bank name</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let bank of banks" [value]="bank.value">
-        {{bank.viewValue}}
-      </mat-option>
+<!--    <mat-select>-->
+      <input [(ngModel)]="this.bankData.Name" matInput placeholder="bank">
+<!--      <mat-option *ngFor="let bank of banks" [value]="bank.value">-->
+<!--        {{bank.viewValue}}-->
+<!--      </mat-option>-->
     <!--<input [(ngModel)]="this.bankData.Name" matInput placeholder="Ex. Pizza"> -->
-    </mat-select>
+<!--    </mat-select>-->
   </mat-form-field>
-  <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
-  <button color="primary" mat-raised-button mat-dialog-close="" (click)="this.add()">Submit</button>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Account number</mat-label>
+    <input [(ngModel)]="this.bankData.Account" matInput placeholder="100101">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Balance</mat-label>
+    <input [(ngModel)]="this.bankData.Balance" matInput placeholder="1000">
+  </mat-form-field>
+  <br>
+  <div mat-dialog-actions>
+    <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
+    <button color="primary" mat-raised-button (click)="this.add();">Submit</button>
+  </div>
 </div>
 
 
 <!--Trucks Add Dialog-->
-<div *ngIf="this.data.domain === 'Trucks'" mat-dialog-actions>
-  <button color="primary" mat-button mat-dialog-close="">No</button>
-  <button color="warn" mat-button mat-dialog-close="">Ok</button>
+<div *ngIf="this.data.domain === 'Trucks'" mat-dialog-content>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Truck number</mat-label>
+    <input [(ngModel)]="this.truckData.PlateNumber" matInput placeholder="1234">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Truck Type</mat-label>
+    <input [(ngModel)]="this.truckData.Type" matInput placeholder="toyota">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Truck Year</mat-label>
+    <input [(ngModel)]="this.truckData.Year" matInput placeholder="2022">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Truck Distance</mat-label>
+    <input [(ngModel)]="this.truckData.Distance" matInput placeholder="120458">
+  </mat-form-field>
+  <br>
+  <div mat-dialog-actions>
+    <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
+    <button color="primary" mat-raised-button (click)="this.add()">Submit</button>
+  </div>
 </div>
-
-
 
 <!--Drivers Add Dialog-->
-<div *ngIf="this.data.domain === 'Drivers'" mat-dialog-actions>
-  <button color="primary" mat-button mat-dialog-close="">No</button>
-  <button color="warn" mat-button mat-dialog-close="">Ok</button>
+<div *ngIf="this.data.domain === 'Drivers'" mat-dialog-content>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Driver Id</mat-label>
+    <input [(ngModel)]="this.driverData.Id" matInput placeholder="123456789">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Driver First Name</mat-label>
+    <input [(ngModel)]="this.driverData.FirstName" matInput placeholder="First Name">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Driver Last Name</mat-label>
+    <input [(ngModel)]="this.driverData.LastName" matInput placeholder="Last Name">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Driver Date</mat-label>
+    <input [(ngModel)]="this.driverData.Date" matInput placeholder="01/01/2022">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Driver Age</mat-label>
+    <input [(ngModel)]="this.driverData.Age" matInput placeholder="25">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Driver Home</mat-label>
+    <input [(ngModel)]="this.driverData.Home" matInput placeholder="majdal">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Driver Phone</mat-label>
+    <input [(ngModel)]="this.driverData.Phone" matInput placeholder="0501234567">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Driver Truck</mat-label>
+    <input [(ngModel)]="this.driverData.Truck" matInput placeholder="12345">
+  </mat-form-field>
+  <br>
+  <div mat-dialog-actions>
+    <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
+    <button color="primary" mat-raised-button (click)="this.add()">Submit</button>
+  </div>
 </div>
+
+<!--Branches Add Dialog-->
+<div *ngIf="this.data.domain === 'Branches'" mat-dialog-content>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Branch id</mat-label>
+    <input [(ngModel)]="this.branchData.Id" matInput placeholder="1234">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Branch Location</mat-label>
+    <input [(ngModel)]="this.branchData.Location" matInput placeholder="location">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Branch Name</mat-label>
+    <input [(ngModel)]="this.branchData.Name" matInput placeholder="company branch name">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Branch Manager Name</mat-label>
+    <input [(ngModel)]="this.branchData.ManagerName" matInput placeholder="manager name">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Branch Phone</mat-label>
+    <input [(ngModel)]="this.branchData.Phone" matInput placeholder="0501234567">
+  </mat-form-field>
+  <br>
+  <div mat-dialog-actions>
+    <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
+    <button color="primary" mat-raised-button (click)="this.add()">Submit</button>
+  </div>
+</div>
+
+<!--Product Add Dialog-->
+<div *ngIf="this.data.domain === 'Products'" mat-dialog-content>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Product Category</mat-label>
+    <input [(ngModel)]="this.productData.Category" matInput placeholder="category type">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Product Name</mat-label>
+    <input [(ngModel)]="this.productData.Name" matInput placeholder="product name">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Product Size - width</mat-label>
+    <input [(ngModel)]="this.productData.Size.width" matInput placeholder="width">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>height</mat-label>
+    <input [(ngModel)]="this.productData.Size.height" matInput placeholder="height">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>length</mat-label>
+    <input [(ngModel)]="this.productData.Size.length" matInput placeholder="length">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>weight</mat-label>
+    <input [(ngModel)]="this.productData.Size.weight" matInput placeholder="weight">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Product Description</mat-label>
+    <input [(ngModel)]="this.productData.Description" matInput placeholder="description">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Product Price</mat-label>
+    <input [(ngModel)]="this.productData.Price" matInput placeholder="1500">
+  </mat-form-field>
+  <br>
+  <div mat-dialog-actions>
+    <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
+    <button color="primary" mat-raised-button (click)="this.add()">Submit</button>
+  </div>
+</div>
+

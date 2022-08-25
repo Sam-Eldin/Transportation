@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
-import {IBanksData} from "./banks.mock-data";
+import {IBanksData} from "../common/bank.interface";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
 import {AddDialogComponent} from "../add-dialog/add-dialog.component";
@@ -16,6 +16,8 @@ export class BanksComponent implements OnInit, OnChanges {
   columnDefs: ColDef[] = [
     {field: 'Number'},
     {field: 'Name'},
+    {field: 'Account'},
+    {field: 'Balance'}
   ];
   defaultColDef: ColDef = {
     sortable: true, filter: true, flex: 1
@@ -39,7 +41,7 @@ export class BanksComponent implements OnInit, OnChanges {
       {
         data: {
           gridApi: this.gridApi,
-          title: "bank"
+          title: "bank/s"
         }
       });
   }

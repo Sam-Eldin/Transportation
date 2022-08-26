@@ -29,8 +29,10 @@ import {CustomerProductsComponent} from './customer/products/customer-products.c
 import {CardComponent} from './customer/products/card/card.component';
 import {ToolbarComponent} from './customer/products/toolbar/toolbar.component';
 import { CardDialogComponent } from './customer/products/card-dialog/card-dialog.component';
-import {RouterModule} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
+import {ROUTES} from "./app.routing";
 
+const routes: Routes = ROUTES;
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +61,7 @@ import {RouterModule} from "@angular/router";
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    RouterModule.forRoot(routes),
     ToastrModule.forRoot(
       {
         preventDuplicates: true,

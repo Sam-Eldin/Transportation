@@ -19,16 +19,17 @@ import {AddDialogComponent} from './company/add-dialog/add-dialog.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CustomerOrdersComponent} from "./customer/orders/orders.component";
 import {BranchesComponent} from "./company/branches/branches.component";
-import {ProductsComponent} from "./company/products/products.component";
 import {SignUpComponent} from "./authentication/sign-up/sign-up.component";
 import {SignInComponent} from "./authentication/sign-in/sign-in.component";
 import {ResetPasswordComponent} from "./authentication/reset-password/reset-password.component";
 import {LoadingComponent} from "./loading/loading.component";
+import {ProductsComponent} from "./company/products/products.component";
 import {ScheduleAllModule} from "@syncfusion/ej2-angular-schedule";
 import {CustomerProductsComponent} from './customer/products/customer-products.component';
 import {CardComponent} from './customer/products/card/card.component';
 import {ToolbarComponent} from './customer/products/toolbar/toolbar.component';
 import { CardDialogComponent } from './customer/products/card-dialog/card-dialog.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -46,15 +47,13 @@ import { CardDialogComponent } from './customer/products/card-dialog/card-dialog
     CalendarComponent,
     RemoveDialogComponent,
     AddDialogComponent,
-    CustomerProductsComponent,
-    CardComponent,
-    AddDialogComponent,
     SignUpComponent,
     SignInComponent,
     ResetPasswordComponent,
     LoadingComponent,
     ToolbarComponent,
-    CardDialogComponent
+    CardDialogComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +66,7 @@ import { CardDialogComponent } from './customer/products/card-dialog/card-dialog
         positionClass: 'toast-top-center',
       }
     ),
-    ToastContainerModule, OverlayModule, AgGridModule, FormsModule, ToastrModule, ReactiveFormsModule, ScheduleAllModule
+    ToastContainerModule, OverlayModule, AgGridModule, FormsModule, ToastrModule, ReactiveFormsModule, ScheduleAllModule, RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

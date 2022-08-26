@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
     this.setRoutingLoading();
   }
 
-
   private setRoutingLoading() {
     this.router.events.subscribe((event) => {
       switch (true) {

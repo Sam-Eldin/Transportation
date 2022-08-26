@@ -14,7 +14,7 @@ import {UserService} from "../services/user.service";
   styleUrls: ['./company.component.css']
 })
 export class CompanyComponent implements OnInit {
-  ordersCount = 8;
+  ordersCount = 0;
   public domains = {calendar: 0, drivers: 1, trucks: 2, banks: 3, orders: 4, branches: 5, products: 6}
   currentDomain: number = this.domains.banks;
   bankData!: any[] | null;
@@ -34,7 +34,10 @@ export class CompanyComponent implements OnInit {
       if(result['drivers']) this.driversData = <IDriverData[]>(result['drivers']);
       if(result['products']) this.productsData = <IProductData[]>(result['products']);
       if(result['trucks']) this.trucksData = <ITruckData[]>(result['trucks']);
-      if(result['orders']) this.ordersData = <IOrdersData[]>(result['orders']);
+      if(result['orders']) {
+        this.ordersData = <IOrdersData[]>(result['orders']);
+        this.ordersCount = this.ordersData.filter((value) => value.Status === 0).length
+      }
     });
   }
 

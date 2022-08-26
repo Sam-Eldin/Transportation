@@ -25,6 +25,10 @@ import {ResetPasswordComponent} from "./authentication/reset-password/reset-pass
 import {LoadingComponent} from "./loading/loading.component";
 import {ProductsComponent} from "./company/products/products.component";
 import {ScheduleAllModule} from "@syncfusion/ej2-angular-schedule";
+import {RouterModule, Routes} from "@angular/router";
+import {ROUTES} from "./app.routing";
+
+const routes: Routes = ROUTES;
 
 @NgModule({
   declarations: [
@@ -49,6 +53,7 @@ import {ScheduleAllModule} from "@syncfusion/ej2-angular-schedule";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
     MaterialModule,
     ToastrModule.forRoot(
       {
@@ -57,7 +62,7 @@ import {ScheduleAllModule} from "@syncfusion/ej2-angular-schedule";
         positionClass: 'toast-top-center',
       }
     ),
-    ToastContainerModule, OverlayModule, AgGridModule, FormsModule, ScheduleAllModule
+    ToastContainerModule, OverlayModule, AgGridModule, FormsModule, ScheduleAllModule, RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

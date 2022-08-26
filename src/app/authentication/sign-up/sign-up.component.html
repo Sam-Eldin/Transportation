@@ -1,1 +1,53 @@
-<p>sign-up works!</p>
+<div class="row h-100 justify-content-center align-items-center m-0 p-0">
+  <div class="col-md-4">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h1 class="card-title text-primary font-monospace fw-bold">Create an account</h1>
+        <form>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <mat-icon>account_circle</mat-icon>
+            </span>
+            <input [(ngModel)]="email" type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
+                   name="email" placeholder="Email address">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <mat-icon>lock</mat-icon>
+            </span>
+            <input [(ngModel)]="password" (keyup)="passwordChange()" (keydown)="passwordChange()" type="password"
+                   class="form-control" id="passwordInput" name="pass" placeholder="Password"/>
+
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <mat-icon>lock</mat-icon>
+            </span>
+            <input [(ngModel)]="confirmPassword" type="password" class="form-control mat-danger"
+                   id="confirmPasswordInput" name="pass" placeholder="Confirm Password">
+          </div>
+          <div class="progress">
+            <div id="passwordStrength" class="progress-bar" [style.width.%]="passwordStrength" role="progressbar"
+                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <br>
+          <div>
+            <a>
+              Already have an account?
+            </a>
+            <button class="btn p-0 link-primary" (click)="changePage(1)">Sign in</button>
+          </div>
+          <div>
+            <a>
+              Forgot your password?
+            </a>
+            <button class="btn p-0 link-primary" (click)="changePage(3)">Reset</button>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3" (click)="handleSignup()">
+            Create account
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

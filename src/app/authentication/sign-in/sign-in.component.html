@@ -1,1 +1,40 @@
-<p>sign-in works!</p>
+<div class="row h-100 w-100 justify-content-center align-items-center m-0 p-0 pages">
+  <div class="col-md-8 col-xl-6 col-xxl-4">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h1 class="card-title text-primary font-monospace fw-bold">Log In</h1>
+        <form>
+          <div class="mb-3">
+            <div class="input-group mb-3">
+            <span class="input-group-text">
+              <mat-icon>alternate_email</mat-icon>
+            </span>
+              <input [(ngModel)]="email" type="email" class="form-control shadow-none" id="emailInput" aria-describedby="emailHelp"
+                     (keydown.enter)="this.handleSignIn()" name="email" placeholder="Email address">
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <mat-icon>lock</mat-icon>
+            </span>
+            <input [(ngModel)]="password" type="password" class="form-control shadow-none"
+                   (keydown.enter)="this.handleSignIn()" id="confirmPasswordInput" name="pass" placeholder="Password">
+          </div>
+          <div>
+            <a>
+              Do not have an account?
+            </a>
+            <button type="button" class="btn p-0 link-primary shadow-none" (click)="this.changePage(2)">Sign up</button>
+          </div>
+          <div>
+            <a>
+              Forgot your password?
+            </a>
+            <button type="button" class="btn p-0 link-primary shadow-none" (click)="this.changePage(3)">Reset</button>
+          </div>
+          <button class="btn btn-primary mt-3 shadow-none" (click)="this.handleSignIn()">Log in</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

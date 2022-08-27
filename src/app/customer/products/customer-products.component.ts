@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, SimpleChanges} from '@angular/core';
 import {cardData} from "./cardsNew.mock-data";
 import {IOptions} from "./common/options.interface";
 import {ICardData} from "./common/card.interface,ts";
@@ -58,7 +58,7 @@ export class CustomerProductsComponent implements OnInit {
 
   private filterBySearch() {
     if (!this.options.search) return;
-    this.cardsList = this.cardsList.filter((a: ICardData) => a.Name.includes(this.options.search))
+    this.cardsList = this.cardsList.filter((a: ICardData) => a.Name.toLowerCase().includes(this.options.search.toLowerCase()))
   }
 
   ngOnChanges(changes: SimpleChanges) {

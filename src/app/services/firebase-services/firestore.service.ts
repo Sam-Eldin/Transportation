@@ -1,12 +1,12 @@
 import {FirebaseApp} from "firebase/app";
-import {initializeFirestore, doc, getDoc, onSnapshot, setDoc, query, collection, getDocs} from "firebase/firestore";
+import {getFirestore, doc, getDoc, onSnapshot, setDoc, arrayUnion, updateDoc,  query, collection, getDocs} from "firebase/firestore";
 import {ICardData} from "../../customer/products/common/card.interface,ts";
 
 export class FirestoreService {
   private readonly firestore;
 
   constructor(firebaseApp: FirebaseApp) {
-    this.firestore = initializeFirestore(firebaseApp, {});
+    this.firestore = getFirestore(firebaseApp);
   }
 
   public async fetchUserData(userEmail: string) {
@@ -41,5 +41,17 @@ export class FirestoreService {
       company_manager: false,
       orders: []
     })
+  }
+
+  public async addNewValueToArray(newValue: any, path: string, domain: string) {
+    await updateDoc(
+      doc(
+        this.firestore,
+        path
+      ),
+      {
+        [domain]: arrayUnion(newValue)
+      }
+    )
   }
 }

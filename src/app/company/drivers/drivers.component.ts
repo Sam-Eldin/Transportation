@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {IDriverData} from "../common/driver.interface";
 import {AgGridAngular} from "ag-grid-angular";
@@ -12,7 +12,7 @@ import {Domains} from "../Domains";
   templateUrl: './drivers.component.html',
   styleUrls: ['./drivers.component.css']
 })
-export class DriversComponent implements OnInit {
+export class DriversComponent implements OnInit, OnChanges {
   columnDefs: ColDef[] = [
     {field: 'Id'},
     {field: 'FirstName'},
@@ -71,5 +71,10 @@ export class DriversComponent implements OnInit {
     this.columnApi = _.columnApi;
     this.gridApi.setRowData(this.rowData!)
     this.gridApi.setDomLayout('autoHeight');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this.gridApi) return;
+    this.gridApi.setRowData(changes['rowData'].currentValue)
   }
 }

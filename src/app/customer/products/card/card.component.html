@@ -1,48 +1,4 @@
-<!--<mat-grid-list cols="5" rowHeight="1:1">-->
-<!--  <mat-grid-tile *ngFor="let card of this.cardsList">-->
-<!--    <mat-card class="example-card">-->
-<!--      <h1 class="company"> {{card.Company}} </h1>-->
-<!--      <h1 class="title"> {{card.Name}} </h1>-->
-<!--      <mat-card-content>-->
-<!--        <h4><span class="foot"><i class="fa fa-shekel-sign"></i> {{card.Price}}</span></h4>-->
-<!--        <p class="dimension">-->
-<!--          size:{{card.space}}-->
-<!--        </p>-->
-<!--      </mat-card-content>-->
-<!--      <span class="foot"><i class="fa fa-shopping-bag"></i>Order Now</span>-->
-<!--    </mat-card>-->
-<!--  </mat-grid-tile>-->
-<!--</mat-grid-list>-->
-
-<!--<mat-grid-list cols="2" rowHeight="2:1">-->
-<!--  <mat-grid-tile *ngFor="let card of this.cardsList">-->
-<!--    <mat-card class="example-card">-->
-<!--      <div class="left">-->
-<!--        <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" style="width: 100%">-->
-<!--      </div>-->
-<!--      <div class="right">-->
-<!--        <h1 class="title"> {{card.Name}} </h1>-->
-<!--        <h1 class="company"> by:{{card.Company}} </h1>-->
-<!--        <mat-card-content>-->
-<!--          <h4><span class="foot"><i class="fa fa-dollar-sign"></i> {{card.Price}}</span></h4>-->
-<!--          <p class="dimension">-->
-<!--            size:{{card.Dimension.length}} x {{card.Dimension.width}} x {{card.Dimension.height}}-->
-<!--            weight:{{card.Dimension.weight}}-->
-
-<!--          </p>-->
-<!--          <p class="description">-->
-<!--            Description:{{card.Description}}-->
-<!--          </p>-->
-<!--        </mat-card-content>-->
-<!--        <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>-->
-<!--        <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>-->
-<!--      </div>-->
-<!--    </mat-card>-->
-<!--  </mat-grid-tile>-->
-<!--</mat-grid-list>-->
-
-
-<div class="col w-auto h-100 mt-4 gx-4" (click)="this.openDialog()">
+<div class="col w-auto h-100 mt-4 gx-4">
       <mat-card>
         <mat-card-title class="company"> {{this.data.Company}} </mat-card-title>
         <mat-card-subtitle class="title">

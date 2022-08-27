@@ -1,18 +1,16 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges, ViewChild, OnChanges} from '@angular/core';
 import {IProductData} from "../common/product.interface";
-import {
-  ColDef,
-  ColumnApi,
-  GridApi,
-  GridOptions,
-  GridReadyEvent,
-  ValueFormatterParams
-} from "ag-grid-community";
+import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent, NewValueParams,} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AddDialogComponent} from "../add-dialog/add-dialog.component";
 import {Domains} from "../Domains";
+
+import {NotificationService, notificationTypes} from "../../services/notification.service";
+import {ValidatorService} from "../../services/validator.service";
+
+enum Fields {Category, Name, Space, Description, Price}
 
 @Component({
   selector: 'company-products',
@@ -21,14 +19,16 @@ import {Domains} from "../Domains";
 })
 export class ProductsComponent implements OnInit, OnChanges {
   columnDefs: ColDef[] = [
-    {field: 'Category'},
-    {field: 'Name'},
-    {
-      field: 'Size', headerName: 'Size WxHxL m | Weight kg',
-      valueFormatter: ProductsComponent.formatCell
-    },
-    {field: 'Description'},
-    {field: 'Price'},
+    {field: 'Category', editable: true,
+      onCellValueChanged: event => this.onDataChange(Fields.Category, event)},
+    {field: 'Name', editable: true,
+      onCellValueChanged: event => this.onDataChange(Fields.Name, event)},
+    {field: 'Space', headerName: 'Space (m)', editable: true,
+      onCellValueChanged: event => this.onDataChange(Fields.Space, event)},
+    {field: 'Description', wrapText: true, autoHeight: true, sortable: false, editable: true,
+      onCellValueChanged: event => this.onDataChange(Fields.Description, event)},
+    {field: 'Price', editable: true,
+      onCellValueChanged: event => this.onDataChange(Fields.Price, event)},
   ];
   defaultColDef: ColDef = {
     sortable: true, filter: true, flex: 1
@@ -47,17 +47,9 @@ export class ProductsComponent implements OnInit, OnChanges {
     animateRows: true,
   };
 
-  constructor(public dialog: MatDialog) {
-  }
-
-  private static formatCell(params: ValueFormatterParams): string {
-    return `
-      ${params.value.width} x
-      ${params.value.height} x
-      ${params.value.length} |
-      ${params.value.weight}
-    `
-  }
+  constructor(public dialog: MatDialog,
+              private notificationHelper: NotificationService,
+              private validatorService: ValidatorService) { }
 
   ngOnInit(): void {
   }
@@ -87,6 +79,34 @@ export class ProductsComponent implements OnInit, OnChanges {
           domain: Domains.Products
         }
       });
+  }
+
+  private onDataChange(field: Fields, event: NewValueParams) {
+    try {
+      switch (field) {
+        case Fields.Category:
+          this.validatorService.validateName(event.newValue);
+          break;
+        case Fields.Name:
+          break;
+        case Fields.Space:
+          this.validatorService.validateNumber(event.newValue);
+          break;
+        case Fields.Description:
+          break;
+        case Fields.Price:
+          this.validatorService.validateNumber(event.newValue);
+          break;
+      }
+    } catch (e: any) {
+      this.notificationHelper.createNotification(
+        notificationTypes.error,
+        e.message
+      );
+      if (event.colDef.field)
+        event.data[event.colDef.field] = event.oldValue;
+      this.gridApi.refreshCells();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

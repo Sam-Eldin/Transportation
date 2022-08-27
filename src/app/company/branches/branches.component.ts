@@ -20,16 +20,16 @@ enum Fields {Id, Location, Name, ManagerName, Phone}
 export class BranchesComponent implements OnInit, OnChanges {
   columnDefs: ColDef[] = [
     {field: 'Id'},
-    {field: 'Location'},
-    {field: 'Name'},
+    {field: 'Location', editable: true,
+      onCellValueChanged: event => this.onDataChange(Fields.Location, event)},
+    {field: 'Name', editable: true,
+      onCellValueChanged: event => this.onDataChange(Fields.ManagerName, event)},
     {
       field: 'ManagerName', editable: true,
-      onCellValueChanged: event => this.onDataChange(Fields.Phone, event)
+      onCellValueChanged: event => this.onDataChange(Fields.ManagerName, event)
     },
     {
-      field: 'Phone',
-      sortable: false,
-      editable: true,
+      field: 'Phone', sortable: false, editable: true,
       onCellValueChanged: event => this.onDataChange(Fields.Phone, event)
     },
   ];
@@ -87,15 +87,17 @@ export class BranchesComponent implements OnInit, OnChanges {
 
   private onDataChange(field: Fields, event: NewValueParams) {
     try {
-      console.log(event)
       switch (field) {
         case Fields.Id:
           break;
         case Fields.Location:
+          this.validatorService.validateName(event.newValue);
           break;
         case Fields.Name:
+          this.validatorService.validateName(event.newValue);
           break;
         case Fields.ManagerName:
+          this.validatorService.validateName(event.newValue);
           break;
         case Fields.Phone:
           this.validatorService.validatePhoneNumber(event.newValue);

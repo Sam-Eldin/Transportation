@@ -23,7 +23,7 @@ export class ProductsComponent implements OnInit {
     {field: 'Category'},
     {field: 'Name'},
     {field: 'Space', headerName: 'Space (m)'},
-    {field: 'Description', editable: true, wrapText: true, autoHeight: true},
+    {field: 'Description', wrapText: true, autoHeight: true, sortable: false},
     {field: 'Price'},
   ];
   defaultColDef: ColDef = {

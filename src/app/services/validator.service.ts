@@ -8,8 +8,12 @@ export class ValidatorService {
   private readonly NumberRegex = /^\d*$/;
   private readonly phoneRegex = /^(0([2-468-9]\d{7}|[5|7]\d{8}))$/;
   private readonly dateRegex = /^(0[1-9]|[12]\d|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
+  private readonly numberCardRegex = /^([0-9][0-9][0-9][0-9])[- /.]([0-9][0-9][0-9][0-9])[- /.]([0-9][0-9][0-9][0-9])[- /.]([0-9][0-9][0-9][0-9])\d\d$/;
+  private readonly dateCardRegex = /^(0[1-9]|1[012])[- /.](19|20)\d\d$/;
+
 
   constructor() {
+
   }
 
   public validateTruckInput(truckData: any) {
@@ -81,5 +85,15 @@ export class ValidatorService {
 
   public validateDate(Date: string) {
     if (!this.dateRegex.test(Date)) throw new Error('date format is not correct');
+  }
+  public validateCardNumber(Number: string){
+    if (!this.numberCardRegex.test(Number)) throw new Error('date format is not correct');
+  }
+  public validateCardDate(Date: string){
+    if (!this.dateCardRegex.test(Date)) throw new Error('date format is not correct');
+  }
+  public validateCVV(cvv: string) {
+    if (!(cvv.length === 3)) throw new Error('CVV Is not correct');
+    this.validateNumber(cvv);
   }
 }

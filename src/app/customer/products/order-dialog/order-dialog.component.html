@@ -1,0 +1,48 @@
+<h1 mat-dialog-title> {{this.data.cardData.Name}}</h1>
+<!--todo: Credit card number, date, cvv -->
+
+<!--todo: Current Location, Destination, Date | Majdal Shams, Massada, 25/9/2023-->
+
+<div mat-dialog-content>
+  <table>
+  <mat-form-field class="m-3" appearance="fill">
+    <mat-label>Credit card number</mat-label>
+    <input [(ngModel)]="this.creditCardNumber" matInput placeholder="0000/0000/0000/0000">
+  </mat-form-field>
+
+  <mat-form-field class="m-3" appearance="fill">
+    <mat-label>credit card Date</mat-label>
+    <input [(ngModel)]="this.creditCardDate" matInput placeholder="01/01">
+  </mat-form-field>
+
+  <mat-form-field class="m-3" appearance="fill">
+    <mat-label>card cvv</mat-label>
+    <input [(ngModel)]="this.creditCardCVV" matInput placeholder="cvv">
+  </mat-form-field>
+  </table>
+    <table>
+  <mat-form-field class="m-3" appearance="fill">
+    <mat-label>transport location</mat-label>
+    <input [(ngModel)]="this.location" matInput placeholder="majdal">
+  </mat-form-field>
+
+  <mat-form-field class="m-3" appearance="fill">
+    <mat-label>transport destination</mat-label>
+    <input [(ngModel)]="this.destination" matInput placeholder="destination">
+  </mat-form-field>
+
+  <mat-form-field class="m-3" appearance="fill">
+    <mat-label>Order date</mat-label>
+    <input [(ngModel)]="this.orderDate" matInput placeholder="10/04/2023">
+  </mat-form-field>
+    </table>
+  <mat-form-field class="m-3" appearance="fill">
+    <mat-label>Phone number</mat-label>
+    <input [(ngModel)]="this.phoneNumber" matInput placeholder="0501234567">
+  </mat-form-field>
+  <br>
+  <div mat-dialog-actions>
+    <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
+    <button color="primary" mat-raised-button (click)="this.add()">Submit</button>
+  </div>
+</div>

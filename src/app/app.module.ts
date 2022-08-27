@@ -31,6 +31,7 @@ import {ToolbarComponent} from './customer/products/toolbar/toolbar.component';
 import { CardDialogComponent } from './customer/products/card-dialog/card-dialog.component';
 import {RouterModule, Routes} from "@angular/router";
 import {ROUTES} from "./app.routing";
+import { OrderDialogComponent } from './customer/products/order-dialog/order-dialog.component';
 
 const routes: Routes = ROUTES;
 @NgModule({
@@ -55,7 +56,8 @@ const routes: Routes = ROUTES;
     LoadingComponent,
     ToolbarComponent,
     CardDialogComponent,
-    CardComponent
+    CardComponent,
+    OrderDialogComponent
   ],
   imports: [
     BrowserModule,

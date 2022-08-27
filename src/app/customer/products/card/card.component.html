@@ -7,11 +7,11 @@
         <mat-card-content>
           <h4><span class="foot"><i class="fa fa-shekel-sign"></i> {{this.data.Price}}</span></h4>
           <p class="dimension">
-            size:{{this.data.space}}
+            size:{{this.data.Space}}
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="warn"><i class="fa fa-shopping-bag"></i> Order Now</button>
+          <button mat-raised-button color="warn" (click)="this.openDialog()"><i class="fa fa-shopping-bag"></i> Order Now</button>
         </mat-card-actions>
       </mat-card>
 </div>

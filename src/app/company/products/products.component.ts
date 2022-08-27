@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {IProductData} from "../common/product.interface";
 import {
   ColDef,
@@ -19,11 +19,12 @@ import {Domains} from "../Domains";
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnChanges {
   columnDefs: ColDef[] = [
     {field: 'Category'},
     {field: 'Name'},
-    {field: 'Size',  headerName: 'Size WxHxL m | Weight kg',
+    {
+      field: 'Size', headerName: 'Size WxHxL m | Weight kg',
       valueFormatter: ProductsComponent.formatCell
     },
     {field: 'Description'},
@@ -46,7 +47,8 @@ export class ProductsComponent implements OnInit {
     animateRows: true,
   };
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {
+  }
 
   private static formatCell(params: ValueFormatterParams): string {
     return `
@@ -85,5 +87,10 @@ export class ProductsComponent implements OnInit {
           domain: Domains.Products
         }
       });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this.gridApi) return;
+    this.gridApi.setRowData(changes['rowData'].currentValue)
   }
 }

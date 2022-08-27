@@ -1,12 +1,14 @@
 import {FirebaseApp} from "firebase/app";
-import {initializeAuth, setPersistence, createUserWithEmailAndPassword
-  , signInWithEmailAndPassword, onAuthStateChanged, signOut, browserLocalPersistence, sendPasswordResetEmail} from "firebase/auth";
+import {
+  createUserWithEmailAndPassword, getAuth,
+  signInWithEmailAndPassword, onAuthStateChanged,
+  signOut, sendPasswordResetEmail} from "firebase/auth";
 
 export class AuthenticationService {
   private readonly authentication;
 
-  constructor(firebase: FirebaseApp) {
-    this.authentication = initializeAuth(firebase);
+  constructor(firebaseApp: FirebaseApp) {
+    this.authentication = getAuth(firebaseApp);
   }
 
   public async createNewAccount(email: string, password: string) {
@@ -14,7 +16,6 @@ export class AuthenticationService {
   }
 
   public async login(email: string, password: string) {
-    await setPersistence(this.authentication, browserLocalPersistence);
     await signInWithEmailAndPassword(this.authentication, email, password);
   }
 

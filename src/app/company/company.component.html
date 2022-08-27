@@ -25,3 +25,5 @@
 <company-banks *ngIf="this.currentDomain === this.domains.banks" [rowData]="this.bankData"></company-banks>
 <company-products *ngIf="this.currentDomain === this.domains.products" [rowData]="this.productsData"></company-products>
 <company-orders *ngIf="this.currentDomain === this.domains.orders" [rowData]="this.ordersData"></company-orders>
+
+<app-loading *ngIf="this.isLoading" [message]="'Loading Company\'s Data'"></app-loading>

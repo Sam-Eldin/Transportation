@@ -1,11 +1,11 @@
 import {FirebaseApp} from "firebase/app";
-import {initializeFirestore, doc, getDoc, onSnapshot, setDoc} from "firebase/firestore";
+import {getFirestore, doc, getDoc, onSnapshot, setDoc, arrayUnion, updateDoc} from "firebase/firestore";
 
 export class FirestoreService {
   private readonly firestore;
 
   constructor(firebaseApp: FirebaseApp) {
-    this.firestore = initializeFirestore(firebaseApp, {});
+    this.firestore = getFirestore(firebaseApp);
   }
 
   public async fetchUserData(userEmail: string) {
@@ -27,5 +27,17 @@ export class FirestoreService {
       company_manager: false,
       orders: []
     })
+  }
+
+  public async addNewValueToArray(newValue: any, path: string, domain: string) {
+    await updateDoc(
+      doc(
+        this.firestore,
+        path
+      ),
+      {
+        [domain]: arrayUnion(newValue)
+      }
+    )
   }
 }

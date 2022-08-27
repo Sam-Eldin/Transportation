@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {GridApi} from "ag-grid-community";
 import {NotificationService, notificationTypes} from "../../services/notification.service";
 import {ValidatorService} from "../../services/validator.service";
+import {UserService} from "../../services/user.service";
+import {Domains} from "../Domains";
 
 export interface IAddDialogData {
   gridApi: GridApi;
@@ -56,8 +58,11 @@ export class AddDialogComponent implements OnInit {
   //
   // ];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: IAddDialogData
-    , private notificationService: NotificationService, private matDialog: MatDialog, private validatorService: ValidatorService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: IAddDialogData,
+              private notificationService: NotificationService,
+              private userService: UserService,
+              private matDialog: MatDialog,
+              private validatorService: ValidatorService) {
     switch (this.data.domain) {
       case "Trucks":
         this.title = "Truck";
@@ -121,24 +126,29 @@ export class AddDialogComponent implements OnInit {
     }
   }
 
-  add() {
+  async add() {
     try {
       this.validate();
       switch (this.data.domain) {
         case "Banks":
-          this.data.gridApi.applyTransaction({add: [this.bankData]});
+          // this.data.gridApi.applyTransaction({add: [this.bankData]});
+          await this.userService.addNewValueToCompany(this.bankData, Domains.Banks.toLowerCase())
           break;
         case "Trucks":
-          this.data.gridApi.applyTransaction({add: [this.truckData]});
+          // this.data.gridApi.applyTransaction({add: [this.truckData]});
+          await this.userService.addNewValueToCompany(this.truckData, Domains.Trucks.toLowerCase())
           break;
         case "Drivers":
-          this.data.gridApi.applyTransaction({add: [this.driverData]});
+          // this.data.gridApi.applyTransaction({add: [this.driverData]});
+          await this.userService.addNewValueToCompany(this.driverData, Domains.Drivers.toLowerCase())
           break;
         case "Branches":
-          this.data.gridApi.applyTransaction({add: [this.branchData]});
+          // this.data.gridApi.applyTransaction({add: [this.branchData]});
+          await this.userService.addNewValueToCompany(this.branchData, Domains.Branches.toLowerCase())
           break;
         case "Products":
-          this.data.gridApi.applyTransaction({add: [this.productData]});
+          // this.data.gridApi.applyTransaction({add: [this.productData]});
+          await this.userService.addNewValueToCompany(this.productData, Domains.Products.toLowerCase())
           break;
       }
       this.notificationService.createNotification(

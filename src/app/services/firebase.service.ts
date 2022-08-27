@@ -16,4 +16,9 @@ export class FirebaseService {
     this.authentication = new AuthenticationService(this.firebaseApp);
     this.firestore = new FirestoreService(this.firebaseApp);
   }
+
+  public async createAccount(email: string, password: string) {
+    await this.authentication.createNewAccount(email, password);
+    await this.firestore.createNewAccount(email);
+  }
 }

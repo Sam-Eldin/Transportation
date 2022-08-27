@@ -1,5 +1,5 @@
 import {FirebaseApp} from "firebase/app";
-import {initializeAuth, setPersistence
+import {initializeAuth, setPersistence, createUserWithEmailAndPassword
   , signInWithEmailAndPassword, onAuthStateChanged, signOut, browserLocalPersistence} from "firebase/auth";
 
 export class AuthenticationService {
@@ -7,6 +7,10 @@ export class AuthenticationService {
 
   constructor(firebase: FirebaseApp) {
     this.authentication = initializeAuth(firebase);
+  }
+
+  public async createNewAccount(email: string, password: string) {
+    await createUserWithEmailAndPassword(this.authentication, email, password);
   }
 
   public async login(email: string, password: string) {

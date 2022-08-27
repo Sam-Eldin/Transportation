@@ -5,7 +5,7 @@ export const cardData: ICardData[] = [
   {
     Id: 123456789,
     Category : 'Apartment',
-    Company: 'Ace moving',
+    Company: 'Mothership',
     Name: '1 room',
     Price: 1500,
     space: 40,
@@ -26,7 +26,7 @@ export const cardData: ICardData[] = [
   {
     Id: 123456788,
     Category : 'Apartment',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: '2 rooms',
     Price: 2500,
     space: 80,
@@ -46,7 +46,7 @@ export const cardData: ICardData[] = [
   {
     Id: 123456787,
     Category : 'Apartment',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: '3 rooms',
     Price: 3300,
     space: 80,
@@ -68,7 +68,7 @@ export const cardData: ICardData[] = [
   {
     Id: 123456786,
     Category : 'Apartment',
-    Company: 'Interval moving',
+    Company: 'Mothership',
     Name: '3 rooms and porch',
     Price: 3800,
     space: 80 + 15,
@@ -89,7 +89,7 @@ export const cardData: ICardData[] = [
   {
     Id: 123456785,
     Category : 'Apartment',
-    Company: 'Ace moving',
+    Company: 'Mothership',
     Name: '4 rooms',
     Price: 4200,
     space: 110,
@@ -110,7 +110,7 @@ export const cardData: ICardData[] = [
   {
     Id: 123456784,
     Category : 'Apartment',
-    Company: 'Interval moving',
+    Company: 'Mothership',
     Name: '4 rooms and porch',
     Price: 4700,
     space: 110 + 20,
@@ -131,7 +131,7 @@ export const cardData: ICardData[] = [
   {
     Id: 123456783,
     Category : 'Apartment',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: '5 rooms',
     Price: 5100,
     space: 130,
@@ -152,7 +152,7 @@ export const cardData: ICardData[] = [
   {
     Id: 123456782,
     Category : 'Apartment',
-    Company: 'Interval moving',
+    Company: 'Mothership',
     Name: '5 rooms and porch',
     Price: 5600,
     space: 130 + 20,
@@ -173,7 +173,7 @@ export const cardData: ICardData[] = [
   {
   Id: 123456781,
   Category : 'Apartment',
-  Company: 'Interval moving',
+  Company: 'Mothership',
   Name: 'duplicate',
   Price: 10000,
   space: 250,
@@ -194,7 +194,7 @@ export const cardData: ICardData[] = [
   {
   Id: 123456780,
   Category : 'Apartment',
-  Company: 'Aviv moving',
+  Company: 'Finditparts',
   Name: 'duplicate and porch',
   Price: 10000,
   space: 250 + 60,
@@ -217,7 +217,7 @@ export const cardData: ICardData[] = [
   {
     Id: 223456789,
     Category : 'office',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: '1 room',
     Price: 350,
     space: 60,
@@ -238,7 +238,7 @@ export const cardData: ICardData[] = [
   {
     Id: 223456788,
     Category : 'Office',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: '2 room',
     Price: 1000,
     space: 80,
@@ -259,7 +259,7 @@ export const cardData: ICardData[] = [
   {
     Id: 223456787,
     Category : 'Office',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: '3 room',
     Price: 2000,
     space: 110,
@@ -280,7 +280,7 @@ export const cardData: ICardData[] = [
   {
     Id: 223456786,
     Category : 'Office',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: '4 room',
     Price: 3500,
     space: 140,
@@ -303,7 +303,7 @@ export const cardData: ICardData[] = [
   {
   Id: 323456789,
   Category : 'Container',
-  Company: 'Aviv moving',
+  Company: 'Finditparts',
   Name: 'Dry Cube ',
   Price: 700,
   space: 33,
@@ -324,7 +324,7 @@ export const cardData: ICardData[] = [
   {
   Id: 323456788,
   Category : 'Container',
-  Company: 'Aviv moving',
+  Company: 'Finditparts',
   Name: 'High Cube',
   Price: 800,
   space: 37,
@@ -345,7 +345,7 @@ export const cardData: ICardData[] = [
   {
   Id: 323456787,
   Category : 'Container',
-  Company: 'Aviv moving',
+  Company: 'Finditparts',
   Name: 'High Cube ',
   Price: 1500,
   space: 75,
@@ -367,7 +367,7 @@ export const cardData: ICardData[] = [
   {
     Id: 323456786,
     Category : 'Container',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: 'Pallet Wide ',
     Price: 2000,
     space: 85,
@@ -389,7 +389,7 @@ export const cardData: ICardData[] = [
   {
     Id: 423456789,
     Category : 'Factory',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: 'plastic bottles',
     Price: 25000,
     space: 1000,
@@ -409,7 +409,7 @@ export const cardData: ICardData[] = [
   {
     Id: 423456788,
     Category : 'Factory',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: 'dress factory',
     Price: 30000,
     space: 1200,
@@ -430,7 +430,7 @@ export const cardData: ICardData[] = [
   {
     Id: 423456787,
     Category : 'Factory',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: 'shampoo factory',
     Price: 40000,
     space: 2000,
@@ -452,7 +452,7 @@ export const cardData: ICardData[] = [
   {
     Id: 423456787,
     Category : 'Furniture',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: ' 1 surface',
     Price: 250,
     space: 1,
@@ -472,7 +472,7 @@ export const cardData: ICardData[] = [
   {
     Id: 423456787,
     Category : 'Furniture',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: ' 2 surface',
     Price: 350,
     space: 1,
@@ -492,7 +492,7 @@ export const cardData: ICardData[] = [
   {
     Id: 423456787,
     Category : 'Furniture',
-    Company: 'Aviv moving',
+    Company: 'Finditparts',
     Name: ' 5 surface',
     Price: 800,
     space: 1,

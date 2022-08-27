@@ -7,11 +7,12 @@
   <button mat-icon-button>
     <mat-icon>person</mat-icon>
   </button>
-  <button mat-icon-button>
+  <button mat-icon-button (click)="this.logout()">
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
 
+<mat-divider></mat-divider>
 
 <customer-products *ngIf="this.currentDomain === this.domains.products"></customer-products>
 <customer-orders *ngIf="this.currentDomain === this.domains.orders"></customer-orders>

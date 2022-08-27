@@ -41,6 +41,7 @@ import {CustomerProductsComponent} from './customer/products/customer-products.c
 import {CardComponent} from './customer/products/card/card.component';
 import {ToolbarComponent} from './customer/products/toolbar/toolbar.component';
 import {CardDialogComponent} from './customer/products/card-dialog/card-dialog.component';
+import {OrderDialogComponent} from "./customer/products/order-dialog/order-dialog.component";
 
 const routes: Routes = ROUTES;
 @NgModule({
@@ -65,7 +66,8 @@ const routes: Routes = ROUTES;
     SignInComponent,
     SignUpComponent,
     BranchesComponent,
-    CustomerOrdersComponent
+    CustomerOrdersComponent,
+    OrderDialogComponent
   ],
   imports: [
     BrowserModule,

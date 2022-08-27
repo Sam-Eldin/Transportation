@@ -1,7 +1,7 @@
-import {Component, EventEmitter, OnInit, Output, SimpleChanges} from '@angular/core';
-import {cardData} from "./cardsNew.mock-data";
+import {Component, OnInit} from '@angular/core';
 import {IOptions} from "./common/options.interface";
 import {ICardData} from "./common/card.interface,ts";
+import {FirebaseService} from "../../services/firebase.service";
 
 @Component({
   selector: 'customer-products',
@@ -11,7 +11,9 @@ import {ICardData} from "./common/card.interface,ts";
 
 export class CustomerProductsComponent implements OnInit {
   options: IOptions;
-  constructor() {
+  isLoading: boolean = true;
+
+  constructor(private firebaseService: FirebaseService) {
     this.options = {
       sortAsc: true,
       options: [],
@@ -19,55 +21,40 @@ export class CustomerProductsComponent implements OnInit {
     }
   }
 
-  cardsList: ICardData[] = [...cardData]
-  @Output() optionsEventEmitter: EventEmitter<IOptions> = new EventEmitter();
+  cardsList: ICardData[] = []
+  tempList: ICardData[] = []
 
-  greet(op: any) {
-    this.sortPrice(op);
-  }
   handleOptionsChange(options: IOptions) {
-    this.cardsList = [...cardData]
     this.options = options;
     this.sortByPrice();
     this.filterByCategory();
     this.filterBySearch();
   }
+
   ngOnInit(): void {
-    this.sortByPrice();
-    this.filterByCategory();
-  }
-  public sortPrice(option: any): ICardData[] {
-    if (option.value == 'l2h') {
-      return this.cardsList.sort((a: ICardData, b: ICardData) => a.Price - b.Price);
-    }
-    return this.cardsList.sort((a: ICardData, b: ICardData) => b.Price - a.Price);
+    this.isLoading = true;
+    this.firebaseService.firestore.getAllProducts().then((products) => {
+      this.cardsList = products;
+      this.sortByPrice();
+      this.filterByCategory();
+      this.isLoading = false;
+    });
   }
 
   private sortByPrice() {
-    console.log(this.options.sortAsc)
-    if (this.options.sortAsc)
-      this.cardsList = this.cardsList.sort((a: ICardData, b: ICardData) => a.Price - b.Price);
-    else
-      this.cardsList = this.cardsList.sort((a: ICardData, b: ICardData) => b.Price - a.Price);
+    this.tempList = this.cardsList.sort(
+      (a: ICardData, b: ICardData) => this.options.sortAsc ?
+      a.Price - b.Price :
+      b.Price - a.Price);
   }
 
   private filterByCategory() {
     if (this.options.options.length === 0) return;
-    this.cardsList = this.cardsList.filter((a: ICardData) => this.options.options.includes(a.Category));
+    this.tempList = this.cardsList.filter((a: ICardData) => this.options.options.includes(a.Category));
   }
 
   private filterBySearch() {
     if (!this.options.search) return;
-    this.cardsList = this.cardsList.filter((a: ICardData) => a.Name.toLowerCase().includes(this.options.search.toLowerCase()))
+    this.tempList = this.cardsList.filter((a: ICardData) => a.Name.toLowerCase().includes(this.options.search.toLowerCase()))
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['options']) {
-      this.cardsList = [...cardData]
-      this.sortByPrice();
-      this.filterByCategory();
-      this.filterBySearch();
-    }
-  }
-
 }

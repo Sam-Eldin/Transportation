@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent, NewValueParams} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {ITruckData} from "../common/truck.interface";
@@ -16,7 +16,7 @@ enum Fields {PlateNumber, Type, Year, Distance}
   templateUrl: './trucks.component.html',
   styleUrls: ['./trucks.component.css']
 })
-export class TrucksComponent implements OnInit {
+export class TrucksComponent implements OnInit, OnChanges {
   columnDefs: ColDef[] = [
     {field: 'PlateNumber'},
     {field: 'Type'},

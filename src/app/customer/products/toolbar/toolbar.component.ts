@@ -16,6 +16,7 @@ export class ToolbarComponent implements OnInit {
   @Output() optionsEventEmitter: EventEmitter<IOptions> = new EventEmitter();
 
   options: IOptions;
+  arrowDirection: string = 'arrow_upward';
 
   constructor() {
     this.options = {
@@ -26,20 +27,13 @@ export class ToolbarComponent implements OnInit {
     this.optionsEventEmitter.emit(this.options);
   }
 
-  /* budget*/
-  formatLabel(value: number) {
-    if (value >= 1000) {
-      return Math.round(value / 1000) + 'k';
-    }
-    return value;
-  }
-
   ngOnInit(): void {
   }
 
-  setSortBy(event: any) {
-    let optionText = event.target.value;
-    this.options.sortAsc = optionText === 'l2h';
+  setSortBy(_: any) {
+    const downward = this.arrowDirection === 'arrow_downward';
+    this.options.sortAsc = downward;
+    this.arrowDirection = downward ? 'arrow_upward' : 'arrow_downward';
     this.optionsEventEmitter.emit(this.options);
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FirebaseService} from "../services/firebase.service";
 
 
 @Component({
@@ -10,7 +11,7 @@ export class CustomerComponent implements OnInit {
   ordersCount = 8;
   public domains = {orders: 0, products: 1}
   currentDomain: number = this.domains.products;
-  constructor() { }
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
   }
@@ -19,4 +20,11 @@ export class CustomerComponent implements OnInit {
     this.currentDomain = newDomain;
   }
 
+  async logout() {
+    try {
+      await this.firebaseService.authentication.logout();
+    } catch (e) {
+
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges, ViewChild, OnChanges} from '@angular/core';
 import {IProductData} from "../common/product.interface";
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent, NewValueParams,} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
@@ -17,7 +17,7 @@ enum Fields {Category, Name, Space, Description, Price}
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnChanges {
   columnDefs: ColDef[] = [
     {field: 'Category', editable: true,
       onCellValueChanged: event => this.onDataChange(Fields.Category, event)},

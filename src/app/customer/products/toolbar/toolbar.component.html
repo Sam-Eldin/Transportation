@@ -1,61 +1,18 @@
-<form class="main-form">
-  <table>
-    <mat-form-field class="category" appearance="fill">
-      <mat-label style="color: #ff6d39">Categories</mat-label>
-      <mat-select (selectionChange)="this.changeCategory($event)" [formControl]="Categories" multiple>
-        <mat-select-trigger>
-          {{Categories.value?.[0] || ''}}
-          <span *ngIf="(Categories.value?.length || 0) > 1" class="example-additional-selection">
-        (+{{(Categories.value?.length || 0) - 1}} {{Categories.value?.length === 2 ? 'other' : 'others'}})
-      </span>
-        </mat-select-trigger>
-        <mat-option *ngFor="let category of categoriesList" [value]="category">{{category}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="search-label">
-      <span matPrefix> </span>
-      <input type="tel" matInput placeholder="Search" name="search" [(ngModel)]="search" (keyup)="this.setSearch($event)">
-      <button matSuffix mat-button style="background: #ff6d39 ">
-        <mat-icon>search</mat-icon>
-      </button>
-    </mat-form-field>
-    <select class="Price" (change)="this.setSortBy($event)">
-      <option value="l2h">Price: Low to High</option>
-      <option value="h2l">Price: High to Low</option>
-    </select>
-  </table>
-</form>
-
-
-<!--Budget-->
-<!--<mat-slider-->
-<!--  thumbLabel-->
-<!--  [displayWith]="formatLabel"-->
-<!--  tickInterval="1000"-->
-<!--  step="1000"-->
-<!--  min="0"-->
-<!--  max="100000"-->
-<!--  aria-label="units">-->
-<!--</mat-slider>-->
-
-<!--<mat-form-field class="example-full-length" appearance="fill">-->
-<!--  <mat-label>length</mat-label>-->
-<!--  <input matInput placeholder="Ex. 1m">-->
-<!--</mat-form-field>-->
-<!--<mat-form-field class="example-full-width" appearance="fill">-->
-<!--  <mat-label> width</mat-label>-->
-<!--  <input matInput placeholder="Ex. 1m">-->
-<!--</mat-form-field>-->
-<!--<mat-form-field class="example-full-height" appearance="fill">-->
-<!--  <mat-label>height</mat-label>-->
-<!--  <input matInput placeholder="Ex. 1m">-->
-<!--</mat-form-field>-->
-<!--<mat-form-field class="example-full-weight" appearance="fill">-->
-<!--  <mat-label> weight</mat-label>-->
-<!--  <input matInput placeholder="Ex. 50kg">-->
-<!--</mat-form-field>-->
-<!--<div class="search-hero">-->
-<!--  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a hero by id or name or country">-->
-
-<!--</div>-->
+<mat-toolbar>
+      <mat-form-field class="m-5">
+        <mat-label>Categories</mat-label>
+        <mat-select (selectionChange)="this.changeCategory($event)" [formControl]="Categories" multiple>
+          <mat-select-trigger>
+            {{Categories.value?.[0] || ''}}
+            <span *ngIf="(Categories.value?.length || 0) > 1">
+          (+{{(Categories.value?.length || 0) - 1}} {{Categories.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let category of categoriesList" [value]="category">{{category}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Search By Name" (keyup)="this.setSearch($event)" [(ngModel)]="this.search">
+  </mat-form-field>
+  <button mat-button class="ms-3 fs-5 shadow-none" (click)="this.setSortBy($event)">Sort By Price <mat-icon>{{this.arrowDirection}}</mat-icon></button>
+</mat-toolbar>

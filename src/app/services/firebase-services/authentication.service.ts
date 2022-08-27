@@ -1,6 +1,6 @@
 import {FirebaseApp} from "firebase/app";
 import {initializeAuth, setPersistence, createUserWithEmailAndPassword
-  , signInWithEmailAndPassword, onAuthStateChanged, signOut, browserLocalPersistence} from "firebase/auth";
+  , signInWithEmailAndPassword, onAuthStateChanged, signOut, browserLocalPersistence, sendPasswordResetEmail} from "firebase/auth";
 
 export class AuthenticationService {
   private readonly authentication;
@@ -28,5 +28,9 @@ export class AuthenticationService {
 
   public getUser() {
     return this.authentication.currentUser;
+  }
+
+  async resetPassword(email: string) {
+    await sendPasswordResetEmail(this.authentication, email);
   }
 }

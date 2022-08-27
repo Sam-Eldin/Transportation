@@ -4,8 +4,6 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class ValidatorService {
-
-
   private readonly NameRegex = /[a-zA-Z][a-zA-Z ]+/;
   private readonly NumberRegex = /^\d*$/;
   private readonly phoneRegex = /^(0([2-468-9]\d{7}|[5|7]\d{8}))$/;

@@ -1,7 +1,7 @@
 <mat-toolbar>
   <span class="navbar-icon" style="font-size: x-large">🚚</span>
-  <button mat-button class="navbar-tab">Products</button>
-  <button mat-button class="navbar-tab" [matBadge]="this.ordersCount" matBadgePosition="after" (click)="openSnackBar()">Orders
+  <button mat-button class="navbar-tab" (click)="changeDomain(this.domains.products)">Products</button>
+  <button mat-button class="navbar-tab" (click)="changeDomain(this.domains.orders)">Orders
   </button>
   <span style="flex: 1 1 auto;"></span>
   <button mat-icon-button>
@@ -13,4 +13,5 @@
 </mat-toolbar>
 
 
-<customer-orders></customer-orders>
+<customer-products *ngIf="this.currentDomain === this.domains.products"></customer-products>
+<customer-orders *ngIf="this.currentDomain === this.domains.orders"></customer-orders>

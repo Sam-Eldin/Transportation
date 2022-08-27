@@ -23,10 +23,8 @@ export class ProductsComponent implements OnInit {
   columnDefs: ColDef[] = [
     {field: 'Category'},
     {field: 'Name'},
-    {field: 'Size',  headerName: 'Size WxHxL m | Weight kg',
-      valueFormatter: ProductsComponent.formatCell
-    },
-    {field: 'Description'},
+    {field: 'Space', headerName: 'Space (m)'},
+    {field: 'Description', editable: true, wrapText: true, autoHeight: true},
     {field: 'Price'},
   ];
   defaultColDef: ColDef = {
@@ -47,15 +45,6 @@ export class ProductsComponent implements OnInit {
   };
 
   constructor(public dialog: MatDialog) { }
-
-  private static formatCell(params: ValueFormatterParams): string {
-    return `
-      ${params.value.width} x
-      ${params.value.height} x
-      ${params.value.length} |
-      ${params.value.weight}
-    `
-  }
 
   ngOnInit(): void {
   }

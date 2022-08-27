@@ -51,7 +51,6 @@ export class AppComponent implements OnInit {
       try {
         this.isLoading = true;
         // no user is signed in
-        console.log(user);
         if (!user) {
           await this.router.navigateByUrl(NAVIGATION_URLS.SIGN_IN);
           this.isLoading = false;

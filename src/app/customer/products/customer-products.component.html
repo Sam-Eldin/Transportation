@@ -1,7 +1,6 @@
 <customer-toolbar (optionsEventEmitter)="this.handleOptionsChange($event)"></customer-toolbar>
-<!--<customer-card [options]="this.options"></customer-card>-->
 
 <div class="row row-cols-auto gx-3 h-100">
-  <customer-card *ngFor="let card of this.cardsList" [data]="card"></customer-card>
+  <customer-card *ngFor="let card of this.tempList" [data]="card"></customer-card>
 </div>
 

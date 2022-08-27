@@ -16,7 +16,7 @@ import {CalendarComponent} from './company/calendar/calendar.component';
 import {AgGridModule} from "ag-grid-angular";
 import {RemoveDialogComponent} from './company/remove-dialog/remove-dialog.component';
 import {AddDialogComponent} from './company/add-dialog/add-dialog.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CustomerOrdersComponent} from "./customer/orders/orders.component";
 import {BranchesComponent} from "./company/branches/branches.component";
 import {SignUpComponent} from "./authentication/sign-up/sign-up.component";
@@ -25,11 +25,14 @@ import {ResetPasswordComponent} from "./authentication/reset-password/reset-pass
 import {LoadingComponent} from "./loading/loading.component";
 import {ProductsComponent} from "./company/products/products.component";
 import {ScheduleAllModule} from "@syncfusion/ej2-angular-schedule";
+import {CustomerProductsComponent} from './customer/products/customer-products.component';
+import {CardComponent} from './customer/products/card/card.component';
+import {ToolbarComponent} from './customer/products/toolbar/toolbar.component';
+import { CardDialogComponent } from './customer/products/card-dialog/card-dialog.component';
 import {RouterModule, Routes} from "@angular/router";
 import {ROUTES} from "./app.routing";
 
 const routes: Routes = ROUTES;
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,8 +41,9 @@ const routes: Routes = ROUTES;
     DriversComponent,
     TrucksComponent,
     BanksComponent,
-    OrdersComponent,
     ProductsComponent,
+    OrdersComponent,
+    CustomerProductsComponent,
     BranchesComponent,
     CustomerOrdersComponent,
     CalendarComponent,
@@ -48,13 +52,16 @@ const routes: Routes = ROUTES;
     SignUpComponent,
     SignInComponent,
     ResetPasswordComponent,
-    LoadingComponent
+    LoadingComponent,
+    ToolbarComponent,
+    CardDialogComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes),
     MaterialModule,
+    RouterModule.forRoot(routes),
     ToastrModule.forRoot(
       {
         preventDuplicates: true,
@@ -62,7 +69,7 @@ const routes: Routes = ROUTES;
         positionClass: 'toast-top-center',
       }
     ),
-    ToastContainerModule, OverlayModule, AgGridModule, FormsModule, ScheduleAllModule, RouterModule
+    ToastContainerModule, OverlayModule, AgGridModule, FormsModule, ToastrModule, ReactiveFormsModule, ScheduleAllModule, RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

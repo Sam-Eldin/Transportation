@@ -14,10 +14,8 @@ export class CustomerOrdersComponent implements OnInit {
   columnDefs: ColDef[] = [
     {field: 'Id'},
     {field: 'Name'},
-    {field: 'Date'},
-    {field: 'Location'},
-    {field: 'Price'},
-    {field: 'Company'},
+    {field: 'Order_Date'},
+    {field: 'Receive_Date'},
     {field: 'Status', cellRenderer: function (params:any) {
         switch (params.value){
           case Status.pending:
@@ -29,7 +27,10 @@ export class CustomerOrdersComponent implements OnInit {
           default:
             return '<span><i class="material-icons" style="color: #1c52dc">hourglass_full</i></span>'
       } }
-    }
+    },
+    {field: 'Location'},
+    {field: 'Price'},
+    {field: 'Company'},
   ];
 
   defaultColDef: ColDef = {

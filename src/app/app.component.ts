@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ToastContainerDirective, ToastrService} from "ngx-toastr";
-import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {FirebaseService} from "./services/firebase.service";
 import firebase from "firebase/compat/app";
 import {NAVIGATION_URLS} from "./navigating.urls";
@@ -22,28 +22,6 @@ export class AppComponent implements OnInit {
               private firebaseService: FirebaseService,
               private userService: UserService) {
     this.setOnAuthChange();
-    this.setRoutingLoading();
-  }
-
-  private setRoutingLoading() {
-    this.router.events.subscribe((event) => {
-      switch (true) {
-        case event instanceof NavigationStart: {
-          this.isLoading = true;
-          break;
-        }
-
-        case event instanceof NavigationEnd:
-        case event instanceof NavigationCancel:
-        case event instanceof NavigationError: {
-          this.isLoading = false;
-          break;
-        }
-
-        default:
-          break;
-      }
-    });
   }
 
   private setOnAuthChange() {

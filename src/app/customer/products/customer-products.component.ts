@@ -11,6 +11,7 @@ import {FirebaseService} from "../../services/firebase.service";
 
 export class CustomerProductsComponent implements OnInit {
   options: IOptions;
+  isLoading: boolean = true;
 
   constructor(private firebaseService: FirebaseService) {
     this.options = {
@@ -31,10 +32,12 @@ export class CustomerProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.firebaseService.firestore.getAllProducts().then((products) => {
       this.cardsList = products;
       this.sortByPrice();
       this.filterByCategory();
+      this.isLoading = false;
     });
   }
 

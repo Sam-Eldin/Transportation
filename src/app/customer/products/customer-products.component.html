@@ -4,3 +4,4 @@
   <customer-card *ngFor="let card of this.tempList" [data]="card"></customer-card>
 </div>
 
+<app-loading *ngIf="this.isLoading" [message]="'Fetching Products'"></app-loading>

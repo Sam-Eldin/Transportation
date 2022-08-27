@@ -1,7 +1,7 @@
 <mat-toolbar>
   <span class="navbar-icon" style="font-size: x-large">🚚</span>
   <button mat-button class="navbar-tab" (click)="changeDomain(this.domains.products)">Products</button>
-  <button mat-button class="navbar-tab" [matBadge]="this.ordersCount" matBadgePosition="after" (click)="changeDomain(this.domains.orders)">Orders
+  <button mat-button class="navbar-tab" (click)="changeDomain(this.domains.orders)">Orders
   </button>
   <span style="flex: 1 1 auto;"></span>
   <button mat-icon-button>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NotificationService, notificationTypes} from "../services/notification.service";
+
 
 @Component({
   selector: 'app-customer',
@@ -8,14 +8,15 @@ import {NotificationService, notificationTypes} from "../services/notification.s
 })
 export class CustomerComponent implements OnInit {
   ordersCount = 8;
-  constructor(private notificationService: NotificationService) { }
+  public domains = {orders: 0, products: 1}
+  currentDomain: number = this.domains.products;
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  openSnackBar() {
-    this.ordersCount++;
-    this.notificationService.createNotification(notificationTypes.info, 'new Order been received');
+  changeDomain(newDomain: number) {
+    this.currentDomain = newDomain;
   }
 
 }

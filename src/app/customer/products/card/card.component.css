@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+.mat-card {
+  min-width: 200px;
+  text-align: center;
+  background: #ffffff;
+  align-content: center;
+}
+.title{
+  color:  #ff6d39;
+  font-family: "muli";
+  font-size: 22px;
+  display: inline-block;
+}
+.company{
+  text-transform: uppercase;
+  color: #d2d2d2;
+  letter-spacing: 0.2em;
+}
+h4 {
+  display: inline-block;
+  color: #ffffff;
+  font-family: "muli";
+  font-weight: bold;
+  font-size: 20px;
+}
+/*h4.dis {*/
+/*  display: inline-block;*/
+/*  color: #ffffff;*/
+/*  font-family: "muli";*/
+/*  font-weight: 400;*/
+/*  font-size: 17px;*/
+/*  text-decoration: line-through #ea3201;*/
+/*}*/
+
+/*h4.dis span {*/
+/*  text-decoration: line-through #ea3201;*/
+/*}*/
+
+/*.discount {*/
+/*  display: inline-block;*/
+/*}*/
+
+
+.dimension {
+  color: #000000;
+  font-family: "muli";
+  font-size: 20px;
+}
+
+.description{
+  color: #000000;
+  font-family: 'muli';
+  font-size: 20px;
+}
+.foot {
+  color: #000000;
+  font-family: "muli";
+  font-size: 20px;
+  float: left;
+  transition: 0.3s all ease;
+
+}
+.foot:hover {
+  color: #f76b39;
+  cursor: pointer;
+}
+
+.card button:hover {
+  opacity: 0.7;
+
+}

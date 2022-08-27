@@ -8,8 +8,12 @@ export class ValidatorService {
   private readonly NumberRegex = /^\d*$/;
   private readonly phoneRegex = /^(0([2-468-9]\d{7}|[5|7]\d{8}))$/;
   private readonly dateRegex = /^(0[1-9]|[12]\d|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
+  private readonly numberCardRegex = /^(?:4\d{12}(?:\d{3})?|[25][1-7]\d{14}|6(?:011|5\d\d)\d{12}|3[47]\d{13}|3(?:0[0-5]|[68]\d)\d{11}|(?:2131|1800|35\d{3})\d{11})$/;
+  private readonly dateCardRegex = /^(0[1-9]|1[012])[- /.](20)\d\d$/;
+
 
   constructor() {
+
   }
 
   public validateTruckInput(truckData: any) {
@@ -80,6 +84,16 @@ export class ValidatorService {
   }
 
   public validateDate(Date: string) {
-    if (!this.dateRegex.test(Date)) throw new Error('date format is not correct');
+    if (!this.dateRegex.test(Date)) throw new Error('Date Input Format Is Not Correct');
+  }
+  public validateCardNumber(Number: string){
+    if (!this.numberCardRegex.test(Number)) throw new Error('Card Number Is Not Correct');
+  }
+  public validateCardDate(Date: string){
+    if (!this.dateCardRegex.test(Date)) throw new Error('Credit Card Date Is Not Correct');
+  }
+  public validateCVV(cvv: string) {
+    if (!(cvv.length === 3)) throw new Error('CVV Is not correct');
+    this.validateNumber(cvv);
   }
 }

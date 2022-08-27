@@ -3,7 +3,7 @@ export interface ICardData{
   Name: string,
   Price: number,
   Company: string,
-  space: number,
+  Space: number,
   Description: string,
   Category : string,
 }

@@ -1,9 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ICardData} from "../common/card.interface,ts";
 import {MatDialog} from "@angular/material/dialog";
-import {CardDialogComponent} from "../card-dialog/card-dialog.component";
-
-
+import {OrderDialogComponent} from "../order-dialog/order-dialog.component";
 
 @Component({
   selector: 'customer-card',
@@ -17,7 +15,7 @@ export class CardComponent implements OnInit {
   }
 
   openDialog(): void {
-    this.dialog.open(CardDialogComponent,
+    this.dialog.open(OrderDialogComponent,
       {
         data: {
           cardData: this.data

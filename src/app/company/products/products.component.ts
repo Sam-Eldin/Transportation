@@ -6,7 +6,6 @@ import {
   GridApi,
   GridOptions,
   GridReadyEvent,
-  ValueFormatterParams
 } from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";

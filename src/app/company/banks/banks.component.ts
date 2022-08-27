@@ -1,11 +1,15 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
+import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent, NewValueParams} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {IBanksData} from "../common/bank.interface";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveDialogComponent} from "../remove-dialog/remove-dialog.component";
 import {AddDialogComponent} from "../add-dialog/add-dialog.component";
 import {Domains} from "../Domains";
+import {NotificationService, notificationTypes} from "../../services/notification.service";
+import {ValidatorService} from "../../services/validator.service";
+
+enum Fields {Number, Name, Account, Balance}
 
 @Component({
   selector: 'company-banks',
@@ -17,7 +21,8 @@ export class BanksComponent implements OnInit, OnChanges {
     {field: 'Number'},
     {field: 'Name'},
     {field: 'Account'},
-    {field: 'Balance'}
+    {field: 'Balance', editable: true,
+      onCellValueChanged: event => this.onDataChange(Fields.Balance, event)}
   ];
   defaultColDef: ColDef = {
     sortable: true, filter: true, flex: 1
@@ -34,7 +39,9 @@ export class BanksComponent implements OnInit, OnChanges {
     animateRows: true,
   };
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,
+              private notificationHelper: NotificationService,
+              private validatorService: ValidatorService) {}
 
   openDialog(): void {
     this.dialog.open(RemoveDialogComponent,
@@ -64,6 +71,30 @@ export class BanksComponent implements OnInit, OnChanges {
     this.columnApi = _.columnApi;
     this.gridApi.setRowData(this.rowData!);
     this.gridApi.setDomLayout('autoHeight');
+  }
+
+  private onDataChange(field: Fields, event: NewValueParams) {
+    try {
+      switch (field) {
+        case Fields.Number:
+          break;
+        case Fields.Name:
+          break;
+        case Fields.Account:
+          break;
+        case Fields.Balance:
+          this.validatorService.validateNumber(event.newValue);
+          break;
+      }
+    } catch (e: any) {
+      this.notificationHelper.createNotification(
+        notificationTypes.error,
+        e.message
+      );
+      if (event.colDef.field)
+        event.data[event.colDef.field] = event.oldValue;
+      this.gridApi.refreshCells();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

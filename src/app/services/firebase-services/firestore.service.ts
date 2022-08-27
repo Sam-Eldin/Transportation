@@ -1,5 +1,5 @@
 import {FirebaseApp} from "firebase/app";
-import {initializeFirestore, doc, getDoc, onSnapshot} from "firebase/firestore";
+import {initializeFirestore, doc, getDoc, onSnapshot, setDoc} from "firebase/firestore";
 
 export class FirestoreService {
   private readonly firestore;
@@ -18,5 +18,14 @@ export class FirestoreService {
     return onSnapshot(doc(
       this.firestore, path
     ), callBack);
+  }
+
+  public async createNewAccount(email: string) {
+    await setDoc(doc(
+      this.firestore, `users/${email}`
+    ), {
+      company_manager: false,
+      orders: []
+    })
   }
 }

@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {ICardData} from "../common/card.interface,ts";
-import {NotificationService} from "../../../services/notification.service";
+import {NotificationService, notificationTypes} from "../../../services/notification.service";
 import {ValidatorService} from "../../../services/validator.service";
 
 @Component({
@@ -18,7 +18,7 @@ export class OrderDialogComponent implements OnInit {
   public destination: string = '';
   public orderDate: string = '';
   // public destination: string = '';
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { cardData: ICardData }, private validatorService: ValidatorService, private notificationService: NotificationService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { cardData: ICardData },private matDialog: MatDialog, private validatorService: ValidatorService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +33,20 @@ export class OrderDialogComponent implements OnInit {
   }
 
   add() {
-    this.validate();
+    try {
+      this.validate();
+
+      this.notificationService.createNotification(
+        notificationTypes.success,
+        `Successfully added new ${this.data.cardData.Name}`
+      );
+      this.matDialog.closeAll();
+    } catch (e: any) {
+      this.notificationService.createNotification(
+        notificationTypes.error,
+        e.message
+      );
+
+    }
   }
 }

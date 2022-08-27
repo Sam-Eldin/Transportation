@@ -35,10 +35,9 @@ export class OrderDialogComponent implements OnInit {
   add() {
     try {
       this.validate();
-
       this.notificationService.createNotification(
         notificationTypes.success,
-        `Successfully added new ${this.data.cardData.Name}`
+        `Successfully Ordered`
       );
       this.matDialog.closeAll();
     } catch (e: any) {
@@ -46,7 +45,6 @@ export class OrderDialogComponent implements OnInit {
         notificationTypes.error,
         e.message
       );
-
     }
   }
 }

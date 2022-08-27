@@ -5,44 +5,44 @@
 
 <div mat-dialog-content>
   <table>
-  <mat-form-field class="m-3" appearance="fill">
+  <mat-form-field class="ms-2" appearance="fill">
     <mat-label>Credit card number</mat-label>
-    <input [(ngModel)]="this.creditCardNumber" matInput placeholder="0000/0000/0000/0000">
+    <input [(ngModel)]="this.creditCardNumber" matInput placeholder="5402279240085301">
   </mat-form-field>
 
-  <mat-form-field class="m-3" appearance="fill">
+  <mat-form-field class="ms-2" appearance="fill">
     <mat-label>credit card Date</mat-label>
-    <input [(ngModel)]="this.creditCardDate" matInput placeholder="01/01">
+    <input [(ngModel)]="this.creditCardDate" matInput placeholder="MM/YYYY">
   </mat-form-field>
 
-  <mat-form-field class="m-3" appearance="fill">
+  <mat-form-field class="ms-2" appearance="fill">
     <mat-label>card cvv</mat-label>
-    <input [(ngModel)]="this.creditCardCVV" matInput placeholder="cvv">
+    <input [(ngModel)]="this.creditCardCVV" matInput placeholder="123">
   </mat-form-field>
   </table>
     <table>
-  <mat-form-field class="m-3" appearance="fill">
+  <mat-form-field class="ms-2" appearance="fill">
     <mat-label>transport location</mat-label>
-    <input [(ngModel)]="this.location" matInput placeholder="majdal">
+    <input [(ngModel)]="this.location" matInput placeholder="Tel-Aviv">
   </mat-form-field>
 
-  <mat-form-field class="m-3" appearance="fill">
+  <mat-form-field class="ms-2" appearance="fill">
     <mat-label>transport destination</mat-label>
-    <input [(ngModel)]="this.destination" matInput placeholder="destination">
+    <input [(ngModel)]="this.destination" matInput placeholder="Haifa">
   </mat-form-field>
 
-  <mat-form-field class="m-3" appearance="fill">
+  <mat-form-field class="ms-2" appearance="fill">
     <mat-label>Order date</mat-label>
-    <input [(ngModel)]="this.orderDate" matInput placeholder="10/04/2023">
+    <input [(ngModel)]="this.orderDate" matInput placeholder="DD/MM/YYYY">
   </mat-form-field>
     </table>
-  <mat-form-field class="m-3" appearance="fill">
+  <mat-form-field class="ms-2" appearance="fill">
     <mat-label>Phone number</mat-label>
     <input [(ngModel)]="this.phoneNumber" matInput placeholder="0501234567">
   </mat-form-field>
   <br>
-  <div mat-dialog-actions>
-    <button color="warn" mat-raised-button mat-dialog-close="">Cancel</button>
-    <button color="primary" mat-raised-button (click)="this.add()">Submit</button>
+  <div mat-dialog-actions class="ms-2 mb-1">
+    <button color="primary" mat-raised-button mat-dialog-close="">Cancel</button>
+    <button color="warn" mat-raised-button (click)="this.add()">Submit</button>
   </div>
 </div>

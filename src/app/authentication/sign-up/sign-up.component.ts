@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {NAVIGATION_URLS} from "../../navigating.urls";
+import {NotificationService, notificationTypes} from "../../services/notification.service";
+import {FirebaseService} from "../../services/firebase.service";
+import firebase from "firebase/compat";
+import AuthError = firebase.auth.AuthError;
 
 @Component({
   selector: 'authentication-sign-up',
@@ -16,7 +20,9 @@ export class SignUpComponent implements OnInit {
   mediumPassword;
   passwordStrength = 0;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private notificationService: NotificationService,
+              private firebaseService: FirebaseService) {
     this.strongPassword = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
     this.mediumPassword = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
   }
@@ -40,22 +46,22 @@ export class SignUpComponent implements OnInit {
 
 
   async handleSignup() {
-    // try{
-    //   if (this.password !== this.confirmPassword) {
-    //     this.toaster.createToaster(toasterTypes.error, 'Passwords do not match');
-    //     return;
-    //   }
-    //   this.toaster.createToaster(toasterTypes.info, 'Creating account');
-    //   await this.firebaseHelper.emailSignup(this.email, this.password);
-    //   this.toaster.createToaster(toasterTypes.success, 'Account been created');
-    // } catch (e: AuthError | any) {
-    //   switch (e.code) {
-    //     case 'auth/invalid-email': this.toaster.createToaster(toasterTypes.error, 'Invalid email'); break;
-    //     case 'auth/weak-password': this.toaster.createToaster(toasterTypes.error, 'Week password'); break;
-    //     case 'auth/email-already-in-use': this.toaster.createToaster(toasterTypes.error, 'Email already exist'); break;
-    //     default: this.toaster.createToaster(toasterTypes.error, e.code); break;
-    //   }
-    // }
+    try{
+      if (this.password !== this.confirmPassword) {
+        this.notificationService.createNotification(notificationTypes.error, 'Passwords do not match');
+        return;
+      }
+      this.notificationService.createNotification(notificationTypes.info, 'Creating account');
+      await this.firebaseService.createAccount(this.email, this.password);
+      this.notificationService.createNotification(notificationTypes.success, 'Account been created');
+    } catch (e: AuthError | any) {
+      switch (e.code) {
+        case 'auth/invalid-email': this.notificationService.createNotification(notificationTypes.error, 'Invalid email'); break;
+        case 'auth/weak-password': this.notificationService.createNotification(notificationTypes.error, 'Week password'); break;
+        case 'auth/email-already-in-use': this.notificationService.createNotification(notificationTypes.error, 'Email already exist'); break;
+        default: this.notificationService.createNotification(notificationTypes.error, e.code); break;
+      }
+    }
   }
 
   passwordChange() {

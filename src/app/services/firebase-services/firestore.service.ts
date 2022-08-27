@@ -1,5 +1,5 @@
 import {FirebaseApp} from "firebase/app";
-import {initializeFirestore, doc, getDoc, onSnapshot, getDocs, collection, query} from "firebase/firestore";
+import {initializeFirestore, doc, getDoc, onSnapshot, setDoc, query, collection, getDocs} from "firebase/firestore";
 import {ICardData} from "../../customer/products/common/card.interface,ts";
 
 export class FirestoreService {
@@ -32,5 +32,14 @@ export class FirestoreService {
       }
     });
     return data;
+  }
+
+  public async createNewAccount(email: string) {
+    await setDoc(doc(
+      this.firestore, `users/${email}`
+    ), {
+      company_manager: false,
+      orders: []
+    })
   }
 }

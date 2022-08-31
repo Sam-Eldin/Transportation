@@ -1,6 +1,7 @@
 import {FirebaseService} from "./firebase.service";
 import {Injectable} from "@angular/core";
 import {NotificationService, notificationTypes} from "./notification.service";
+import {IOrder} from "../customer/products/common/order.interface";
 
 export interface IUserData {
   company_manager: boolean;
@@ -12,6 +13,7 @@ export interface IUserData {
 })
 export class UserService {
   userData: any = null;
+  userEmail: string = '';
   private readonly timeout: number = 600; // timeout for 1 minute
   constructor(private firebaseService: FirebaseService, private notificationService: NotificationService) {
   }
@@ -22,6 +24,7 @@ export class UserService {
       this.userData = null;
       return;
     }
+    this.userEmail = currentUser.email;
     this.userData = await this.firebaseService.firestore.fetchUserData(currentUser.email);
   }
 
@@ -58,5 +61,25 @@ export class UserService {
     if (!this.userData.company_name) throw new Error('User does not have a company registered for his account');
     const companyPath = `companies/${this.userData.company_name}`
     await this.firebaseService.firestore.addNewValueToArray(newValue, companyPath, domain);
+  }
+
+  public async getUserOrders(): Promise<any[]> {
+    if (!this.isUserCompanyManager()) return await this.getCustomerOrders();
+    return await this.getCompanyOrders();
+  }
+
+  private async getCompanyOrders(): Promise<any[]> {
+    return await this.firebaseService.firestore.fetchOrders(this.userData.company_name.toLocaleLowerCase(), 'Company');
+  }
+
+  private async getCustomerOrders(): Promise<any[]> {
+    const fuser = this.firebaseService.authentication.getUser();
+    if (fuser && fuser.email)
+      return await this.firebaseService.firestore.fetchOrders(fuser.email.toLocaleLowerCase(), 'Email');
+    return [];
+  }
+
+  async addNewOrder(order: IOrder) {
+    await this.firebaseService.firestore.addOrder(order);
   }
 }

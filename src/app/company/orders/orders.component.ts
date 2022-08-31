@@ -14,10 +14,10 @@ export class OrdersComponent implements OnInit, OnChanges {
   columnDefs: ColDef[] = [
     {field: 'Id'},
     {field: 'Name'},
-    {field: 'Date'},
-    {field: 'UntilDate'},
-    {field: 'Location'},
-    {field: 'ToLocation'},
+    {field: 'Order_Date'},
+    {field: 'Receive_Date'},
+    {field: 'From'},
+    {field: 'To'},
     {field: 'Price'},
     {field: 'Status', cellRenderer: function (params:any) {
         switch (params.value){
@@ -33,6 +33,7 @@ export class OrdersComponent implements OnInit, OnChanges {
       cellEditor: StatusEditor,
       editable: (params) => {return params.data['Status'] === Status.pending;}
     },
+    {field: 'Email'},
     {field: 'Driver'},
     {field: 'TruckNumber'}
   ];

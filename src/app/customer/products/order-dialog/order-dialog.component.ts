@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {ICardData} from "../common/card.interface,ts";
 import {NotificationService, notificationTypes} from "../../../services/notification.service";
 import {ValidatorService} from "../../../services/validator.service";
+import {UserService} from "../../../services/user.service";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-order-dialog',
@@ -18,7 +20,11 @@ export class OrderDialogComponent implements OnInit {
   public destination: string = '';
   public orderDate: string = '';
   // public destination: string = '';
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { cardData: ICardData },private matDialog: MatDialog, private validatorService: ValidatorService, private notificationService: NotificationService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { cardData: ICardData },
+              private matDialog: MatDialog,
+              private validatorService: ValidatorService,
+              private notificationService: NotificationService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -32,9 +38,27 @@ export class OrderDialogComponent implements OnInit {
     this.validatorService.validatePhoneNumber(this.phoneNumber);
   }
 
-  add() {
+  async add() {
     try {
       this.validate();
+      this.notificationService.createNotification(
+        notificationTypes.info, 'Processing request'
+      );
+      await this.userService.addNewOrder({
+        creditCardNumber: this.creditCardNumber,
+        creditCardDate: this.creditCardDate,
+        creditCardCVV: this.creditCardCVV,
+        Receive_Date: this.orderDate,
+        To: this.destination,
+        From: this.location,
+        phoneNumber: this.phoneNumber,
+        Company: this.data.cardData.Company.toLowerCase(),
+        Name: this.data.cardData.Name,
+        Price: this.data.cardData.Price,
+        Order_Date: `${formatDate(Date.now(), 'dd/MM/yyyy', 'en-GB')}`,
+        Email: this.userService.userEmail.toLowerCase(),
+        Status: 0
+      })
       this.notificationService.createNotification(
         notificationTypes.success,
         `Successfully Ordered`

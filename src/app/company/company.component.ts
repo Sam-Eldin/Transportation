@@ -5,7 +5,7 @@ import {IBranchData} from "./common/branch.interface";
 import {IDriverData} from "./common/driver.interface";
 import {IProductData} from "./common/product.interface";
 import {ITruckData} from "./common/truck.interface";
-import {IOrdersData, Status} from "./common/order.interface";
+import {Status} from "./common/order.interface";
 import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
 import {NAVIGATION_URLS} from "../navigating.urls";
@@ -19,7 +19,7 @@ export class CompanyComponent implements OnInit {
   isLoading: boolean = true;
   ordersCount = 0;
   public domains = {calendar: 0, drivers: 1, trucks: 2, banks: 3, orders: 4, branches: 5, products: 6}
-  currentDomain: number = this.domains.banks;
+  currentDomain: number = this.domains.products;
   bankData!: any[] | null;
   driversData!: any[] | null;
   trucksData!: any[] | null;
@@ -46,12 +46,10 @@ export class CompanyComponent implements OnInit {
       if (result['drivers']) this.driversData = <IDriverData[]>(result['drivers']);
       if (result['products']) this.productsData = <IProductData[]>(result['products']);
       if (result['trucks']) this.trucksData = <ITruckData[]>(result['trucks']);
-      if (result['orders']) {
-        this.ordersData = <IOrdersData[]>(result['orders']);
-        this.ordersCount = this.ordersData.filter((value) => value.Status === Status.pending).length
-      }
       this.isLoading = false;
     });
+    this.ordersData = await this.userService.getUserOrders();
+    this.ordersCount = this.ordersData.filter((value) => value.Status === Status.pending).length
   }
 
   changeDomain(newDomain: number) {

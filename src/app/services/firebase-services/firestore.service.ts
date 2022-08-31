@@ -1,6 +1,19 @@
 import {FirebaseApp} from "firebase/app";
-import {getFirestore, doc, getDoc, onSnapshot, setDoc, arrayUnion, updateDoc,  query, collection, getDocs} from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  onSnapshot,
+  setDoc,
+  arrayUnion,
+  updateDoc,
+  query,
+  collection,
+  getDocs,
+  where
+} from "firebase/firestore";
 import {ICardData} from "../../customer/products/common/card.interface,ts";
+import {IOrder} from "../../customer/products/common/order.interface";
 
 export class FirestoreService {
   private readonly firestore;
@@ -53,5 +66,28 @@ export class FirestoreService {
         [domain]: arrayUnion(newValue)
       }
     )
+  }
+
+  async fetchOrders(value: string, key: string) {
+    const docs = await getDocs(query(collection(this.firestore, 'orders/'), where(key, '==', value)))
+    const result = [];
+    for (const document of docs.docs) {
+      result.push(document.data());
+    }
+    return result;
+  }
+
+  async addOrder(order: IOrder) {
+    const randomID = (): string => {
+      let outString: string = '';
+      let inOptions: string = '0123456789';
+      for (let i = 0; i < 16; i++) {
+        outString += inOptions.charAt(Math.floor(Math.random() * inOptions.length));
+      }
+      return outString;
+    }
+    order.Id = randomID();
+    const addOrderDoc = doc(this.firestore, `orders/${order.Id}`)
+    await setDoc(addOrderDoc, order);
   }
 }

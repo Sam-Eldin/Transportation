@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
-import {CustomerOrdersData, customerOrdersData, Status} from "./orders.mock-data";
+import {CustomerOrdersData, Status} from "./orders.mock-data";
 import {MatDialog} from "@angular/material/dialog";
+import {UserService} from "../../services/user.service";
 
 
 @Component({
@@ -28,7 +29,8 @@ export class CustomerOrdersComponent implements OnInit {
             return '<span><i class="material-icons" style="color: #1c52dc">hourglass_full</i></span>'
       } }
     },
-    {field: 'Location'},
+    {field: 'From'},
+    {field: 'To'},
     {field: 'Price'},
     {field: 'Company'},
   ];
@@ -39,20 +41,24 @@ export class CustomerOrdersComponent implements OnInit {
 
 
   @ViewChild('agGridCustomerOrders') agGrid!: AgGridAngular;
-  rowData: CustomerOrdersData[] = customerOrdersData;
+  rowData: CustomerOrdersData[] = [];
   private gridApi!: GridApi;
   private columnApi!: ColumnApi;
   gridOptions: GridOptions = {
     columnDefs: this.columnDefs,
     defaultColDef: this.defaultColDef,
     getRowId: params => params.data.Id,
-    rowData: this.rowData,
+    // rowData: this.rowData,
     rowSelection: 'multiple',
     animateRows: true,
   };
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private userService: UserService) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.userService.waitForUser();
+    console.log('do stuff')
+    this.rowData = await this.userService.getUserOrders();
+    this.gridApi.setRowData(this.rowData);
   }
   onGridReady(grid: GridReadyEvent) {
     this.gridApi = grid.api;

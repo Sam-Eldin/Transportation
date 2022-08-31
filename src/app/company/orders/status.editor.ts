@@ -23,29 +23,13 @@ export class StatusEditor implements ICellEditorComp {
       key === 'ArrowLeft' || // left
       key === 'ArrowRight'
     ) {
-      // right
-      // this.toggleMood();
       event.stopPropagation();
     }
   }
 
-  // toggleMood() {
-  //   this.selectMood(this.mood === 'Happy' ? 'Sad' : 'Happy');
-  // }
-
   init(params: ICellEditorParams) {
     this.container = document.createElement('div');
-    // this.container.style =
-    //   'border-radius: 15px; border: 1px solid grey;background: #e6e6e6;padding: 15px; text-align:center;display:inline-block;outline:none';
     this.container.tabIndex = '0'; // to allow the div to capture keypresses
-
-    // <span><i class="material-icons" style="color: #1c52dc">hourglass_full</i></span>
-    // this.pending = document.createElement('span');
-    // const innerTag = document.createElement("i");
-    // innerTag.className = 'material-icons';
-    // innerTag.style.color = '#1c52dc';
-    // innerTag.innerHTML = 'hourglass_full';
-    // this.pending.appendChild(innerTag);
 
     this.accept = document.createElement('span');
     const innerTag2 = document.createElement("i");
@@ -68,10 +52,6 @@ export class StatusEditor implements ICellEditorComp {
     this.container.appendChild(this.accept);
     this.container.appendChild(this.reject);
 
-    // this.pending.addEventListener('click', () => {
-    //   this.selectMood(Status.pending);
-    //   params.stopEditing();
-    // });
     this.accept.addEventListener('click', () => {
       this.selectMood(Status.accepted);
       params.stopEditing();
@@ -90,10 +70,6 @@ export class StatusEditor implements ICellEditorComp {
 
   selectMood(mood: Status) {
     this.status = mood;
-    // this.reject.style =
-    //   mood === 'Happy' ? this.selectedImgStyle : this.defaultImgStyle;
-    // this.accept.style =
-    //   mood === 'Sad' ? this.selectedImgStyle : this.defaultImgStyle;
   }
 
   // gets called once when grid ready to insert the element

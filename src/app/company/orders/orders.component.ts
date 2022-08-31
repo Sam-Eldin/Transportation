@@ -1,9 +1,11 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent} from "ag-grid-community";
+import {ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent, NewValueParams} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {IOrdersData, Status} from "../common/order.interface";
 import {MatDialog} from "@angular/material/dialog";
 import {StatusEditor} from "./status.editor";
+import {UserService} from "../../services/user.service";
+import {NotificationService, notificationTypes} from "../../services/notification.service";
 
 @Component({
   selector: 'company-orders',
@@ -31,6 +33,7 @@ export class OrdersComponent implements OnInit, OnChanges {
             return '<span><i class="material-icons" style="color: #1c52dc">hourglass_full</i></span>'
         } },
       cellEditor: StatusEditor,
+      onCellValueChanged: async (newValueParams) => await this.updateOrderStatus(newValueParams),
       editable: (params) => {return params.data['Status'] === Status.pending;}
     },
     {field: 'Email'},
@@ -54,7 +57,10 @@ export class OrdersComponent implements OnInit, OnChanges {
     rowSelection: 'multiple',
     animateRows: true,
   };
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,
+              private userService: UserService,
+              private notificationService: NotificationService) {
+  }
 
   ngOnInit(): void {
   }
@@ -69,5 +75,22 @@ export class OrdersComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (!this.gridApi) return;
     this.gridApi.setRowData(changes['rowData'].currentValue)
+  }
+
+  async updateOrderStatus(newValueParams: NewValueParams) {
+    try {
+      this.notificationService.createNotification(
+        notificationTypes.info, 'Processing request'
+      );
+      await this.userService.updateOrderStatus(newValueParams.data);
+      this.notificationService.createNotification(
+        notificationTypes.success, 'Successfully Updated Status'
+      );
+    } catch (e: any) {
+      // console.log(e.message);
+      this.notificationService.createNotification(
+        notificationTypes.error, e.message
+      );
+    }
   }
 }

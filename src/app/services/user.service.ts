@@ -82,4 +82,8 @@ export class UserService {
   async addNewOrder(order: IOrder) {
     await this.firebaseService.firestore.addOrder(order);
   }
+
+  async updateOrderStatus(order: any) {
+    await this.firebaseService.firestore.updateOrder(order);
+  }
 }

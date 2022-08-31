@@ -90,4 +90,10 @@ export class FirestoreService {
     const addOrderDoc = doc(this.firestore, `orders/${order.Id}`)
     await setDoc(addOrderDoc, order);
   }
+
+  async updateOrder(order: any) {
+    console.log(order.Id);
+    const updateOrderDoc = doc(this.firestore, `orders/${order.Id}`);
+    await updateDoc(updateOrderDoc, order);
+  }
 }

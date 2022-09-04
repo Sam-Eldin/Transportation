@@ -26,6 +26,7 @@ export class CustomerProductsComponent implements OnInit {
 
   handleOptionsChange(options: IOptions) {
     this.options = options;
+    this.tempList = this.cardsList;
     this.sortByPrice();
     this.filterByCategory();
     this.filterBySearch();
@@ -35,6 +36,7 @@ export class CustomerProductsComponent implements OnInit {
     this.isLoading = true;
     this.firebaseService.firestore.getAllProducts().then((products) => {
       this.cardsList = products;
+      this.tempList = this.cardsList;
       this.sortByPrice();
       this.filterByCategory();
       this.isLoading = false;
@@ -42,7 +44,7 @@ export class CustomerProductsComponent implements OnInit {
   }
 
   private sortByPrice() {
-    this.tempList = this.cardsList.sort(
+    this.tempList = this.tempList.sort(
       (a: ICardData, b: ICardData) => this.options.sortAsc ?
       a.Price - b.Price :
       b.Price - a.Price);
@@ -50,11 +52,11 @@ export class CustomerProductsComponent implements OnInit {
 
   private filterByCategory() {
     if (this.options.options.length === 0) return;
-    this.tempList = this.cardsList.filter((a: ICardData) => this.options.options.includes(a.Category));
+    this.tempList = this.tempList.filter((a: ICardData) => this.options.options.includes(a.Category));
   }
 
   private filterBySearch() {
     if (!this.options.search) return;
-    this.tempList = this.cardsList.filter((a: ICardData) => a.Name.toLowerCase().includes(this.options.search.toLowerCase()))
+    this.tempList = this.tempList.filter((a: ICardData) => a.Name.toLowerCase().includes(this.options.search.toLowerCase()))
   }
 }

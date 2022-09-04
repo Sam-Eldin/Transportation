@@ -25,7 +25,7 @@ export class ProductsComponent implements OnInit, OnChanges {
       onCellValueChanged: event => this.onDataChange(Fields.Name, event)},
     {field: 'Space', headerName: 'Space (m)', editable: true,
       onCellValueChanged: event => this.onDataChange(Fields.Space, event)},
-    {field: 'Description', wrapText: true, autoHeight: true, sortable: false, editable: true,
+    {field: 'Description', wrapText: false, autoHeight: true, sortable: false, editable: true,
       onCellValueChanged: event => this.onDataChange(Fields.Description, event)},
     {field: 'Price', editable: true,
       onCellValueChanged: event => this.onDataChange(Fields.Price, event)},

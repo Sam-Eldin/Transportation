@@ -37,8 +37,8 @@ export class OrdersComponent implements OnInit, OnChanges {
       editable: (params) => {return params.data['Status'] === Status.pending;}
     },
     {field: 'Email'},
-    {field: 'Driver'},
-    {field: 'TruckNumber'}
+    // {field: 'Driver'},
+    // {field: 'TruckNumber'}
   ];
 
   defaultColDef: ColDef = {

@@ -5,6 +5,9 @@ import {NotificationService, notificationTypes} from "../../../services/notifica
 import {ValidatorService} from "../../../services/validator.service";
 import {UserService} from "../../../services/user.service";
 import {formatDate} from "@angular/common";
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-order-dialog',
@@ -25,9 +28,26 @@ export class OrderDialogComponent implements OnInit {
               private validatorService: ValidatorService,
               private notificationService: NotificationService,
               private userService: UserService) { }
+              exform!: FormGroup;
+              private readonly NameRegex = /[a-zA-Z][a-zA-Z ]+/;
+              private readonly NumberRegex = /^\d*$/;
+              private readonly phoneRegex = /^(0([2-468-9]\d{7}|[5|7]\d{8}))$/;
+              private readonly dateRegex = /^(0[1-9]|[12]\d|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
+              private readonly numberCardRegex = /^(?:4\d{12}(?:\d{3})?|[25][1-7]\d{14}|6(?:011|5\d\d)\d{12}|3[47]\d{13}|3(?:0[0-5]|[68]\d)\d{11}|(?:2131|1800|35\d{3})\d{11})$/;
+              private readonly dateCardRegex = /^(0[1-9]|1[012])[- /.](20)\d\d$/;
+
 
   ngOnInit(): void {
+    this.exform = new FormGroup({
+      'creditCardNumber' : new FormControl(null, [Validators.required, Validators.pattern(this.numberCardRegex)]),
+      'creditCardDate' : new FormControl(null, [Validators.required, Validators.pattern(this.dateCardRegex)]),
+      'creditCardCVV' : new FormControl(null, [Validators.required, Validators.pattern(this.NumberRegex), Validators.max(3), Validators.min(3)]),
+      'name' : new FormControl(null, [Validators.required, Validators.pattern(this.NameRegex)]),
+      'date' : new FormControl(null, [Validators.required, Validators.pattern(this.dateRegex)]),
+      'phoneNumber' : new FormControl(null, [Validators.required, Validators.pattern(this.phoneRegex)]),
+    })
   }
+
   validate(){
     this.validatorService.validateCardNumber(this.creditCardNumber);
     this.validatorService.validateCardDate(this.creditCardDate);
@@ -70,5 +90,26 @@ export class OrderDialogComponent implements OnInit {
         e.message
       );
     }
+  }
+  get cardNumber(){
+    return this.exform.get('creditCardNumber');
+  }
+  get cardDate(){
+    return this.exform.get('creditCardDate');
+  }
+  get cardCVV(){
+    return this.exform.get('creditCardDate');
+  }
+  get OrderDate(){
+    return this.exform.get('orderDate');
+  }
+  get Destination(){
+    return this.exform.get('destination');
+  }
+  get Location(){
+    return this.exform.get('location');
+  }
+  get PhoneNumber(){
+    return this.exform.get('phoneNumber');
   }
 }

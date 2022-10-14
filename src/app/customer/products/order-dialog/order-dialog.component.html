@@ -44,7 +44,7 @@
     <mat-label>Phone number</mat-label>
     <input formControlName = "phoneNumber" [(ngModel)]="this.phoneNumber" matInput placeholder="0501234567">
     <small *ngIf="PhoneNumber?.invalid && PhoneNumber?.touched" class="text-danger"> phone number is required</small>
-    <small *ngIf="PhoneNumber?. && PhoneNumber?.touched" class="text-danger"> phone number is required</small>
+<!--    <small *ngIf="PhoneNumber?. && PhoneNumber?.touched" class="text-danger"> phone number is required</small>-->
   </mat-form-field>
   <br>
   <div mat-dialog-actions class="ms-2 mb-1">

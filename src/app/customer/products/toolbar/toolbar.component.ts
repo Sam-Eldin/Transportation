@@ -22,7 +22,7 @@ export class ToolbarComponent implements OnInit {
     this.options = {
       options: [],
       sortAsc: true,
-      search: ''
+      search: '',
     };
     this.optionsEventEmitter.emit(this.options);
   }
@@ -41,7 +41,11 @@ export class ToolbarComponent implements OnInit {
     this.options.options = event.value;
     this.optionsEventEmitter.emit(this.options);
   }
-
+  // changeCategory(event: MatSelectChange) {
+  //     console.log("hello jimmy");
+  //     this.options.option = event.value;
+  //     this.optionsEventEmitter.emit(this.options);
+  //   }
   setSearch(_: Event) {
     this.options.search = this.search;
     this.optionsEventEmitter.emit(this.options);

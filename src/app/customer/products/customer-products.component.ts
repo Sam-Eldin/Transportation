@@ -34,13 +34,13 @@ export class CustomerProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.firebaseService.firestore.getAllProducts().then((products) => {
-      this.cardsList = products;
-      this.tempList = this.cardsList;
-      this.sortByPrice();
-      this.filterByCategory();
-      this.isLoading = false;
-    });
+      this.firebaseService.firestore.getAllProducts().then((products) => {
+        this.cardsList = products;
+        this.tempList = this.cardsList;
+        this.sortByPrice();
+        this.filterByCategory();
+        this.isLoading = false;
+      });
   }
 
   private sortByPrice() {
@@ -52,7 +52,15 @@ export class CustomerProductsComponent implements OnInit {
 
   private filterByCategory() {
     if (this.options.options.length === 0) return;
-    this.tempList = this.tempList.filter((a: ICardData) => this.options.options.includes(a.Category));
+    console.log("we are here")
+    this.firebaseService.firestore.getProducts(this.options.options).then((products) =>{
+      this.cardsList = products;
+      this.tempList = this.cardsList;
+//      this.filterByCategory();
+      this.sortByPrice();
+      this.isLoading = false;
+  });
+  //  this.tempList = this.tempList.filter((a: ICardData) => this.options.options.includes(a.Category));
   }
 
   private filterBySearch() {

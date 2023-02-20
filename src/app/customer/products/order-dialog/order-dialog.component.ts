@@ -27,7 +27,7 @@ export class OrderDialogComponent implements OnInit {
               private validatorService: ValidatorService,
               private notificationService: NotificationService,
               private userService: UserService) { }
-              exform!: FormGroup;
+              exform!: FormGroup; // adding comment
               private readonly NameRegex = /[a-zA-Z][a-zA-Z ]+/;
               private readonly NumberRegex = /^[0-9]{3,4}$/;
               private readonly phoneRegex = /^(0([2-468-9]\d{7}|[5|7]\d{8}))$/;

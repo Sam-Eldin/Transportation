@@ -33,7 +33,11 @@ export class FirestoreService {
       this.firestore, path
     ), callBack);
   }
-
+// getProductsFromSupplier(supplierId: string) {
+  //   return new Promise<any>((resolve)=> {
+  //     this.db.collection('Product', ref => ref.where('supplierId', '==', supplierId).orderBy('inStock').startAt(0).limit(1)).valueChanges().subscribe(product => resolve(product))
+  //   })
+  // }
   public async getAllProducts(): Promise<ICardData[]> {
     const companies_docs = await getDocs(query(collection(this.firestore, 'companies')));
     const data: ICardData[] = []
@@ -45,6 +49,30 @@ export class FirestoreService {
       }
     });
     return data;
+  }
+  //
+  //
+  public async getProducts(category : string[]) : Promise<ICardData[]> {
+    //
+    // const products = {
+    //   Apartemts: [],
+    //   Food: [],
+    //
+    // }
+
+    console.log("abdo")
+    const product_doc = await getDocs(query(collection(this.firestore, 'companies'), where('products.Category', 'in', category)));
+    const data: ICardData[] = []
+    console.table(product_doc);
+    product_doc.forEach((document) => {
+      const doc_data = document.data();
+      const doc_products = doc_data["Products"];
+      for (const product of doc_products) {
+        data.push(product)
+      }
+    });
+    return data;
+
   }
 
   public async createNewAccount(email: string) {

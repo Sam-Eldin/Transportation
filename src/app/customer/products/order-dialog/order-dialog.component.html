@@ -6,69 +6,50 @@
   <mat-form-field class="ms-2" appearance="fill">
     <mat-label>Credit card number</mat-label>
     <input formControlName = "creditCardNumber" [(ngModel)]="this.creditCardNumber" matInput placeholder="5402279240085301">
-    <small *ngIf="cardNumber?.invalid && cardNumber?.touched" class="text-danger">
-      <div [hidden]="cardNumber?.invalid"> credit card number is invalid </div>
-    </small>
+    <small *ngIf="cardNumber?.invalid && cardNumber?.touched" class="text-danger"> credit card number is required</small>
   </mat-form-field>
 
   <mat-form-field class="ms-2" appearance="fill">
     <mat-label>credit card Date</mat-label>
     <input formControlName = "creditCardDate" [(ngModel)]="this.creditCardDate" matInput placeholder="MM/YYYY">
-    <small *ngIf="cardDate?.invalid && cardDate?.touched" class="text-danger">
-      <div [hidden]="cardDate?.invalid && cardDate?.touched"> credit card date is wrong </div>
-    </small>
+    <small *ngIf="cardDate?.invalid && cardDate?.touched" class="text-danger"> credit card date is required</small>
   </mat-form-field>
 
   <mat-form-field class="ms-2" appearance="fill">
     <mat-label>card cvv</mat-label>
     <input formControlName = "creditCardCVV" [(ngModel)]="this.creditCardCVV" matInput placeholder="123">
-    <small *ngIf="!cardCVV?.touched" class="text-danger">
-      <div [hidden]="!cardCVV?.touched">  credit card cvv is required </div>
-    </small>
-    <small *ngIf="cardCVV?.invalid && cardCVV?.touched" class="text-danger">
-      <div [hidden]="cardCVV?.invalid && cardCVV?.touched"> credit card cvv is wrong </div>
-    </small>
-<!--          <div *ngIf="exform.controls['required']"> credit card date is required </div>-->
-<!--      <div *ngIf="exform.controls['Pattern']"> credit card number is wrong </div>-->
+    <small *ngIf="cardCVV?.invalid && cardCVV?.touched" class="text-danger"> credit card CVV number is required</small>
   </mat-form-field>
   </table>
     <table>
   <mat-form-field class="ms-2" appearance="fill">
     <mat-label>transport location</mat-label>
     <input formControlName = "name" [(ngModel)]="this.location" matInput placeholder="Tel-Aviv">
-    <small *ngIf="Location?.invalid && Location?.touched" class="text-danger">
-      <div [hidden]="Location?.invalid">  transport location is required </div>
-      </small>
+    <small *ngIf="Location?.invalid && Location?.touched" class="text-danger"> transport location is required</small>
   </mat-form-field>
 
   <mat-form-field class="ms-2" appearance="fill">
     <mat-label>transport destination</mat-label>
     <input formControlName = "name" [(ngModel)]="this.destination" matInput placeholder="Haifa">
-    <small *ngIf="Destination?.invalid && Destination?.touched" class="text-danger">
-      <div [hidden]="Destination?.invalid">  transport destination is required </div>
-      </small>
+    <small *ngIf="Destination?.invalid && Destination?.touched" class="text-danger"> transport destination is required</small>
   </mat-form-field>
 
   <mat-form-field class="ms-2" appearance="fill">
     <mat-label>Order date</mat-label>
     <input formControlName = "date"  [(ngModel)]="this.orderDate" matInput placeholder="DD/MM/YYYY">
-    <small *ngIf="OrderDate?.invalid && OrderDate?.touched" class="text-danger">
-      <div [hidden]="OrderDate?.invalid"> order date is required </div>
-    </small>
+    <small *ngIf="OrderDate?.invalid && OrderDate?.touched" class="text-danger"> order date is required</small>
   </mat-form-field>
     </table>
   <mat-form-field class="ms-2" appearance="fill">
     <mat-label>Phone number</mat-label>
     <input formControlName = "phoneNumber" [(ngModel)]="this.phoneNumber" matInput placeholder="0501234567">
-    <small *ngIf="PhoneNumber?.invalid  && PhoneNumber?.touched" class="text-danger">
-      <div [hidden]="PhoneNumber?.invalid"> phone number is required </div>
-    </small>
+    <small *ngIf="PhoneNumber?.invalid && PhoneNumber?.touched" class="text-danger"> phone number is required</small>
+<!--    <small *ngIf="PhoneNumber?. && PhoneNumber?.touched" class="text-danger"> phone number is required</small>-->
   </mat-form-field>
   <br>
   <div mat-dialog-actions class="ms-2 mb-1">
     <button color="primary" mat-raised-button mat-dialog-close="">Cancel</button>
-    <button [disabled]="!exform.valid" type="submit" color="warn" mat-raised-button (click)="this.add()">Submit</button>
-<!--    [disabled]="!exform.valid" type="submit"-->
+    <button color="warn" mat-raised-button (click)="this.add()">Submit</button>
   </div>
   </form>
 </div>

@@ -30,7 +30,7 @@ export class OrderDialogComponent implements OnInit {
               private userService: UserService) { }
               exform!: FormGroup;
               private readonly NameRegex = /[a-zA-Z][a-zA-Z ]+/;
-              private readonly NumberRegex = /^[0-9]{3,4}$/;
+              private readonly NumberRegex = /^\d*$/;
               private readonly phoneRegex = /^(0([2-468-9]\d{7}|[5|7]\d{8}))$/;
               private readonly dateRegex = /^(0[1-9]|[12]\d|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
               private readonly numberCardRegex = /^(?:4\d{12}(?:\d{3})?|[25][1-7]\d{14}|6(?:011|5\d\d)\d{12}|3[47]\d{13}|3(?:0[0-5]|[68]\d)\d{11}|(?:2131|1800|35\d{3})\d{11})$/;
@@ -41,7 +41,7 @@ export class OrderDialogComponent implements OnInit {
     this.exform = new FormGroup({
       'creditCardNumber' : new FormControl(null, [Validators.required, Validators.pattern(this.numberCardRegex)]),
       'creditCardDate' : new FormControl(null, [Validators.required, Validators.pattern(this.dateCardRegex)]),
-      'creditCardCVV' : new FormControl(null, [Validators.required, Validators.pattern(this.NumberRegex)]),
+      'creditCardCVV' : new FormControl(null, [Validators.required, Validators.pattern(this.NumberRegex), Validators.max(3), Validators.min(3)]),
       'name' : new FormControl(null, [Validators.required, Validators.pattern(this.NameRegex)]),
       'date' : new FormControl(null, [Validators.required, Validators.pattern(this.dateRegex)]),
       'phoneNumber' : new FormControl(null, [Validators.required, Validators.pattern(this.phoneRegex)]),
@@ -98,7 +98,7 @@ export class OrderDialogComponent implements OnInit {
     return this.exform.get('creditCardDate');
   }
   get cardCVV(){
-    return this.exform.get('creditCardCVV');
+    return this.exform.get('creditCardDate');
   }
   get OrderDate(){
     return this.exform.get('orderDate');

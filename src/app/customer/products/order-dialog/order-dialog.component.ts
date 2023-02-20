@@ -5,7 +5,6 @@ import {NotificationService, notificationTypes} from "../../../services/notifica
 import {ValidatorService} from "../../../services/validator.service";
 import {UserService} from "../../../services/user.service";
 import {formatDate} from "@angular/common";
-import { ReactiveFormsModule } from '@angular/forms';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 

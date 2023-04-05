@@ -50,30 +50,6 @@ export class FirestoreService {
     });
     return data;
   }
-  //
-  //
-  public async getProducts(category : string[]) : Promise<ICardData[]> {
-    //
-    // const products = {
-    //   Apartemts: [],
-    //   Food: [],
-    //
-    // }
-
-    console.log("abdo")
-    const product_doc = await getDocs(query(collection(this.firestore, 'companies'), where('products.Category', 'in', category)));
-    const data: ICardData[] = []
-    console.table(product_doc);
-    product_doc.forEach((document) => {
-      const doc_data = document.data();
-      const doc_products = doc_data["Products"];
-      for (const product of doc_products) {
-        data.push(product)
-      }
-    });
-    return data;
-
-  }
 
   public async createNewAccount(email: string) {
     await setDoc(doc(

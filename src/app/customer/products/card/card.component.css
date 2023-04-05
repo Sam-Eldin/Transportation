@@ -1,28 +1,62 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
+.cards-page{
+  padding: 20px;
+  align-content: center;
+}
 .mat-card {
+  display: flex;
   min-width: 200px;
   text-align: center;
   background: #ffffff;
   align-content: center;
 }
-.title{
-  color:  #ff6d39;
-  font-family: "muli";
-  font-size: 22px;
-  display: inline-block;
+
+.mat-card-header{
+  align-content: center;
+  padding: 5px;
+
 }
-.company{
+.mat-card-title{
   text-transform: uppercase;
-  color: #d2d2d2;
   letter-spacing: 0.2em;
+  color:  #ff6d39;
+  font-family: "muli", serif;
+  font-size: 22px;
 }
-h4 {
-  display: inline-block;
-  color: #ffffff;
-  font-family: "muli";
-  font-weight: bold;
+
+.mat-card-subtitle {
+  color: #000000;
+  font-family: "muli", serif;
   font-size: 20px;
 }
+
+.mat-card-content{
+  color: #000000;
+  font-family: 'muli', serif;
+  font-size: 20px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*h4.dis {*/
 /*  display: inline-block;*/
 /*  color: #ffffff;*/
@@ -41,31 +75,3 @@ h4 {
 /*}*/
 
 
-.dimension {
-  color: #000000;
-  font-family: "muli";
-  font-size: 20px;
-}
-
-.description{
-  color: #000000;
-  font-family: 'muli';
-  font-size: 20px;
-}
-.foot {
-  color: #000000;
-  font-family: "muli";
-  font-size: 20px;
-  float: left;
-  transition: 0.3s all ease;
-
-}
-.foot:hover {
-  color: #f76b39;
-  cursor: pointer;
-}
-
-.card button:hover {
-  opacity: 0.7;
-
-}

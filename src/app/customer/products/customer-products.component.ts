@@ -36,7 +36,7 @@ export class CustomerProductsComponent implements OnInit {
     this.isLoading = true;
       this.firebaseService.firestore.getAllProducts().then((products) => {
         this.cardsList = products;
-        this.tempList = this.cardsList;
+        this.tempList = [...this.cardsList];
         this.sortByPrice();
         this.filterByCategory();
         this.isLoading = false;
@@ -50,17 +50,20 @@ export class CustomerProductsComponent implements OnInit {
       b.Price - a.Price);
   }
 
+  /**
+   *      20 - 30   1 time read
+   *      20 - 30
+   *
+   *
+   *
+   *
+   *
+   *
+   * @private
+   */
   private filterByCategory() {
     if (this.options.options.length === 0) return;
-    console.log("we are here")
-    this.firebaseService.firestore.getProducts(this.options.options).then((products) =>{
-      this.cardsList = products;
-      this.tempList = this.cardsList;
-//      this.filterByCategory();
-      this.sortByPrice();
-      this.isLoading = false;
-  });
-  //  this.tempList = this.tempList.filter((a: ICardData) => this.options.options.includes(a.Category));
+    this.tempList = this.cardsList.filter((a: ICardData) => this.options.options.includes(a.Category));
   }
 
   private filterBySearch() {

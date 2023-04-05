@@ -1,17 +1,26 @@
-<div class="col w-auto h-100 mt-4 gx-4">
-      <mat-card>
-        <mat-card-title class="company"> {{this.data.Company}} </mat-card-title>
-        <mat-card-subtitle class="title">
-          {{this.data.Name}}
-        </mat-card-subtitle>
-        <mat-card-content>
-          <h4><span class="foot"><i class="fa fa-shekel-sign"></i> {{this.data.Price}}</span></h4>
-          <p class="dimension">
-            size:{{this.data.Space}}
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button color="warn" (click)="this.openDialog()"><i class="fa fa-shopping-bag"></i> Order Now</button>
-        </mat-card-actions>
-      </mat-card>
+<div class="cards-page">
+  <mat-card class="order-card">
+    <section>
+      <img style="max-height: 200px"
+         src="https://mdbcdn.b-cdn.net/wp-content/uploads/2020/06/vertical.webp"
+         alt="Trendy Pants and Shoes"
+         class="img-fluid rounded-start"
+      >
+    </section>
+    <section>
+      <mat-card-header>
+        <mat-card-title>{{this.data.Company}}</mat-card-title>
+        <mat-card-subtitle>{{this.data.Name}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <h4><span class="foot"><i class="fa fa-shekel-sign"></i> {{this.data.Price}}</span></h4>
+        <p class="dimension">
+          size:{{this.data.Space}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="warn" (click)="this.openDialog()"><i class="fa fa-shopping-bag"></i> Order Now</button>
+      </mat-card-actions>
+    </section>
+  </mat-card>
 </div>

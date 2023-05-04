@@ -1,0 +1,29 @@
+::ng-deep .custom-toolbar{
+  background: #ff6d39;
+}
+.toolbar-button{
+  color: white;
+}
+.grid{
+  height: 100%;
+  margin-left: 50px;
+  margin-right: 50px;
+  align-content: center;
+}
+.ag-theme-alpine {
+  --ag-foreground-color: black;
+  --ag-background-color: white;
+  --ag-border-color: #f4f0ec;
+  --ag-header-background-color: white;
+  --ag-header-foreground-color: #ff6d39;
+  --ag-header-border-color: #ccc;
+  /*--ag-row-hover-color: ;*/
+  --ag-header-margin:50px;
+}
+.positive-value {
+  background-color: #d9edf7; /* light blue */
+}
+
+.negative-value {
+  background-color: #f2dede; /* light red */
+}

@@ -1,14 +1,9 @@
-.navbar-icon {
-  user-select: none;
-  cursor: pointer;
+::ng-deep .custom-toolbar{
+  background: #ff6d39;
+  color: white;
 }
 
-.navbar-tab {
-  font-size: medium;
-  border: none;
-}
-#mat-badge-content-0 {
-  top: -5px;
-  right: -8px;
-
+.focus:focus {
+  color: #ff6d39;
+  background-color: white;
 }

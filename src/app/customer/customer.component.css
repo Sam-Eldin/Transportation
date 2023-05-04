@@ -1,0 +1,15 @@
+::ng-deep .custom-toolbar{
+  background: #ff6d39;
+}
+.navbar-tab{
+  color: white;
+}
+.mat-icon-button{
+  color: white;
+}
+
+
+.focus:focus {
+  color: #ff6d39;
+  background-color: white;
+}

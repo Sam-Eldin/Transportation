@@ -6,5 +6,8 @@
 }
 .Price{
   height: 40px;
-  color: #ff6d39;
+  color: white;
+}
+.toolbar-tab{
+  color: white;
 }

@@ -1,9 +1,10 @@
-<ag-grid-angular
-  #agGridOrders
-  style="width: 100%;"
-  class="ag-theme-alpine"
-  [gridOptions]="this.gridOptions"
-  (gridReady)="onGridReady($event)"
->
-</ag-grid-angular>
-
+<div class="grid">
+  <ag-grid-angular
+    #agGridOrders
+    style="width: 100%;"
+    class="ag-theme-alpine"
+    [gridOptions]="this.gridOptions"
+    (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
+</div>

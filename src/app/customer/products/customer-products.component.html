@@ -1,7 +1,10 @@
 <customer-toolbar (optionsEventEmitter)="this.handleOptionsChange($event)"></customer-toolbar>
-
-<div class="row row-cols-auto gx-3 h-100">
+<body class="body" style="background-color: white;">
+<div class="cards row row-cols-auto gx-3 h-100">
   <customer-card *ngFor="let card of this.tempList" [data]="card"></customer-card>
 </div>
-
 <app-loading *ngIf="this.isLoading" [message]="'Fetching Products'"></app-loading>
+</body>
+
+
+

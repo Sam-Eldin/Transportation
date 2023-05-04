@@ -1,5 +1,5 @@
-<mat-toolbar>
-      <mat-form-field class="m-5">
+<mat-toolbar class="custom-toolbar">
+      <mat-form-field class="toolbar-tab m-5">
         <mat-label>Categories</mat-label>
         <mat-select (selectionChange)="this.changeCategory($event)" [formControl]="Categories" multiple>
           <mat-select-trigger>
@@ -11,8 +11,8 @@
           <mat-option *ngFor="let category of categoriesList" [value]="category">{{category}}</mat-option>
         </mat-select>
       </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="toolbar-tab">
     <input type="text" matInput placeholder="Search By Name" (keyup)="this.setSearch($event)" [(ngModel)]="this.search">
   </mat-form-field>
-  <button mat-button class="ms-3 fs-5 shadow-none" (click)="this.setSortBy($event)">Sort By Price <mat-icon>{{this.arrowDirection}}</mat-icon></button>
+  <button mat-button class="toolbar-tab ms-3 fs-5 shadow-none" (click)="this.setSortBy($event)">Sort By Price <mat-icon>{{this.arrowDirection}}</mat-icon></button>
 </mat-toolbar>

@@ -69,3 +69,10 @@
 /*  opacity: 0.7;*/
 
 /*}*/
+.body{
+  background-color: white;
+  height: max-content;
+}
+.cards{
+  justify-content: center;
+}

@@ -40,6 +40,7 @@ export class ToolbarComponent implements OnInit {
   changeCategory(event: MatSelectChange) {
     this.options.options = event.value;
     this.optionsEventEmitter.emit(this.options);
+
   }
   // changeCategory(event: MatSelectChange) {
   //     console.log("hello jimmy");

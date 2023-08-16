@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IOptions} from "./common/options.interface";
 import {ICardData} from "./common/card.interface,ts";
 import {FirebaseService} from "../../services/firebase.service";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'customer-products',
@@ -10,8 +11,22 @@ import {FirebaseService} from "../../services/firebase.service";
 })
 
 export class CustomerProductsComponent implements OnInit {
+
   options: IOptions;
   isLoading: boolean = true;
+  tabLoadTimes: Date[] = [];
+  // currentPage = 1;
+  //
+  // changePage(page: number): void {
+  //   this.currentPage = page;
+  // }
+  getTimeLoaded(index: number) {
+    if (!this.tabLoadTimes[index]) {
+      this.tabLoadTimes[index] = new Date();
+    }
+
+    return this.tabLoadTimes[index];
+  }
 
   constructor(private firebaseService: FirebaseService) {
     this.options = {
@@ -23,51 +38,67 @@ export class CustomerProductsComponent implements OnInit {
 
   cardsList: ICardData[] = []
   tempList: ICardData[] = []
+  pageIndex: any;
 
   handleOptionsChange(options: IOptions) {
     this.options = options;
     this.tempList = this.cardsList;
     this.sortByPrice();
-    this.filterByCategory();
+    // this.filterByCategory();
+    this.isLoading = true;
+    this.firebaseService.firestore.getProductsFromSupplier(this.options.options).then((products) => {
+      this.cardsList = products;
+      this.tempList = [...this.cardsList];
+      this.sortByPrice();
+      //  this.filterByCategory();
+      this.isLoading = false;
+    });
     this.filterBySearch();
   }
 
   ngOnInit(): void {
     this.isLoading = true;
-      this.firebaseService.firestore.getAllProducts().then((products) => {
-        this.cardsList = products;
-        this.tempList = [...this.cardsList];
-        this.sortByPrice();
-        this.filterByCategory();
-        this.isLoading = false;
-      });
+    this.firebaseService.firestore.getProductsFromSupplier(this.options.options).then((products) => {
+      this.cardsList = products;
+      this.tempList = [...this.cardsList];
+      this.sortByPrice();
+      //  this.filterByCategory();
+      this.isLoading = false;
+    });
   }
+
 
   private sortByPrice() {
     this.tempList = this.tempList.sort(
       (a: ICardData, b: ICardData) => this.options.sortAsc ?
-      a.Price - b.Price :
-      b.Price - a.Price);
+        a.Price - b.Price :
+        b.Price - a.Price);
   }
 
-  /**
-   *      20 - 30   1 time read
-   *      20 - 30
-   *
-   *
-   *
-   *
-   *
-   *
-   * @private
-   */
   private filterByCategory() {
     if (this.options.options.length === 0) return;
-    this.tempList = this.cardsList.filter((a: ICardData) => this.options.options.includes(a.Category));
+    this.tempList = this.tempList.filter((a: ICardData) => this.options.options.includes(a.Category));
   }
 
   private filterBySearch() {
     if (!this.options.search) return;
     this.tempList = this.tempList.filter((a: ICardData) => a.Name.toLowerCase().includes(this.options.search.toLowerCase()))
+  }
+
+  handlePageEvent($event: PageEvent) {
+    
+  }
+}
+export class PaginatorHarnessExample {
+  length = 500;
+  pageSize = 10;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 25];
+  showFirstLastButtons = true;
+
+  handlePageEvent(event: PageEvent) {
+    this.length = event.length;
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
   }
 }

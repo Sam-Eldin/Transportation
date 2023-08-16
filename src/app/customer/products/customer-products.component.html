@@ -4,6 +4,20 @@
   <customer-card *ngFor="let card of this.tempList" [data]="card"></customer-card>
 </div>
 <app-loading *ngIf="this.isLoading" [message]="'Fetching Products'"></app-loading>
+
+<mat-paginator class="mat-paginator"
+               length="length"
+               pageSize="pageSize"
+               [pageSizeOptions]="[5,10,20]"
+               aria-label="Select page"
+               [pageIndex]="pageIndex"
+               (page)="handlePageEvent($event)"
+
+
+>
+
+</mat-paginator>
+
 </body>
 
 

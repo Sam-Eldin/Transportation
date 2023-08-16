@@ -13,7 +13,7 @@ Transportation is Transport offers website built with Angular. It includes clien
 
 ## Demo
 
-[https://software-final-project-9c0fe.web.app/]([https://dannys-crm.herokuapp.com](https://software-final-project-9c0fe.web.app/)
+[https://software-final-project-9c0fe.web.app/](https://software-final-project-9c0fe.web.app/)
 
 ## Screenshots
 

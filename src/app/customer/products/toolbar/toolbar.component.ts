@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {UntypedFormControl} from "@angular/forms";
 import {IOptions} from "../common/options.interface";
 import {MatSelectChange} from "@angular/material/select";
 
@@ -10,7 +10,7 @@ import {MatSelectChange} from "@angular/material/select";
 })
 export class ToolbarComponent implements OnInit {
   search: string = "";
-  Categories = new FormControl('');
+  Categories = new UntypedFormControl('');
   categoriesList: string[] = ['Furniture', 'Office', 'Apartment','Factory', 'Container'];
 
   @Output() optionsEventEmitter: EventEmitter<IOptions> = new EventEmitter();

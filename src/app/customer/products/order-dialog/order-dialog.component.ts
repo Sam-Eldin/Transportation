@@ -5,7 +5,7 @@ import {NotificationService, notificationTypes} from "../../../services/notifica
 import {ValidatorService} from "../../../services/validator.service";
 import {UserService} from "../../../services/user.service";
 import {formatDate} from "@angular/common";
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class OrderDialogComponent implements OnInit {
               private validatorService: ValidatorService,
               private notificationService: NotificationService,
               private userService: UserService) { }
-              exform!: FormGroup;
+              exform!: UntypedFormGroup;
               private readonly NameRegex = /[a-zA-Z][a-zA-Z ]+/;
               private readonly NumberRegex = /^[0-9]{3,4}$/;
               private readonly phoneRegex = /^(0([2-468-9]\d{7}|[5|7]\d{8}))$/;
@@ -37,13 +37,13 @@ export class OrderDialogComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.exform = new FormGroup({
-      'creditCardNumber' : new FormControl(null, [Validators.required, Validators.pattern(this.numberCardRegex)]),
-      'creditCardDate' : new FormControl(null, [Validators.required, Validators.pattern(this.dateCardRegex)]),
-      'creditCardCVV' : new FormControl(null, [Validators.required, Validators.pattern(this.NumberRegex)]),
-      'name' : new FormControl(null, [Validators.required, Validators.pattern(this.NameRegex)]),
-      'date' : new FormControl(null, [Validators.required, Validators.pattern(this.dateRegex)]),
-      'phoneNumber' : new FormControl(null, [Validators.required, Validators.pattern(this.phoneRegex)]),
+    this.exform = new UntypedFormGroup({
+      'creditCardNumber' : new UntypedFormControl(null, [Validators.required, Validators.pattern(this.numberCardRegex)]),
+      'creditCardDate' : new UntypedFormControl(null, [Validators.required, Validators.pattern(this.dateCardRegex)]),
+      'creditCardCVV' : new UntypedFormControl(null, [Validators.required, Validators.pattern(this.NumberRegex)]),
+      'name' : new UntypedFormControl(null, [Validators.required, Validators.pattern(this.NameRegex)]),
+      'date' : new UntypedFormControl(null, [Validators.required, Validators.pattern(this.dateRegex)]),
+      'phoneNumber' : new UntypedFormControl(null, [Validators.required, Validators.pattern(this.phoneRegex)]),
     })
   }
 

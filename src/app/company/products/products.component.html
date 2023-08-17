@@ -1,18 +1,21 @@
-<mat-toolbar>
-  <button mat-button (click)="this.openDialogAdd()">
+<mat-toolbar class="custom-toolbar">
+  <button class="toolbar-button" mat-button (click)="this.openDialogAdd()">
     <mat-icon>add_circle_outline</mat-icon>
     <span>&nbsp;Add Product</span>
   </button>
-  <button mat-button (click)="this.openDialog()" >
+  <button class="toolbar-button" mat-button (click)="this.openDialog()" >
     <mat-icon>remove_circle_outline</mat-icon>
     <span>&nbsp;Remove Product</span>
   </button>
 </mat-toolbar>
 
-<ag-grid-angular
-  #agGridProducts
-  style="width: 100%;"
-  class="ag-theme-alpine"
-  [gridOptions]="this.gridOptions"
-  (gridReady)="onGridReady($event)"
-></ag-grid-angular>
+<div class="grid">
+  <ag-grid-angular
+    #agGridProducts
+    style="width: 100%;"
+    class="ag-theme-alpine"
+    [gridOptions]="this.gridOptions"
+    (gridReady)="onGridReady($event)"
+  ></ag-grid-angular>
+
+</div>

@@ -1,23 +1,35 @@
-import {FirebaseApp} from "firebase/app";
+import {FirebaseApp, initializeApp} from "firebase/app";
 import {
   getFirestore,
   doc,
   getDoc,
   onSnapshot,
   setDoc,
+  addDoc,
   arrayUnion,
   updateDoc,
   query,
   collection,
   getDocs,
-  where
+  where,
+  limit
 } from "firebase/firestore";
 import {ICardData} from "../../customer/products/common/card.interface,ts";
 import {IOrder} from "../../customer/products/common/order.interface";
+import firebase from "firebase/compat/app";
+
+import {environment} from "../../../environments/environment";
+import {LimitData} from "@syncfusion/ej2-angular-inputs";
+
+const app = initializeApp(environment.firebaseConfig);
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
 export class FirestoreService {
   private readonly firestore;
 
+// Initialize Cloud Firestore and get a reference to the service
   constructor(firebaseApp: FirebaseApp) {
     this.firestore = getFirestore(firebaseApp);
   }
@@ -33,21 +45,32 @@ export class FirestoreService {
       this.firestore, path
     ), callBack);
   }
-// getProductsFromSupplier(supplierId: string) {
-  //   return new Promise<any>((resolve)=> {
-  //     this.db.collection('Product', ref => ref.where('supplierId', '==', supplierId).orderBy('inStock').startAt(0).limit(1)).valueChanges().subscribe(product => resolve(product))
-  //   })
-  // }
+
+  public async getProductsFromSupplier(cat: string[] = [], _limit: number = 10) {
+    const productsRef = collection(this.firestore, 'products')
+    let products_doc = await getDocs(query(productsRef, limit(_limit)));
+    if (cat && cat.length >= 1)
+      products_doc = await getDocs(query(productsRef, where("Category", "in", cat), limit(_limit)));
+
+    const data: ICardData[] = []
+    products_doc.forEach((document) => {
+      data.push(<ICardData>document.data())
+    });
+    return data;
+  }
+
   public async getAllProducts(): Promise<ICardData[]> {
     const companies_docs = await getDocs(query(collection(this.firestore, 'companies')));
     const data: ICardData[] = []
     companies_docs.forEach((document) => {
       const doc_data = document.data();
       const doc_products = doc_data["products"];
+      // await setDoc(query(collection(this.firestore, 'products')), )
       for (const product of doc_products) {
         data.push(product)
       }
     });
+
     return data;
   }
 

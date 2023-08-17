@@ -69,3 +69,61 @@
 /*  opacity: 0.7;*/
 
 /*}*/
+
+.body{
+  background-color: white;
+  height: max-content;
+}
+.cards{
+  justify-content: center;
+}
+/*// Customize the paginator styles here*/
+.mat-paginator {
+  /*// Your custom styles for the paginator*/
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: #ff6d39;
+  color: white;
+  font-size: 20px
+
+}
+
+/*Customize other paginator elements as needed*/
+
+::ng-deep .mat-paginator-range-label {
+  margin-right: 10px;
+}
+
+::ng-deep.mat-paginator .mat-paginator-navigation-previous,
+::ng-deep.mat-paginator .mat-paginator-navigation-next {
+  background-color: #ff6d39;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 20px
+}
+
+::ng-deep.mat-paginator .mat-paginator-navigation-previous:hover,
+::ng-deep.mat-paginator .mat-paginator-navigation-next:hover {
+  background-color: #ff6d39;
+}
+
+::ng-deep.mat-paginator .mat-paginator-navigation-previous.disabled,
+::ng-deep.mat-paginator .mat-paginator-navigation-next.disabled {
+  background-color: #ff6d39;
+  cursor: default;
+}
+
+::ng-deep.mat-paginator .mat-select-arrow {
+  color: white;
+  font-size: 20px
+}
+
+::ng-deep.mat-paginator .mat-select-value {
+  color: white;
+  font-size: 20px
+}
+

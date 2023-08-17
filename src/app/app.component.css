@@ -1,0 +1,20 @@
+::ng-deep .custom-toolbar{
+  background: #ff6d39;
+}
+
+.mat-icon-button{
+  color: white;
+}
+
+
+.navbar-icon {
+  user-select: none;
+  cursor: pointer;
+}
+
+.navbar-tab {
+  font-size: medium;
+  border: none;
+  color: white;
+
+}

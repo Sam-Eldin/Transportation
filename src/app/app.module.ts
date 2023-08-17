@@ -42,6 +42,8 @@ import {CardComponent} from './customer/products/card/card.component';
 import {ToolbarComponent} from './customer/products/toolbar/toolbar.component';
 import {CardDialogComponent} from './customer/products/card-dialog/card-dialog.component';
 import {OrderDialogComponent} from "./customer/products/order-dialog/order-dialog.component";
+import {HttpClientModule} from "@angular/common/http";
+import {MatNativeDateModule} from "@angular/material/core";
 
 const routes: Routes = ROUTES;
 @NgModule({
@@ -67,12 +69,18 @@ const routes: Routes = ROUTES;
     SignUpComponent,
     BranchesComponent,
     CustomerOrdersComponent,
-    OrderDialogComponent
+    OrderDialogComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
     ToastrModule.forRoot(
       {

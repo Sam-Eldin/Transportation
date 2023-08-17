@@ -1,9 +1,14 @@
-<ag-grid-angular
-  #agGridCustomerOrders
-  style="width: 100%;"
-  class="ag-theme-alpine"
-  [gridOptions]="this.gridOptions"
-  (gridReady)="onGridReady($event)"
->
-</ag-grid-angular>
+<body style="background-color: white">
+<div class="orders">
+  <ag-grid-angular
+    #agGridCustomerOrders
+    style="width: 100%;"
+    class="ag-theme-alpine"
+    [gridOptions]="this.gridOptions"
+    (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
 
+</div>
+
+</body>

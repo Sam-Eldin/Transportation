@@ -39,6 +39,7 @@ export class CustomerProductsComponent implements OnInit {
   cardsList: ICardData[] = []
   tempList: ICardData[] = []
   pageIndex: any;
+  ///push
 
   handleOptionsChange(options: IOptions) {
     this.options = options;
@@ -86,7 +87,7 @@ export class CustomerProductsComponent implements OnInit {
   }
 
   handlePageEvent($event: PageEvent) {
-    
+
   }
 }
 export class PaginatorHarnessExample {

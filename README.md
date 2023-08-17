@@ -20,7 +20,7 @@ Transportation is Transport offers website built with Angular. It includes clien
 ### Company
 The admin will give the company a certain email address which can be used to sign in to the company account.
 
-<p align="center"><img src="assets/company-view.PNG" width="300" /></p>
+<p align="center"><img src="src/assets/company-view.PNG" width="300" /></p>
 <p align="center"><img src="assets/company-products-view.PNG" width="300" /></p>
 
 ### User   

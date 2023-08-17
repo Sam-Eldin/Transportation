@@ -21,13 +21,13 @@ Transportation is Transport offers website built with Angular. It includes clien
 The admin will give the company a certain email address which can be used to sign in to the company account.
 
 <p align="center"><img src="src/assets/company-view.PNG" width="300" /></p>
-<p align="center"><img src="assets/company-products-view.PNG" width="300" /></p>
+<p align="center"><img src="src/assets/company-products-view.PNG" width="300" /></p>
 
 ### User   
 Anyone can be a user, they can sign up using the signup option. then once they are in the can choose the product they want, or search for it using our search or filter options.
 
-<p align="center"><img src="assets/client-orders.PNG" width="300" /></p>
-<p align="center"><img src="assets/client-offers.PNG" width="300" /></p>
+<p align="center"><img src="src/assets/client-orders.PNG" width="300" /></p>
+<p align="center"><img src="src/assets/client-offers.PNG" width="300" /></p>
 
 ### Admin
 The admin will have access to all sort of stuff but not the sensitive information of companies to insure privacy. The admin can see what each company is selling and with what price. the admin can add and suspend companies as he pleases.

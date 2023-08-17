@@ -40,7 +40,7 @@ export class CustomerProductsComponent implements OnInit {
   tempList: ICardData[] = []
   pageIndex: any;
   ///push
-
+  // test
   handleOptionsChange(options: IOptions) {
     this.options = options;
     this.tempList = this.cardsList;
